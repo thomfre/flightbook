@@ -1,0 +1,6 @@
+{
+    "extends": "react-typescript",
+    "rules": {
+        "react/display-name": 0
+    }
+}
