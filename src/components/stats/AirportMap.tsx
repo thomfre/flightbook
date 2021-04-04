@@ -43,7 +43,7 @@ const AirportMap = (): React.ReactElement => {
                                 {airport.icao}
                             </Typography>
                             <Typography variant="subtitle1" align="center">
-                                {airport.airport}
+                                {airport.name}
                             </Typography>
                             <Typography variant="subtitle2" align="center">
                                 First visited: {firstVisited.format('MMMM Do, YYYY')}

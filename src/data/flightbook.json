@@ -11,7 +11,7 @@
   ],
   "airports": [
     {
-      "airport": "Oslo Gardermoen",
+      "name": "Oslo Gardermoen",
       "icao": "ENGM",
       "coordinates": [
         60.197701,
