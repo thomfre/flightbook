@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Layout from './components/Layout';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+const configureDayJs = (): void => {
+    dayjs.extend(relativeTime);
+    dayjs.extend(customParseFormat);
+    dayjs.extend(advancedFormat);
+};
+
+const App = (): React.ReactElement => {
+    configureDayJs();
+
+    return (
+        <Router>
+            <Layout />
+        </Router>
+    );
+};
 
 export default App;
