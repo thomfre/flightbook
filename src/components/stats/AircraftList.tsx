@@ -11,9 +11,9 @@ const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
     const lastFlown = dayjs(aircraft.lastFlown);
     console.log(aircraft);
     return (
-        <Grid item>
+        <Grid item width={1 / 3} marginRight={10}>
             <Card variant="outlined">
-                {aircraft.picture && <CardMedia image={aircraft.picture} title={aircraft.registration} />}
+                {aircraft.picture && <CardMedia component="img" height="140" image={aircraft.picture} title={aircraft.registration} />}
                 <CardContent>
                     <Typography variant="h5" align="center">
                         {aircraft.registration}
