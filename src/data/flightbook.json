@@ -6,6 +6,7 @@
       "type": "C172",
       "firstFlown": "1970-01-01T00:00:00.000Z",
       "lastFlown": "1970-01-01T00:00:00.000Z",
+      "numberOfFlights": 1,
       "picture": null
     }
   ],
@@ -18,7 +19,9 @@
         11.100532
       ],
       "firstVisited": "1970-01-01T00:00:00.000Z",
-      "lastVisited": "1970-01-01T00:00:00.000Z"
+      "lastVisited": "1970-01-01T00:00:00.000Z",
+      "distinctVisitDates": 1,
+      "picture": null
     }
   ]
 }

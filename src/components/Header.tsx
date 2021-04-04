@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 const Header = (): React.ReactElement => {
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Toolbar>
                 <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', padding: '10px', filter: 'invert(1)' }} />
                 <Typography variant="h6">Flightbook</Typography>

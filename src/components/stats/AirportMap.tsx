@@ -1,11 +1,14 @@
 import 'leaflet/dist/leaflet.css';
 
 import { Icon, LatLngBounds, LatLngTuple } from 'leaflet';
+import { List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
+import Avatar from '@material-ui/core/Avatar';
+import EventIcon from '@material-ui/icons/Event';
+import FlightIcon from '@material-ui/icons/Flight';
 import Flightbook from '../../data/flightbook.json';
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import dayjs from 'dayjs';
 
 const AirportMap = (): React.ReactElement => {
@@ -38,18 +41,40 @@ const AirportMap = (): React.ReactElement => {
 
                 return (
                     <Marker key={airport.icao} position={airport.coordinates as LatLngTuple} icon={markerIcon}>
-                        <Popup>
+                        <Popup maxWidth={800}>
+                            {airport.picture && <img src={airport.picture ?? ''} title={airport.icao} width="100%" />}
                             <Typography variant="h5" align="center">
                                 {airport.icao}
                             </Typography>
                             <Typography variant="subtitle1" align="center">
                                 {airport.name}
                             </Typography>
-                            <Typography variant="subtitle2" align="center">
-                                First visited: {firstVisited.format('MMMM Do, YYYY')}
-                                <br />
-                                Last visited: {lastVisited.format('MMMM Do, YYYY')}
-                            </Typography>
+                            <List>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <EventIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={`${firstVisited.format('MMMM Do, YYYY')} (${firstVisited.fromNow()})`} secondary="First visited" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <EventIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={`${lastVisited.format('MMMM Do, YYYY')} (${lastVisited.fromNow()})`} secondary="Last visited" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <FlightIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={airport.distinctVisitDates} secondary="Times visited (distinct visit dates)" />
+                                </ListItem>
+                            </List>
                         </Popup>
                     </Marker>
                 );

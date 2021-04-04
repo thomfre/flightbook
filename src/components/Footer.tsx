@@ -7,15 +7,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import packageJson from '../../package.json';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh'
-    },
     footer: {
         padding: theme.spacing(2, 4),
-        marginTop: 'auto',
-        backgroundColor: theme.palette.grey[300]
+        backgroundColor: theme.palette.grey[300],
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0
     }
 }));
 
