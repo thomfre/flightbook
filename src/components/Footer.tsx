@@ -26,7 +26,7 @@ const Footer = (): React.ReactElement => {
         <footer className={classes.footer}>
             <Grid container direction="row" justifyContent="space-between" alignItems="center">
                 <Grid item>
-                    <Typography variant="subtitle1" align="left" gutterBottom>
+                    <Typography variant="subtitle1" align="left">
                         Generated with data from {generatedDate.format('MMMM Do, YYYY')} ({generatedDate.fromNow()})
                     </Typography>
                 </Grid>
