@@ -16,7 +16,7 @@ const Home = (): React.ReactElement => {
                 <AirportMap />
             </Box>
             <Box marginTop={4}>
-                <Typography variant="h4" marginBottom={2}>
+                <Typography variant="h4">
                     <FontAwesomeIcon icon={faPlane} /> Aircrafts flown
                 </Typography>
                 <AircraftList />
