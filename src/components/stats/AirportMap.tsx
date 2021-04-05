@@ -16,8 +16,13 @@ import SchoolIcon from '@material-ui/icons/School';
 import dayjs from 'dayjs';
 
 const AirportMap = (): React.ReactElement => {
-    const markerIcon = new Icon({
+    const markerIconGreen = new Icon({
         iconUrl: '/airport-green.svg',
+        iconSize: [24, 24]
+    });
+
+    const markerIconYellow = new Icon({
+        iconUrl: '/airport-yellow.svg',
         iconSize: [24, 24]
     });
 
@@ -44,7 +49,10 @@ const AirportMap = (): React.ReactElement => {
                 const lastVisited = dayjs(airport.lastVisited);
 
                 return (
-                    <Marker key={airport.icao} position={airport.coordinates as LatLngTuple} icon={markerIcon}>
+                    <Marker
+                        key={airport.icao}
+                        position={airport.coordinates as LatLngTuple}
+                        icon={airport.asPic && (airport.asFrom || airport.asTo) ? markerIconGreen : markerIconYellow}>
                         <Popup maxWidth={800}>
                             {airport.picture && <img src={airport.picture ?? ''} title={airport.icao} width="100%" />}
                             <Typography variant="h5" align="center">
