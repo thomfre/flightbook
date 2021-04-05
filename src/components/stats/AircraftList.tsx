@@ -1,12 +1,14 @@
 import 'leaflet/dist/leaflet.css';
 
-import { Card, CardContent, CardMedia, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import { Card, CardContent, CardMedia, Chip, Grid, List, ListItem, ListItemAvatar, ListItemText, Stack, Typography } from '@material-ui/core';
 
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import EventIcon from '@material-ui/icons/Event';
 import FlightIcon from '@material-ui/icons/Flight';
 import Flightbook from '../../data/flightbook.json';
+import PersonIcon from '@material-ui/icons/Person';
 import React from 'react';
+import SchoolIcon from '@material-ui/icons/School';
 import dayjs from 'dayjs';
 
 const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
@@ -24,6 +26,10 @@ const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
                     <Typography variant="subtitle1" align="center">
                         {aircraft.type}
                     </Typography>
+                    <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
+                        {!!aircraft.asDual && <Chip icon={<SchoolIcon />} label="Dual" variant="outlined" />}
+                        {!!aircraft.asPic && <Chip icon={<PersonIcon />} label="PIC" variant="outlined" color="primary" />}
+                    </Stack>
                     <List>
                         <ListItem>
                             <ListItemAvatar>

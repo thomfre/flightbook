@@ -7,6 +7,8 @@
       "firstFlown": "1970-01-01T00:00:00.000Z",
       "lastFlown": "1970-01-01T00:00:00.000Z",
       "numberOfFlights": 1,
+      "asDual": true,
+      "asPic": true,
       "picture": null
     }
   ],
@@ -20,6 +22,11 @@
       ],
       "firstVisited": "1970-01-01T00:00:00.000Z",
       "lastVisited": "1970-01-01T00:00:00.000Z",
+      "asDual": true,
+      "asPic": true,
+      "asFrom": true,
+      "asTo": true,
+      "asVia": true,
       "distinctVisitDates": 1,
       "picture": null
     }

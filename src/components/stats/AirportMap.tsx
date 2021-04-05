@@ -1,14 +1,18 @@
 import 'leaflet/dist/leaflet.css';
 
+import { Chip, List, ListItem, ListItemAvatar, ListItemText, Stack, Typography } from '@material-ui/core';
 import { Icon, LatLngBounds, LatLngTuple } from 'leaflet';
-import { List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import Avatar from '@material-ui/core/Avatar';
 import EventIcon from '@material-ui/icons/Event';
 import FlightIcon from '@material-ui/icons/Flight';
+import FlightLandIcon from '@material-ui/icons/FlightLand';
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import Flightbook from '../../data/flightbook.json';
+import PersonIcon from '@material-ui/icons/Person';
 import React from 'react';
+import SchoolIcon from '@material-ui/icons/School';
 import dayjs from 'dayjs';
 
 const AirportMap = (): React.ReactElement => {
@@ -49,6 +53,15 @@ const AirportMap = (): React.ReactElement => {
                             <Typography variant="subtitle1" align="center">
                                 {airport.name}
                             </Typography>
+                            <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
+                                {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" variant="outlined" />}
+                                {!!airport.asPic && <Chip icon={<PersonIcon />} label="PIC" variant="outlined" color="primary" />}
+                                {!!airport.asFrom && (
+                                    <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />
+                                )}
+                                {!!airport.asTo && <Chip icon={<FlightLandIcon />} label="To" title="Arrived at" variant="outlined" color="primary" />}
+                                {!!airport.asVia && <Chip icon={<FlightIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />}
+                            </Stack>
                             <List>
                                 <ListItem>
                                     <ListItemAvatar>
