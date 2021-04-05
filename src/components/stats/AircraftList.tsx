@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
     const firstFlown = dayjs(aircraft.firstFlown);
     const lastFlown = dayjs(aircraft.lastFlown);
-    console.log(aircraft);
+
     return (
         <Grid item xs={12} md={6} lg={4} padding={2}>
             <Card variant="outlined">
