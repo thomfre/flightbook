@@ -30,5 +30,13 @@
       "distinctVisitDates": 1,
       "picture": null
     }
+  ],
+  "flightTimeMonths": [
+    {
+      "month": "2021-01",
+      "flightTimeMinutes": 0,
+      "dualMinutes": 0,
+      "picMinutes": 0
+    }
   ]
 }

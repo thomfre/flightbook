@@ -4,6 +4,8 @@ import AircraftList from './stats/AircraftList';
 import AirportMap from './stats/AirportMap';
 import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+import FlightTimeMonths from './stats/FlightTimeMonths';
+import HistoryIcon from '@material-ui/icons/History';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +30,12 @@ const Home = (): React.ReactElement => {
                     <FlightIcon /> Aircrafts flown
                 </Typography>
                 <AircraftList />
+            </Box>
+            <Box>
+                <Typography variant="h4">
+                    <HistoryIcon /> Flight time per month
+                </Typography>
+                <FlightTimeMonths />
             </Box>
         </Box>
     );
