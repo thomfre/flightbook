@@ -1,0 +1,20 @@
+{
+  "date": "2021-01-01",
+  "name": "Oslo - ENGM Gardermoen",
+  "geoJson": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        9.254599,
+        59.44716,
+        19.9445
+      ]
+    ]
+  },
+  "speedElevationPoints": [
+    {
+      "elevation": 19.9445,
+      "speed": 16.462222
+    }
+  ]
+}

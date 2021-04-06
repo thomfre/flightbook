@@ -3,6 +3,7 @@
         "Flightbook",
         "aircrafts",
         "flighttime",
+        "heightgraph",
         "unmount"
     ]
 }

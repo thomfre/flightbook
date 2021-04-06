@@ -1,12 +1,9 @@
+import 'chartjs-plugin-zoom';
+import 'hammerjs';
+
 import Flightbook from '../../data/flightbook.json';
-import { Grid } from '@material-ui/core';
 import { Line } from 'react-chartjs-2';
 import React from 'react';
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
-const _chartJsZoomPlugin = require('chartjs-plugin-zoom');
-const _hammerJs = require('hammerjs');
-/* eslint-enable @typescript-eslint/no-unused-vars */
 
 const FlightTimeMonths = (): React.ReactElement => {
     const chartData = {

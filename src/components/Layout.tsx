@@ -18,7 +18,7 @@ const Layout = (): React.ReactElement => {
     return (
         <div>
             <Header />
-            <Container component="main" className={classes.main} maxWidth="lg">
+            <Container component="main" className={classes.main} maxWidth={false}>
                 <Routes />
             </Container>
             <Footer />

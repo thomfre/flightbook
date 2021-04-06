@@ -1,8 +1,9 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography, makeStyles } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Typography, makeStyles } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import AircraftList from './stats/AircraftList';
 import AirportMap from './stats/AirportMap';
+import Container from '@material-ui/core/Container';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
@@ -36,7 +37,7 @@ const Home = (): React.ReactElement => {
     };
 
     return (
-        <Box>
+        <Container maxWidth="lg">
             <Accordion
                 defaultExpanded={locationIs('airports')}
                 onChange={(_event, expanded) => accordionExpanded('airports', expanded)}
@@ -76,7 +77,7 @@ const Home = (): React.ReactElement => {
                     <FlightTimeMonths />
                 </AccordionDetails>
             </Accordion>
-        </Box>
+        </Container>
     );
 };
 
