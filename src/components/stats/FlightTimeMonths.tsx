@@ -37,12 +37,10 @@ const FlightTimeMonths = (): React.ReactElement => {
     };
 
     return (
-        <Grid container>
-            <Line
-                data={chartData}
-                options={{ responsive: true, plugins: { zoom: { pan: { enabled: true, mode: 'x' }, zoom: { enabled: true, drag: true, mode: 'x' } } } }}
-            />
-        </Grid>
+        <Line
+            data={chartData}
+            options={{ responsive: true, plugins: { zoom: { pan: { enabled: true, mode: 'x' }, zoom: { enabled: true, drag: true, mode: 'x' } } } }}
+        />
     );
 };
 

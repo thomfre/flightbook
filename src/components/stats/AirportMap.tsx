@@ -62,8 +62,10 @@ const AirportMap = (): React.ReactElement => {
                                 {airport.name}
                             </Typography>
                             <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
-                                {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" variant="outlined" />}
-                                {!!airport.asPic && <Chip icon={<PersonIcon />} label="PIC" variant="outlined" color="primary" />}
+                                {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />}
+                                {!!airport.asPic && (
+                                    <Chip icon={<PersonIcon />} label="PIC" title="Visited as pilot in command" variant="outlined" color="primary" />
+                                )}
                                 {!!airport.asFrom && (
                                     <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />
                                 )}
