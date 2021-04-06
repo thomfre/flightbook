@@ -3,6 +3,11 @@ import { Grid } from '@material-ui/core';
 import { Line } from 'react-chartjs-2';
 import React from 'react';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+const _chartJsZoomPlugin = require('chartjs-plugin-zoom');
+const _hammerJs = require('hammerjs');
+/* eslint-enable @typescript-eslint/no-unused-vars */
+
 const FlightTimeMonths = (): React.ReactElement => {
     const chartData = {
         labels: Flightbook.flightTimeMonths.map((f) => f.month),
@@ -33,7 +38,10 @@ const FlightTimeMonths = (): React.ReactElement => {
 
     return (
         <Grid container>
-            <Line data={chartData} options={{ responsive: true }} />
+            <Line
+                data={chartData}
+                options={{ responsive: true, plugins: { zoom: { pan: { enabled: true, mode: 'x' }, zoom: { enabled: true, drag: true, mode: 'x' } } } }}
+            />
         </Grid>
     );
 };

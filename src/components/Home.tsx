@@ -1,7 +1,8 @@
-import { Box, Typography, makeStyles } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography, makeStyles } from '@material-ui/core';
 
 import AircraftList from './stats/AircraftList';
 import AirportMap from './stats/AirportMap';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import FlightTimeMonths from './stats/FlightTimeMonths';
@@ -19,24 +20,36 @@ const Home = (): React.ReactElement => {
 
     return (
         <Box>
-            <Box>
-                <Typography variant="h4" className={classes.visitedHeader}>
-                    <FlightTakeoffIcon /> Airports visited
-                </Typography>
-                <AirportMap />
-            </Box>
-            <Box marginTop={4}>
-                <Typography variant="h4">
-                    <FlightIcon /> Aircrafts flown
-                </Typography>
-                <AircraftList />
-            </Box>
-            <Box>
-                <Typography variant="h4">
-                    <HistoryIcon /> Flight time per month
-                </Typography>
-                <FlightTimeMonths />
-            </Box>
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h4">
+                        <FlightTakeoffIcon /> Airports visited
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <AirportMap />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h4">
+                        <FlightIcon /> Aircrafts flown
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <AircraftList />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h4">
+                        <HistoryIcon /> Flight time per month
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <FlightTimeMonths />
+                </AccordionDetails>
+            </Accordion>
         </Box>
     );
 };
