@@ -8,6 +8,9 @@ import React from 'react';
 const Routes = (): React.ReactElement => {
     return (
         <Switch>
+            <Route path="/flights/:filter">
+                <Flights />
+            </Route>
             <Route path="/flights">
                 <Flights />
             </Route>

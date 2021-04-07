@@ -16,13 +16,18 @@ import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import Grid from '@material-ui/core/Grid';
 import { Line } from 'react-chartjs-2';
+import MapIcon from '@material-ui/icons/Map';
 import SpeedIcon from '@material-ui/icons/Speed';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useRouteMatch } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+    aircraftChip: {
+        cursor: 'pointer !important'
+    }
+}));
 
 const FlightElevation = ({ data }: { data: any }) => {
     const map = useMap();
@@ -120,13 +125,13 @@ const Flight = (): React.ReactElement => {
         return sum / array.length || 0;
     };
 
-    const elevationHighest = Math.max.apply(
+    const altitudeMax = Math.max.apply(
         null,
         flight.speedElevationPoints.map((p: any) => p.elevation)
     );
-    const elevationAverage = getAverage(flight.speedElevationPoints.map((p: any) => p.elevation));
+    const altitudeAverage = getAverage(flight.speedElevationPoints.map((p: any) => p.elevation));
 
-    const speedHighest = Math.max.apply(
+    const speedMax = Math.max.apply(
         null,
         flight.speedElevationPoints.map((p: any) => p.speed)
     );
@@ -162,10 +167,22 @@ const Flight = (): React.ReactElement => {
                 <FlightElevation data={flight?.geoJson} />
             </MapContainer>
             <Stack justifyContent="center" spacing={1} alignItems="center" direction="row" padding={2}>
-                <Chip icon={<FlightTakeoffIcon />} label={`Highest elevation: ${elevationHighest.toFixed(0)} ft`} variant="outlined" color="primary" />
-                <Chip icon={<FlightTakeoffIcon />} label={`Average elevation: ${elevationAverage.toFixed(0)} ft`} variant="outlined" color="primary" />
-                <Chip icon={<SpeedIcon />} label={`Highest speed: ${speedHighest.toFixed(0)} kt`} variant="outlined" color="primary" />
+                <Chip icon={<FlightTakeoffIcon />} label={`Max altitude: ${altitudeMax.toFixed(0)} ft`} variant="outlined" color="primary" />
+                <Chip icon={<FlightTakeoffIcon />} label={`Average altitude: ${altitudeAverage.toFixed(0)} ft`} variant="outlined" color="primary" />
+                <Chip icon={<SpeedIcon />} label={`Max speed: ${speedMax.toFixed(0)} kt`} variant="outlined" color="primary" />
                 <Chip icon={<SpeedIcon />} label={`Average speed: ${speedAverage.toFixed(0)} kt`} variant="outlined" color="primary" />
+                <Chip icon={<MapIcon />} label={`Distance: ${flight.totalDistance.toFixed(1)} nm`} variant="outlined" color="primary" />
+                {flight.aircraft && (
+                    <Chip
+                        icon={<FlightIcon />}
+                        label={flight.aircraft}
+                        variant="outlined"
+                        color="primary"
+                        component="a"
+                        href={`/aircrafts/${flight.aircraft}`}
+                        className={classes.aircraftChip}
+                    />
+                )}
             </Stack>
             <Line
                 data={chartData}
