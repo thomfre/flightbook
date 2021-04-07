@@ -1,5 +1,7 @@
 import Flightbook from '../data/flightbook.json';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import { default as React } from 'react';
 import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
@@ -32,7 +34,10 @@ const Footer = (): React.ReactElement => {
                 </Grid>
                 <Grid item>
                     <Typography variant="subtitle2" align="right" color="textSecondary" component="p">
-                        Flightbook version {packageJson.version}
+                        Flightbook version {packageJson.version}{' '}
+                        <IconButton component="a" href="https://github.com/thomfre/flightbook">
+                            <GitHubIcon />
+                        </IconButton>
                     </Typography>
                 </Grid>
             </Grid>
