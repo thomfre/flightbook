@@ -18,13 +18,13 @@ const Home = (): React.ReactElement => {
     const location = useLocation();
     const history = useHistory();
 
-    const locationIs = (identifier: string): boolean => {
+    const locationIs = (identifier: string, expandedIfEmpty: boolean = false): boolean => {
         const pathParts = location.pathname?.split('/');
         if (pathParts === null || pathParts.length < 1) {
-            return false;
+            return expandedIfEmpty;
         }
 
-        return pathParts[1].toLowerCase() === identifier.toLowerCase();
+        return pathParts[1].toLowerCase() === identifier.toLowerCase() || (pathParts[1] === '' && expandedIfEmpty);
     };
 
     const accordionExpanded = (route: string, expanded: boolean) => {
@@ -38,7 +38,7 @@ const Home = (): React.ReactElement => {
     return (
         <Container maxWidth="lg">
             <Accordion
-                defaultExpanded={locationIs('airports')}
+                defaultExpanded={locationIs('airports', true)}
                 onChange={(_event, expanded) => accordionExpanded('airports', expanded)}
                 TransitionProps={{ unmountOnExit: true }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
