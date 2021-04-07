@@ -1,21 +1,20 @@
-import { Accordion, AccordionDetails, AccordionSummary, Typography, makeStyles } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import AircraftList from './stats/AircraftList';
-import AirportMap from './stats/AirportMap';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AircraftList from './aircrafts/AircraftList';
+import AirportMap from './AirportMap';
 import Container from '@material-ui/core/Container';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
-import FlightTimeMonths from './stats/FlightTimeMonths';
+import FlightTimeMonths from './FlightTimeMonths';
 import HistoryIcon from '@material-ui/icons/History';
 import React from 'react';
-
-const useStyles = makeStyles((theme) => ({}));
+import Typography from '@material-ui/core/Typography';
 
 const Home = (): React.ReactElement => {
-    const classes = useStyles();
-
     const location = useLocation();
     const history = useHistory();
 

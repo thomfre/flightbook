@@ -1,5 +1,5 @@
 import Flightbook from '../data/flightbook.json';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import { default as React } from 'react';
 import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';

@@ -1,17 +1,25 @@
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
-import 'leaflet/dist/leaflet.css';
 import 'chartjs-plugin-zoom';
 import 'hammerjs';
+import 'leaflet/dist/leaflet.css';
 
-import { Box, Chip, CircularProgress, Stack, Typography, makeStyles } from '@material-ui/core';
 import { GeoJSON, MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
-import L, { Icon, LatLngBounds, LatLngTuple } from 'leaflet';
+import L, { Icon, LatLngTuple } from 'leaflet';
 import { default as React, useEffect, useState } from 'react';
 
+import Box from '@material-ui/core/Box';
+import Chip from '@material-ui/core/Chip';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import EventIcon from '@material-ui/icons/Event';
+import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+import Grid from '@material-ui/core/Grid';
 import { Line } from 'react-chartjs-2';
 import SpeedIcon from '@material-ui/icons/Speed';
+import Stack from '@material-ui/core/Stack';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import { useRouteMatch } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({}));
@@ -42,6 +50,17 @@ const FlightElevation = ({ data }: { data: any }) => {
         const hg = L.control.heightgraph();
         hg.addTo(map);
         hg.addData(heightgraphData);
+
+        const group = new L.FeatureGroup();
+
+        map.eachLayer((layer) => {
+            // @ts-ignore
+            if (layer.getBounds || layer.getLatLng) {
+                group.addLayer(layer);
+            }
+        });
+
+        map.fitBounds(group.getBounds());
     }, []);
 
     return null;
@@ -66,14 +85,6 @@ const Flight = (): React.ReactElement => {
     if (!flight || airports.length === 0) {
         return <CircularProgress />;
     }
-
-    const latitudes = airports.map((airport) => airport[1]);
-    const longitudes = airports.map((airport) => airport[0]);
-
-    const boundingBox = new LatLngBounds([
-        [Math.min.apply(null, latitudes), Math.min.apply(null, longitudes)],
-        [Math.max.apply(null, latitudes), Math.max.apply(null, longitudes)]
-    ]);
 
     const markerIconGreen = new Icon({
         iconUrl: '/airport-green.svg',
@@ -123,8 +134,19 @@ const Flight = (): React.ReactElement => {
 
     return (
         <Box>
-            <Typography variant="h3">{flight?.name}</Typography>
-            <MapContainer scrollWheelZoom={true} style={{ minHeight: '700px' }} bounds={boundingBox}>
+            <Grid container>
+                <Grid item md={10} sm={12}>
+                    <Typography variant="h3">
+                        <FlightIcon fontSize="large" /> {flight?.name}
+                    </Typography>
+                </Grid>
+                <Grid item md={2} sm={12}>
+                    <Typography variant="h3" textAlign="right">
+                        {flight?.date} <EventIcon fontSize="large" />
+                    </Typography>
+                </Grid>
+            </Grid>
+            <MapContainer scrollWheelZoom={true} style={{ minHeight: '700px' }}>
                 <TileLayer
                     attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,
                 <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

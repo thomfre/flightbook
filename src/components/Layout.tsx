@@ -16,13 +16,13 @@ const Layout = (): React.ReactElement => {
     const classes = useStyles();
 
     return (
-        <div>
+        <React.Fragment>
             <Header />
             <Container component="main" className={classes.main} maxWidth={false}>
                 <Routes />
             </Container>
             <Footer />
-        </div>
+        </React.Fragment>
     );
 };
 
