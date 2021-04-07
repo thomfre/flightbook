@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import { GeoJSON, MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
 import L, { Icon, LatLngTuple } from 'leaflet';
 import { default as React, useEffect, useState } from 'react';
+import UnitChip, { UnitType } from './UnitChip';
 
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
@@ -159,11 +160,17 @@ const Flight = (): React.ReactElement => {
                 <FlightElevation data={flight?.geoJson} />
             </MapContainer>
             <Stack justifyContent="center" spacing={1} alignItems="center" direction="row" padding={2}>
-                <Chip icon={<FlightTakeoffIcon />} label={`Max altitude: ${altitudeMax.toFixed(0)} ft`} variant="outlined" color="primary" />
-                <Chip icon={<FlightTakeoffIcon />} label={`Average altitude: ${altitudeAverage.toFixed(0)} ft`} variant="outlined" color="primary" />
-                <Chip icon={<SpeedIcon />} label={`Max speed: ${speedMax.toFixed(0)} kt`} variant="outlined" color="primary" />
-                <Chip icon={<SpeedIcon />} label={`Average speed: ${speedAverage.toFixed(0)} kt`} variant="outlined" color="primary" />
-                <Chip icon={<MapIcon />} label={`Distance: ${flight.totalDistance.toFixed(1)} nm`} variant="outlined" color="primary" />
+                <UnitChip icon={<FlightTakeoffIcon />} label={`Max altitude: ${altitudeMax.toFixed(0)} ft`} value={altitudeMax} type={UnitType.Altitude} />
+                <UnitChip
+                    icon={<FlightTakeoffIcon />}
+                    label={`Average altitude: ${altitudeAverage.toFixed(0)} ft`}
+                    value={altitudeAverage}
+                    type={UnitType.Altitude}
+                />
+                <UnitChip icon={<SpeedIcon />} label={`Max speed: ${speedMax.toFixed(0)} kt`} value={speedMax} type={UnitType.Speed} />
+                <UnitChip icon={<SpeedIcon />} label={`Average speed: ${speedAverage.toFixed(0)} kt`} value={speedAverage} type={UnitType.Speed} />
+                <UnitChip icon={<MapIcon />} label={`Distance: ${flight.totalDistance.toFixed(1)} nm`} value={flight.totalDistance} type={UnitType.Distance} />
+
                 {flight.aircraft && (
                     <Chip
                         icon={<FlightIcon />}
