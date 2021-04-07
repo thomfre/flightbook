@@ -1,0 +1,22 @@
+[
+  {
+    "id": 2578,
+    "icaoCode": "ENGM",
+    "type": "large_airport",
+    "name": "Oslo Gardermoen Airport",
+    "latitude": 60.193901062012,
+    "longitude": 11.100399971008,
+    "fieldElevation": 681,
+    "continent": "EU",
+    "isoCountry": "NO",
+    "isoRegion": "NO-02",
+    "municipality": "Oslo",
+    "scheduledService": "yes",
+    "gpsCode": "ENGM",
+    "iataCode": "OSL",
+    "localCode": "",
+    "homeLink": "https://avinor.no/en/airport/oslo-airport",
+    "wikipediaLink": "https://en.wikipedia.org/wiki/Oslo_Airport,_Gardermoen",
+    "keywords": ""
+  }
+]

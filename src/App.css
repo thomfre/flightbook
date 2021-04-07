@@ -1,3 +1,7 @@
 .leaflet-popup-content p {
     margin: unset !important;
 }
+
+.dimmed-icon {
+    opacity: 0.25;
+}

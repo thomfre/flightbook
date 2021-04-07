@@ -20,14 +20,7 @@ import MapIcon from '@material-ui/icons/Map';
 import SpeedIcon from '@material-ui/icons/Speed';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import { useRouteMatch } from 'react-router-dom';
-
-const useStyles = makeStyles((theme) => ({
-    aircraftChip: {
-        cursor: 'pointer !important'
-    }
-}));
 
 const FlightElevation = ({ data }: { data: any }) => {
     const map = useMap();
@@ -72,7 +65,6 @@ const FlightElevation = ({ data }: { data: any }) => {
 };
 
 const Flight = (): React.ReactElement => {
-    const classes = useStyles();
     const [flight, setFlight] = useState<any>();
     const [airports, setAirports] = useState<any[]>([]);
 
@@ -180,7 +172,7 @@ const Flight = (): React.ReactElement => {
                         color="primary"
                         component="a"
                         href={`/aircrafts/${flight.aircraft}`}
-                        className={classes.aircraftChip}
+                        clickable
                     />
                 )}
             </Stack>
