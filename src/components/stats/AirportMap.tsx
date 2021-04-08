@@ -107,7 +107,7 @@ const AirportMap = (): React.ReactElement => {
                                             <Typography variant="subtitle1" align="center">
                                                 {airport.name}
                                             </Typography>
-                                            <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
+                                            <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'row' }}>
                                                 {!!airport.asDual && (
                                                     <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />
                                                 )}
@@ -191,7 +191,7 @@ const AirportMap = (): React.ReactElement => {
                     </LayersControl.Overlay>
                 </LayersControl>
             </MapContainer>
-            <Stack direction="row" spacing={1} marginTop={1}>
+            <Stack direction={{ xs: 'column', sm: 'column', md: 'row' }} spacing={1} marginTop={1}>
                 <Typography variant="h6">Legend:</Typography>
                 <Chip
                     icon={<img src="/airport-green.svg" className={classes.legendPicture} />}

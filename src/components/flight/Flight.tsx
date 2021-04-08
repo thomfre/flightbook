@@ -159,7 +159,7 @@ const Flight = (): React.ReactElement => {
                 })}
                 <FlightElevation data={flight?.geoJson} />
             </MapContainer>
-            <Stack justifyContent="center" spacing={1} alignItems="center" direction="row" padding={2}>
+            <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
                 <UnitChip icon={<FlightTakeoffIcon />} label={`Max altitude: ${altitudeMax.toFixed(0)} ft`} value={altitudeMax} type={UnitType.Altitude} />
                 <UnitChip
                     icon={<FlightTakeoffIcon />}
@@ -215,7 +215,9 @@ const Flight = (): React.ReactElement => {
                         ],
                         x: { display: false, gridLines: { drawOnArea: false } }
                     },
-                    plugins: { zoom: { pan: { enabled: true, mode: 'x' }, zoom: { enabled: true, drag: true, mode: 'x' } } }
+                    plugins: {
+                        zoom: { pan: { enabled: true, mode: 'x' }, zoom: { enabled: true, drag: true, mode: 'x' } }
+                    }
                 }}
             />
         </Box>

@@ -1,3 +1,5 @@
+import { useHistory, useRouteMatch } from 'react-router-dom';
+
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -13,23 +15,48 @@ import MapIcon from '@material-ui/icons/Map';
 import { default as React } from 'react';
 import Tracklogs from '../../data/tracklogs.json';
 import Typography from '@material-ui/core/Typography';
-import { useRouteMatch } from 'react-router-dom';
 
 const Flights = (): React.ReactElement => {
-    const { params }: { params: { filter?: string } } = useRouteMatch();
+    const { params }: { params: { year?: string; filter?: string } } = useRouteMatch();
+    const history = useHistory();
 
-    const filteredTracks = Tracklogs?.tracks.filter((t) => !params.filter || t.aircraft === params.filter).sort((a, b) => b.date.localeCompare(a.date));
+    const filterYear = (params.year && parseInt(params.year, 10)) || (params.filter && !isNaN(parseInt(params.filter, 10)) && parseInt(params.filter, 10));
+    const filterRegistration = params.filter && isNaN(parseInt(params.filter, 10)) && params.filter;
 
-    const trackYears = filteredTracks.map((t) => t.date.split('-')[0]).filter((v, i, a) => a.indexOf(v) === i);
+    const filteredTracks = Tracklogs?.tracks
+        .filter((t) => !filterRegistration || t.aircraft === filterRegistration)
+        .sort((a, b) => b.date.localeCompare(a.date));
+
+    const trackYears = filteredTracks.map((t) => parseInt(t.date.split('-')[0], 10)).filter((v, i, a) => a.indexOf(v) === i);
+
+    const accordionExpanded = (year: number, expanded: boolean) => {
+        if (filterRegistration) {
+            if (expanded) {
+                history.replace(`/flights/${year}/${filterRegistration}`);
+            } else if (location.pathname.startsWith(`/flights/${year}`)) {
+                history.replace('/flights');
+            }
+        } else {
+            if (expanded) {
+                history.replace(`/flights/${year}`);
+            } else if (location.pathname.startsWith(`/flights/${year}`)) {
+                history.replace('/flights');
+            }
+        }
+    };
 
     return (
         <Container maxWidth="lg">
             <Typography variant="h3">
-                <FlightIcon fontSize="large" /> Flights{params.filter && ` - ${params.filter}`}
+                <FlightIcon fontSize="large" /> Flights{filterRegistration && ` - ${filterRegistration}`}
             </Typography>
             {filteredTracks.length === 0 && <Typography component="i">No flights found</Typography>}
             {trackYears.map((year, index) => (
-                <Accordion defaultExpanded={index === 0} TransitionProps={{ unmountOnExit: true }}>
+                <Accordion
+                    key={year}
+                    defaultExpanded={(!filterYear && index === 0) || filterYear === year}
+                    TransitionProps={{ unmountOnExit: true }}
+                    onChange={(_event, expanded) => accordionExpanded(year, expanded)}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography variant="h4">
                             <DateRangeIcon /> {year}

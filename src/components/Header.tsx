@@ -50,7 +50,7 @@ const Header = (): React.ReactElement => {
                 ) : (
                     <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', maxWidth: '90%', padding: '10px', filter: 'invert(1)' }} />
                 )}
-                <Hidden only="sm">
+                <Hidden only={['sm', 'xs']}>
                     <Typography variant="h6">Flightbook</Typography>
                 </Hidden>
             </Toolbar>

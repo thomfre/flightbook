@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import AircraftDialog from './AircraftDialog';
 import Flightbook from '../../../data/flightbook.json';
@@ -17,17 +17,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
-    const location = useLocation();
     const history = useHistory();
+    const { params }: { params: { aircraft?: string } } = useRouteMatch();
 
     const locationIsAirplane = (registration: string): boolean => {
-        const pathParts = location.pathname?.split('/');
-
-        if (pathParts === null || pathParts.length < 3) {
-            return false;
-        }
-
-        return pathParts[1].toLowerCase() === 'aircrafts' && pathParts[2].toLowerCase() === registration.toLowerCase();
+        return params.aircraft?.toLowerCase() === registration.toLowerCase();
     };
 
     const [detailsOpen, setDetailsOpen] = useState(locationIsAirplane(aircraft.registration));

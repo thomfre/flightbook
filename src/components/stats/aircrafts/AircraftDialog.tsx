@@ -27,7 +27,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
     const filteredTracklogs = Tracklogs.tracks.filter((t) => t.aircraft === aircraft.registration).sort((a, b) => b.date.localeCompare(a.date));
 
     return (
-        <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, marginLeft: '10%', marginRight: '10%', height: '100%' }}>
+        <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>
             <DialogContent onClick={(e) => e.stopPropagation()} style={{ padding: 0, margin: 0 }}>
                 {aircraft.picture && (
                     <img
@@ -38,7 +38,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                     />
                 )}
                 <Grid container>
-                    <Grid item sm={12} marginBottom={2}>
+                    <Grid item xs={12} marginBottom={2}>
                         <Typography variant="h3" align="center" paddingTop={2}>
                             {aircraft.registration}
                         </Typography>
@@ -52,7 +52,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                             )}
                         </Stack>
                     </Grid>
-                    <Grid item lg={6} sm={12} padding={2}>
+                    <Grid item lg={6} md={12} padding={2}>
                         <List>
                             <ListItem>
                                 <ListItemAvatar>
@@ -80,7 +80,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                             </ListItem>
                         </List>
                     </Grid>
-                    <Grid item lg={6} sm={12} padding={2}>
+                    <Grid item lg={6} md={12} padding={2}>
                         <Typography variant="h5">Last flights</Typography>
                         {filteredTracklogs.length === 0 && <Typography component="i">No flight track logs found</Typography>}
                         {filteredTracklogs.length > 0 && (

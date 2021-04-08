@@ -8,16 +8,13 @@ import React from 'react';
 const Routes = (): React.ReactElement => {
     return (
         <Switch>
-            <Route path="/flights/:filter">
-                <Flights />
-            </Route>
-            <Route path="/flights">
+            <Route path={['/flights/:year/:filter', '/flights/:filter', '/flights']}>
                 <Flights />
             </Route>
             <Route path="/flight/:filename">
                 <Flight />
             </Route>
-            <Route path="/">
+            <Route path={['/aircrafts/:aircraft', '/aircrafts', '/airports', '/flighttime', '/']}>
                 <Home />
             </Route>
         </Switch>
