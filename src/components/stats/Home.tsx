@@ -36,7 +36,7 @@ const Home = (): React.ReactElement => {
     };
 
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ paddingBottom: '10px' }}>
             <Accordion
                 defaultExpanded={locationIs('airports', true)}
                 onChange={(_event, expanded) => accordionExpanded('airports', expanded)}
