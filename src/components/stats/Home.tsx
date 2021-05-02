@@ -11,12 +11,17 @@ import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import FlightTimeMonths from './FlightTimeMonths';
 import HistoryIcon from '@material-ui/icons/History';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
+import { setTitle } from '../../tools/SetTitle';
 
 const Home = (): React.ReactElement => {
     const location = useLocation();
     const history = useHistory();
+
+    useEffect(() => {
+        setTitle('Statistics');
+    }, []);
 
     const locationIs = (identifier: string, expandedIfEmpty: boolean = false): boolean => {
         const pathParts = location.pathname?.split('/');

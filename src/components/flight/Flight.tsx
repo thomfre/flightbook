@@ -22,6 +22,7 @@ import SpeedIcon from '@material-ui/icons/Speed';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
 import { useRouteMatch } from 'react-router-dom';
+import { setTitle } from '../../tools/SetTitle';
 
 const FlightElevation = ({ data }: { data: any }) => {
     const map = useMap();
@@ -77,6 +78,7 @@ const Flight = (): React.ReactElement => {
             .then((data) => {
                 setFlight(data);
                 setAirports([data.geoJson.coordinates[0], data.geoJson.coordinates[data.geoJson.coordinates.length - 1]]);
+                setTitle(`Flight ${data?.name}`);
             });
     }, []);
 

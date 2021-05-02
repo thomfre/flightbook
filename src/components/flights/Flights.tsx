@@ -12,13 +12,18 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MapIcon from '@material-ui/icons/Map';
-import { default as React } from 'react';
+import { default as React, useEffect } from 'react';
 import Tracklogs from '../../data/tracklogs.json';
 import Typography from '@material-ui/core/Typography';
+import { setTitle } from '../../tools/SetTitle';
 
 const Flights = (): React.ReactElement => {
     const { params }: { params: { year?: string; filter?: string } } = useRouteMatch();
     const history = useHistory();
+
+    useEffect(() => {
+        setTitle('Flights');
+    }, []);
 
     const filterYear = (params.year && parseInt(params.year, 10)) || (params.filter && !isNaN(parseInt(params.filter, 10)) && parseInt(params.filter, 10));
     const filterRegistration = params.filter && isNaN(parseInt(params.filter, 10)) && params.filter;
