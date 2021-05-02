@@ -21,6 +21,7 @@ import MapIcon from '@material-ui/icons/Map';
 import SpeedIcon from '@material-ui/icons/Speed';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 import { useRouteMatch } from 'react-router-dom';
 import { setTitle } from '../../tools/SetTitle';
 
@@ -185,6 +186,11 @@ const Flight = (): React.ReactElement => {
                     />
                 )}
             </Stack>
+            {flight.youtube && flight.youtube.length > 0 && (
+                <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
+                    <Chip icon={<YouTubeIcon />} label={'View on YouTube'} color="secondary" component="a" href={flight.youtube} target="_blank" clickable />
+                </Stack>
+            )}
             <Line
                 data={chartData}
                 options={{
