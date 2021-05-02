@@ -2,16 +2,11 @@
   "date": "2021-01-01",
   "name": "Oslo - ENGM Gardermoen",
   "aircraft": "LN-ABC",
+  "youtube": null,
   "totalDistance": 22,
   "geoJson": {
     "type": "LineString",
-    "coordinates": [
-      [
-        9.254599,
-        59.44716,
-        19.9445
-      ]
-    ]
+    "coordinates": [[9.254599, 59.44716, 19.9445]]
   },
   "speedElevationPoints": [
     {
