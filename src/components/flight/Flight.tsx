@@ -106,7 +106,7 @@ const Flight = (): React.ReactElement => {
                 fill: false,
                 backgroundColor: 'rgb(0, 99, 132)',
                 borderColor: 'rgba(0, 99, 132, 0.8)',
-                yAxisID: 'y-axis-1',
+                yAxisID: 'y',
                 pointRadius: 0
             },
             {
@@ -116,7 +116,7 @@ const Flight = (): React.ReactElement => {
                 fill: false,
                 backgroundColor: 'rgb(0, 0, 132)',
                 borderColor: 'rgba(0, 0, 132, 0.8)',
-                yAxisID: 'y-axis-2',
+                yAxisID: 'y1',
                 pointRadius: 0
             }
         ]
@@ -218,31 +218,27 @@ const Flight = (): React.ReactElement => {
                 options={{
                     responsive: true,
                     scales: {
-                        yAxes: [
-                            {
-                                title: {
-                                    display: true,
-                                    text: 'Ground speed'
-                                },
-                                type: 'linear',
+                        y: {
+                            title: {
                                 display: true,
-                                position: 'left',
-                                id: 'y-axis-1'
+                                text: 'Ground speed'
                             },
-                            {
-                                title: {
-                                    display: true,
-                                    text: 'GPS elevation'
-                                },
-                                type: 'linear',
+                            type: 'linear',
+                            display: true,
+                            position: 'left'
+                        },
+                        y1: {
+                            title: {
                                 display: true,
-                                position: 'right',
-                                id: 'y-axis-2',
-                                gridLines: {
-                                    drawOnArea: false
-                                }
+                                text: 'GPS elevation'
+                            },
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            gridLines: {
+                                drawOnArea: false
                             }
-                        ],
+                        },
                         x: { display: false, gridLines: { drawOnArea: false } }
                     }
                 }}
