@@ -13,8 +13,6 @@ import SpeedIcon from '@material-ui/icons/Speed';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
-import 'chartjs-plugin-zoom';
-import 'hammerjs';
 import L, { Icon, LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
@@ -102,6 +100,7 @@ const Flight = (): React.ReactElement => {
         labels: Array.from({ length: flight.speedElevationPoints.length }, (x, i) => i),
         datasets: [
             {
+                type: 'line',
                 label: 'Speed',
                 data: flight.speedElevationPoints.map((p: any) => p.speed),
                 fill: false,
@@ -111,6 +110,7 @@ const Flight = (): React.ReactElement => {
                 pointRadius: 0
             },
             {
+                type: 'line',
                 label: 'Elevation',
                 data: flight.speedElevationPoints.map((p: any) => p.elevation),
                 fill: false,
@@ -213,6 +213,7 @@ const Flight = (): React.ReactElement => {
                 </Stack>
             )}
             <Line
+                type="line"
                 data={chartData}
                 options={{
                     responsive: true,
@@ -243,9 +244,6 @@ const Flight = (): React.ReactElement => {
                             }
                         ],
                         x: { display: false, gridLines: { drawOnArea: false } }
-                    },
-                    plugins: {
-                        zoom: { pan: { enabled: true, mode: 'x' }, zoom: { enabled: true, drag: true, mode: 'x' } }
                     }
                 }}
             />
