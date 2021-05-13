@@ -17,6 +17,7 @@ import Tracklogs from '../../data/tracklogs.json';
 import { TracklogInfo } from '../../models/tracklog/TracklogInfo';
 import { setTitle } from '../../tools/SetTitle';
 import YouTubeIcon from '@material-ui/icons/YouTube';
+import { ListItemSecondaryAction } from '@material-ui/core';
 
 const Flights = (): React.ReactElement => {
     const { params }: { params: { year?: string; filter?: string } } = useRouteMatch();
@@ -74,8 +75,17 @@ const Flights = (): React.ReactElement => {
                                 .filter((t) => t.date.startsWith(`${year}-`))
                                 .map((track: TracklogInfo) => (
                                     <ListItem key={track.filename} button component="a" href={`/flight/${track.filename.replace('.json', '')}`}>
-                                        <ListItemIcon>{track.hasYoutube ? <YouTubeIcon /> : <MapIcon />}</ListItemIcon>
+                                        <ListItemIcon>
+                                            <MapIcon />
+                                        </ListItemIcon>
                                         <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
+                                        {track.hasYoutube && (
+                                            <ListItemSecondaryAction>
+                                                <ListItemIcon>
+                                                    <YouTubeIcon color="secondary" />
+                                                </ListItemIcon>
+                                            </ListItemSecondaryAction>
+                                        )}
                                     </ListItem>
                                 ))}
                         </List>
