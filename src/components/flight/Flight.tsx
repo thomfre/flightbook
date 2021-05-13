@@ -1,29 +1,29 @@
+import { Breadcrumbs, Link } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Chip from '@material-ui/core/Chip';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+import Stack from '@material-ui/core/Stack';
+import Typography from '@material-ui/core/Typography';
+import EventIcon from '@material-ui/icons/Event';
+import FlightIcon from '@material-ui/icons/Flight';
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+import MapIcon from '@material-ui/icons/Map';
+import SpeedIcon from '@material-ui/icons/Speed';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
 import 'chartjs-plugin-zoom';
 import 'hammerjs';
-import 'leaflet/dist/leaflet.css';
-
-import { GeoJSON, MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
 import L, { Icon, LatLngTuple } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
-import UnitChip, { UnitType } from './UnitChip';
-
-import Box from '@material-ui/core/Box';
-import Chip from '@material-ui/core/Chip';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import EventIcon from '@material-ui/icons/Event';
-import FlightIcon from '@material-ui/icons/Flight';
-import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
-import Grid from '@material-ui/core/Grid';
 import { Line } from 'react-chartjs-2';
-import MapIcon from '@material-ui/icons/Map';
-import SpeedIcon from '@material-ui/icons/Speed';
-import Stack from '@material-ui/core/Stack';
-import Typography from '@material-ui/core/Typography';
-import YouTubeIcon from '@material-ui/icons/YouTube';
+import { GeoJSON, MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
 import { useRouteMatch } from 'react-router-dom';
+import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
+import UnitChip, { UnitType } from './UnitChip';
 
 const FlightElevation = ({ data }: { data: any }) => {
     const map = useMap();
@@ -68,8 +68,10 @@ const FlightElevation = ({ data }: { data: any }) => {
 };
 
 const Flight = (): React.ReactElement => {
-    const [flight, setFlight] = useState<any>();
+    const [flight, setFlight] = useState<Tracklog>();
     const [airports, setAirports] = useState<any[]>([]);
+
+    const [flightYear, setFlightYear] = useState('');
 
     const { params }: { params: { filename: string } } = useRouteMatch();
 
@@ -82,6 +84,10 @@ const Flight = (): React.ReactElement => {
                 setTitle(`Flight ${data?.name}`);
             });
     }, []);
+
+    useEffect(() => {
+        setFlightYear(flight?.date?.split('-')[0] ?? '');
+    }, [flight]);
 
     if (!flight || airports.length === 0) {
         return <CircularProgress />;
@@ -136,13 +142,28 @@ const Flight = (): React.ReactElement => {
     return (
         <Box>
             <Grid container>
+                <Grid item md={12}>
+                    <Breadcrumbs>
+                        <Link color="inherit" href="/flights">
+                            Flights
+                        </Link>
+                        {flightYear !== '' && (
+                            <Link color="inherit" href={`/flights/${flightYear}`}>
+                                {flightYear}
+                            </Link>
+                        )}
+                        <Link color="text.primary" href="" aria-current="page">
+                            {flight?.name}
+                        </Link>
+                    </Breadcrumbs>
+                </Grid>
                 <Grid item md={10} sm={12}>
-                    <Typography variant="h3">
+                    <Typography variant="h4" sx={{ display: 'inline' }}>
                         <FlightIcon fontSize="large" /> {flight?.name}
                     </Typography>
                 </Grid>
                 <Grid item md={2} sm={12}>
-                    <Typography variant="h3" textAlign="right">
+                    <Typography variant="h4" textAlign="right">
                         {flight?.date} <EventIcon fontSize="large" />
                     </Typography>
                 </Grid>

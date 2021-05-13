@@ -1,21 +1,22 @@
-import { useHistory, useRouteMatch } from 'react-router-dom';
-
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Container from '@material-ui/core/Container';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FlightIcon from '@material-ui/icons/Flight';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FlightIcon from '@material-ui/icons/Flight';
 import MapIcon from '@material-ui/icons/Map';
 import { default as React, useEffect } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import Tracklogs from '../../data/tracklogs.json';
-import Typography from '@material-ui/core/Typography';
+import { TracklogInfo } from '../../models/tracklog/TracklogInfo';
 import { setTitle } from '../../tools/SetTitle';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 
 const Flights = (): React.ReactElement => {
     const { params }: { params: { year?: string; filter?: string } } = useRouteMatch();
@@ -71,11 +72,9 @@ const Flights = (): React.ReactElement => {
                         <List>
                             {filteredTracks
                                 .filter((t) => t.date.startsWith(`${year}-`))
-                                .map((track) => (
+                                .map((track: TracklogInfo) => (
                                     <ListItem key={track.filename} button component="a" href={`/flight/${track.filename.replace('.json', '')}`}>
-                                        <ListItemIcon>
-                                            <MapIcon />
-                                        </ListItemIcon>
+                                        <ListItemIcon>{track.hasYoutube ? <YouTubeIcon /> : <MapIcon />}</ListItemIcon>
                                         <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
                                     </ListItem>
                                 ))}
