@@ -7,8 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     main: {
-        marginTop: theme.spacing(10),
-        marginBottom: theme.spacing(10)
+        flex: '1 0 auto',
+        paddingTop: theme.spacing(10),
+        paddingBottom: theme.spacing(10)
     }
 }));
 

@@ -24,7 +24,7 @@ import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
     legendChip: {
         borderRadius: '0 !important'
     },

@@ -10,7 +10,7 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import InfoIcon from '@material-ui/icons/Info';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
     airplaneListItem: {
         cursor: 'pointer'
     }

@@ -10,12 +10,9 @@ import packageJson from '../../package.json';
 
 const useStyles = makeStyles((theme) => ({
     footer: {
+        flexShrink: 0,
         padding: theme.spacing(2, 4),
-        backgroundColor: theme.palette.grey[300],
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0
+        backgroundColor: theme.palette.grey[300]
     }
 }));
 
