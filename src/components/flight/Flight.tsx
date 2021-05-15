@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
+import ArticleIcon from '@material-ui/icons/Article';
 import EventIcon from '@material-ui/icons/Event';
 import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
@@ -207,9 +208,22 @@ const Flight = (): React.ReactElement => {
                     />
                 )}
             </Stack>
-            {flight.youtube && flight.youtube.length > 0 && (
+            {((flight.youtube && flight.youtube.length > 0) || (flight.blogpost && flight.blogpost.length > 0)) && (
                 <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
-                    <Chip icon={<YouTubeIcon />} label={'View on YouTube'} color="secondary" component="a" href={flight.youtube} target="_blank" clickable />
+                    {flight.youtube && flight.youtube.length > 0 && (
+                        <Chip
+                            icon={<YouTubeIcon />}
+                            label={'View on YouTube'}
+                            color="secondary"
+                            component="a"
+                            href={flight.youtube}
+                            target="_blank"
+                            clickable
+                        />
+                    )}
+                    {flight.blogpost && flight.blogpost.length > 0 && (
+                        <Chip icon={<ArticleIcon />} label={'Read blog post'} color="primary" component="a" href={flight.blogpost} target="_blank" clickable />
+                    )}
                 </Stack>
             )}
             <Line
