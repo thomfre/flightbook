@@ -17,6 +17,7 @@ import Tracklogs from '../../data/tracklogs.json';
 import { TracklogInfo } from '../../models/tracklog/TracklogInfo';
 import { setTitle } from '../../tools/SetTitle';
 import YouTubeIcon from '@material-ui/icons/YouTube';
+import ArticleIcon from '@material-ui/icons/Article';
 import { ListItemSecondaryAction } from '@material-ui/core';
 
 const Flights = (): React.ReactElement => {
@@ -79,13 +80,18 @@ const Flights = (): React.ReactElement => {
                                             <MapIcon />
                                         </ListItemIcon>
                                         <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
-                                        {track.hasYoutube && (
-                                            <ListItemSecondaryAction>
+                                        <ListItemSecondaryAction>
+                                            {track.hasBlogpost && (
+                                                <ListItemIcon>
+                                                    <ArticleIcon color="primary" />
+                                                </ListItemIcon>
+                                            )}
+                                            {track.hasYoutube && (
                                                 <ListItemIcon>
                                                     <YouTubeIcon color="secondary" />
                                                 </ListItemIcon>
-                                            </ListItemSecondaryAction>
-                                        )}
+                                            )}
+                                        </ListItemSecondaryAction>
                                     </ListItem>
                                 ))}
                         </List>

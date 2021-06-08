@@ -9,7 +9,7 @@ const FlightTimeMonths = (): React.ReactElement => {
             {
                 type: 'line',
                 label: 'Total flight time',
-                data: Flightbook.flightTimeMonths.map((f) => f.flightTimeMinutes),
+                data: Flightbook.flightTimeMonths.map((f) => f.flightTimeMinutes / 60),
                 fill: false,
                 backgroundColor: 'rgb(0, 99, 132)',
                 borderColor: 'rgba(0, 99, 132, 0.8)',
@@ -19,7 +19,7 @@ const FlightTimeMonths = (): React.ReactElement => {
             {
                 type: 'line',
                 label: 'Dual time',
-                data: Flightbook.flightTimeMonths.map((f) => f.dualMinutes),
+                data: Flightbook.flightTimeMonths.map((f) => f.dualMinutes / 60),
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.8)',
@@ -28,8 +28,8 @@ const FlightTimeMonths = (): React.ReactElement => {
             },
             {
                 type: 'line',
-                label: 'PIC Time',
-                data: Flightbook.flightTimeMonths.map((f) => f.picMinutes),
+                label: 'PIC time',
+                data: Flightbook.flightTimeMonths.map((f) => f.picMinutes / 60),
                 fill: false,
                 backgroundColor: 'rgb(0, 0, 132)',
                 borderColor: 'rgba(0, 0, 132, 0.8)',
@@ -54,6 +54,35 @@ const FlightTimeMonths = (): React.ReactElement => {
             data={chartData}
             options={{
                 responsive: true,
+                normalized: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: (context: any) => {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+
+                                if (context.parsed.y !== null) {
+                                    if (context.dataset.label.includes('time')) {
+                                        const hours = Math.floor(context.parsed.y);
+                                        const minutes = Math.round((context.parsed.y - hours) * 60);
+
+                                        label +=
+                                            minutes > 0
+                                                ? `${hours} hour${hours !== 1 && 's'}, ${minutes} minute${minutes !== 1 && 's'}`
+                                                : `${hours} hour${hours !== 1 && 's'}`;
+                                    } else {
+                                        label += context.parsed.y;
+                                    }
+                                }
+
+                                return label;
+                            }
+                        }
+                    }
+                },
                 scales: {
                     y: {
                         type: 'linear',

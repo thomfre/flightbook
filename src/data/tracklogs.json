@@ -5,7 +5,8 @@
       "date": "2021-01-01",
       "name": "Oslo - ENGM Gardermoen",
       "aircraft": "LN-ABC",
-      "hasYoutube": false
+      "hasYoutube": false,
+      "hasBlogpost": false
     }
   ]
 }

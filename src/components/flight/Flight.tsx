@@ -231,6 +231,7 @@ const Flight = (): React.ReactElement => {
                 data={chartData}
                 options={{
                     responsive: true,
+                    normalized: true,
                     scales: {
                         y: {
                             title: {
