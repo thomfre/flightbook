@@ -42,7 +42,7 @@ const Header = (): React.ReactElement => {
                 </Typography>
             </Toolbar>
             <Drawer open={drawerOpen} onClose={toggleDrawer}>
-                <List sx={{ width: drawerWidth, backgroundColor: theme.palette.background.paper }}>
+                <List sx={{ width: drawerWidth, backgroundColor: theme?.palette?.background?.paper ?? 'white' }}>
                     <ListItem>
                         <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', maxWidth: '90%', padding: '10px' }} />
                     </ListItem>

@@ -191,7 +191,7 @@ const AirportMap = (): React.ReactElement => {
                     sx={{ borderRadius: '0 !important' }}
                 />
                 <Chip
-                    icon={<img src="/airport.svg" style={{ maxWidth: '75%', maxHeight: '75%' }} />}
+                    icon={<img src="/airport.svg" style={{ maxWidth: '75%', maxHeight: '75%' }} className="dimmed-icon" />}
                     label="Not yet visited"
                     variant="outlined"
                     sx={{ borderRadius: '0 !important' }}

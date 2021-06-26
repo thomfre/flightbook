@@ -1,13 +1,22 @@
 import Container from '@material-ui/core/Container';
+import { createTheme } from '@material-ui/core/styles';
 import ThemeProvider from '@material-ui/core/styles/ThemeProvider';
-import createTheme from '@material-ui/system/createTheme';
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import Routes from './Routes';
 
 const Layout = (): React.ReactElement => {
-    const theme = createTheme({});
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#3f51b5'
+            },
+            secondary: {
+                main: '#f50057'
+            }
+        }
+    });
 
     return (
         <ThemeProvider theme={theme}>
