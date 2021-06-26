@@ -1,41 +1,28 @@
-import React, { useState } from 'react';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-
-import AppBar from '@material-ui/core/AppBar';
-import Config from '../data/config.json';
 import { Divider } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
-import FlightIcon from '@material-ui/icons/Flight';
-import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import StackedLineChartIcon from '@material-ui/icons/StackedLineChart';
+import { useTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        drawer: {
-            width: drawerWidth,
-            backgroundColor: theme.palette.background.paper
-        }
-    })
-);
+import FlightIcon from '@material-ui/icons/Flight';
+import MenuIcon from '@material-ui/icons/Menu';
+import StackedLineChartIcon from '@material-ui/icons/StackedLineChart';
+import React, { useState } from 'react';
+import Config from '../data/config.json';
 
 const Header = (): React.ReactElement => {
+    const theme = useTheme();
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const drawerWidth = 240;
 
     const toggleDrawer = () => {
         setDrawerOpen(!drawerOpen);
     };
-
-    const classes = useStyles();
 
     return (
         <AppBar position="fixed">
@@ -50,12 +37,12 @@ const Header = (): React.ReactElement => {
                 ) : (
                     <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', maxWidth: '90%', padding: '10px', filter: 'invert(1)' }} />
                 )}
-                <Hidden only={['sm', 'xs']}>
-                    <Typography variant="h6">Flightbook</Typography>
-                </Hidden>
+                <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
+                    Flightbook
+                </Typography>
             </Toolbar>
             <Drawer open={drawerOpen} onClose={toggleDrawer}>
-                <List className={classes.drawer}>
+                <List sx={{ width: drawerWidth, backgroundColor: theme.palette.background.paper }}>
                     <ListItem>
                         <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', maxWidth: '90%', padding: '10px' }} />
                     </ListItem>

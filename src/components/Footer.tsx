@@ -1,28 +1,20 @@
-import Flightbook from '../data/flightbook.json';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import { default as React } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import dayjs from 'dayjs';
-import { makeStyles } from '@material-ui/core/styles';
+import { default as React } from 'react';
 import packageJson from '../../package.json';
-
-const useStyles = makeStyles((theme) => ({
-    footer: {
-        flexShrink: 0,
-        padding: theme.spacing(2, 4),
-        backgroundColor: theme.palette.grey[300]
-    }
-}));
+import Flightbook from '../data/flightbook.json';
 
 const Footer = (): React.ReactElement => {
-    const classes = useStyles();
+    const theme = useTheme();
 
     const generatedDate = dayjs(Flightbook.generatedDate);
 
     return (
-        <footer className={classes.footer}>
+        <footer style={{ flexShrink: 0, padding: theme.spacing(2, 4), backgroundColor: theme.palette.grey[300] }}>
             <Grid container direction="row" justifyContent="space-between" alignItems="center">
                 <Grid item>
                     <Typography variant="subtitle1" align="left">

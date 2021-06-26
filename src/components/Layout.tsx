@@ -1,29 +1,22 @@
 import Container from '@material-ui/core/Container';
+import ThemeProvider from '@material-ui/core/styles/ThemeProvider';
+import createTheme from '@material-ui/system/createTheme';
+import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import React from 'react';
 import Routes from './Routes';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-    main: {
-        flex: '1 0 auto',
-        paddingTop: theme.spacing(10),
-        paddingBottom: theme.spacing(10)
-    }
-}));
 
 const Layout = (): React.ReactElement => {
-    const classes = useStyles();
+    const theme = createTheme({});
 
     return (
-        <React.Fragment>
+        <ThemeProvider theme={theme}>
             <Header />
-            <Container component="main" className={classes.main} maxWidth={false}>
+            <Container component="main" sx={{ flex: '1 0 auto', paddingTop: theme.spacing(10), paddingBottom: theme.spacing(10) }} maxWidth={false}>
                 <Routes />
             </Container>
             <Footer />
-        </React.Fragment>
+        </ThemeProvider>
     );
 };
 

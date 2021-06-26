@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
-
-import AircraftDialog from './AircraftDialog';
-import Flightbook from '../../../data/flightbook.json';
 import IconButton from '@material-ui/core/IconButton';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import InfoIcon from '@material-ui/icons/Info';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((_theme) => ({
-    airplaneListItem: {
-        cursor: 'pointer'
-    }
-}));
+import React, { useState } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import Flightbook from '../../../data/flightbook.json';
+import AircraftDialog from './AircraftDialog';
 
 const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
     const history = useHistory();
@@ -36,10 +28,8 @@ const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
         setDetailsOpen(false);
     };
 
-    const classes = useStyles();
-
     return (
-        <ImageListItem onClick={infoClicked} className={classes.airplaneListItem}>
+        <ImageListItem onClick={infoClicked} sx={{ cursor: 'pointer' }}>
             {aircraft.picture && <img src={aircraft.picture} title={aircraft.registration} loading="lazy" />}
             <ImageListItemBar
                 title={aircraft.registration}

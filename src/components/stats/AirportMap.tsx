@@ -1,42 +1,27 @@
-import 'leaflet/dist/leaflet.css';
-
-import { Icon, LatLngBounds, LatLngTuple } from 'leaflet';
-import { LayerGroup, LayersControl, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-
-import Airports from '../../data/airports.json';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
-import EventIcon from '@material-ui/icons/Event';
-import FlightIcon from '@material-ui/icons/Flight';
-import FlightLandIcon from '@material-ui/icons/FlightLand';
-import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
-import Flightbook from '../../data/flightbook.json';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import PersonIcon from '@material-ui/icons/Person';
-import React from 'react';
-import SchoolIcon from '@material-ui/icons/School';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
+import EventIcon from '@material-ui/icons/Event';
+import FlightIcon from '@material-ui/icons/Flight';
+import FlightLandIcon from '@material-ui/icons/FlightLand';
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+import PersonIcon from '@material-ui/icons/Person';
+import SchoolIcon from '@material-ui/icons/School';
 import dayjs from 'dayjs';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((_theme) => ({
-    legendChip: {
-        borderRadius: '0 !important'
-    },
-    legendPicture: {
-        maxWidth: '75%',
-        maxHeight: '75%'
-    }
-}));
+import { Icon, LatLngBounds, LatLngTuple } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import React from 'react';
+import { LayerGroup, LayersControl, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import Airports from '../../data/airports.json';
+import Flightbook from '../../data/flightbook.json';
 
 const AirportMap = (): React.ReactElement => {
-    const classes = useStyles();
-
     const markerIconGreen = new Icon({
         iconUrl: '/airport-green.svg',
         iconSize: [24, 24]
@@ -194,22 +179,22 @@ const AirportMap = (): React.ReactElement => {
             <Stack direction={{ xs: 'column', sm: 'column', md: 'row' }} spacing={1} marginTop={1}>
                 <Typography variant="h6">Legend:</Typography>
                 <Chip
-                    icon={<img src="/airport-green.svg" className={classes.legendPicture} />}
+                    icon={<img src="/airport-green.svg" style={{ maxWidth: '75%', maxHeight: '75%' }} />}
                     label="Visited as PIC"
                     variant="outlined"
-                    className={classes.legendChip}
+                    sx={{ borderRadius: '0 !important' }}
                 />
                 <Chip
-                    icon={<img src="/airport-yellow.svg" className={classes.legendPicture} />}
+                    icon={<img src="/airport-yellow.svg" style={{ maxWidth: '75%', maxHeight: '75%' }} />}
                     label="Only visited with instructor and/or no full stop landing/departure"
                     variant="outlined"
-                    className={classes.legendChip}
+                    sx={{ borderRadius: '0 !important' }}
                 />
                 <Chip
-                    icon={<img src="/airport.svg" className={classes.legendPicture + ' dimmed-icon'} />}
+                    icon={<img src="/airport.svg" style={{ maxWidth: '75%', maxHeight: '75%' }} />}
                     label="Not yet visited"
                     variant="outlined"
-                    className={classes.legendChip}
+                    sx={{ borderRadius: '0 !important' }}
                 />
             </Stack>
         </React.Fragment>
