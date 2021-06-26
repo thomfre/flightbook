@@ -19,9 +19,11 @@ import { setTitle } from '../../tools/SetTitle';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import ArticleIcon from '@material-ui/icons/Article';
 import { ListItemSecondaryAction } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 
 const Flights = (): React.ReactElement => {
     const { params }: { params: { year?: string; filter?: string } } = useRouteMatch();
+    const theme = useTheme();
     const history = useHistory();
 
     useEffect(() => {
@@ -55,7 +57,7 @@ const Flights = (): React.ReactElement => {
 
     return (
         <Container maxWidth="lg">
-            <Typography variant="h3">
+            <Typography variant="h3" sx={{ paddingBottom: theme.spacing(1) }}>
                 <FlightIcon fontSize="large" /> Flights{filterRegistration && ` - ${filterRegistration}`}
             </Typography>
             {filteredTracks.length === 0 && <Typography component="i">No flights found</Typography>}

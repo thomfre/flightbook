@@ -47,7 +47,7 @@ const FlightElevation = ({ data }: { data: any }) => {
         ];
 
         // @ts-ignore
-        const hg = L.control.heightgraph();
+        const hg = L.control.heightgraph({ expand: false });
         hg.addTo(map);
         hg.addData(heightgraphData);
 
