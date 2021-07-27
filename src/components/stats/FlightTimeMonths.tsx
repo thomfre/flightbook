@@ -50,6 +50,7 @@ const FlightTimeMonths = (): React.ReactElement => {
 
     return (
         <Line
+            // @ts-ignore
             type="line"
             data={chartData}
             options={{

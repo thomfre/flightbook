@@ -227,6 +227,7 @@ const Flight = (): React.ReactElement => {
                 </Stack>
             )}
             <Line
+                // @ts-ignore
                 type="line"
                 data={chartData}
                 options={{

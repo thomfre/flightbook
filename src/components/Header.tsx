@@ -13,7 +13,7 @@ import FlightIcon from '@material-ui/icons/Flight';
 import MenuIcon from '@material-ui/icons/Menu';
 import StackedLineChartIcon from '@material-ui/icons/StackedLineChart';
 import React, { useState } from 'react';
-import Config from '../data/config.json';
+import Flightbook from '../data/flightbook.json';
 
 const Header = (): React.ReactElement => {
     const theme = useTheme();
@@ -30,8 +30,8 @@ const Header = (): React.ReactElement => {
                 <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={toggleDrawer}>
                     <MenuIcon />
                 </IconButton>
-                {Config.parentPage ? (
-                    <a href={Config.parentPage ?? ''}>
+                {Flightbook.parentPage ? (
+                    <a href={Flightbook.parentPage ?? ''}>
                         <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', maxWidth: '90%', padding: '10px', filter: 'invert(1)' }} />
                     </a>
                 ) : (
