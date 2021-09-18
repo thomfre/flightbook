@@ -229,6 +229,7 @@ const Flight = (): React.ReactElement => {
             <Line
                 // @ts-ignore
                 type="line"
+                // @ts-ignore
                 data={chartData}
                 options={{
                     responsive: true,
@@ -239,6 +240,7 @@ const Flight = (): React.ReactElement => {
                                 display: true,
                                 text: 'Ground speed'
                             },
+                            // @ts-ignore
                             type: 'linear',
                             display: true,
                             position: 'left'
@@ -248,6 +250,7 @@ const Flight = (): React.ReactElement => {
                                 display: true,
                                 text: 'GPS elevation'
                             },
+                            // @ts-ignore
                             type: 'linear',
                             display: true,
                             position: 'right',
@@ -255,6 +258,7 @@ const Flight = (): React.ReactElement => {
                                 drawOnArea: false
                             }
                         },
+                        // @ts-ignore
                         x: { display: false, gridLines: { drawOnArea: false } }
                     }
                 }}
