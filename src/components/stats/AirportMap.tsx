@@ -153,7 +153,7 @@ const AirportMap = (): React.ReactElement => {
                             })}
                         </LayerGroup>
                     </LayersControl.Overlay>
-                    <LayersControl.Overlay checked name="Other airports">
+                    <LayersControl.Overlay name="Other airports">
                         <LayerGroup>
                             {Airports.filter(
                                 (a: any) => Flightbook.airports.filter((fa) => fa.icao === a.icaoCode).length === 0 && a.type !== 'seaplane_base'
