@@ -1,8 +1,8 @@
-import IconButton from '@material-ui/core/IconButton';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import InfoIcon from '@material-ui/icons/Info';
+import IconButton from '@mui/material/IconButton';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import InfoIcon from '@mui/icons-material/Info';
 import React, { useState } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import Flightbook from '../../../data/flightbook.json';

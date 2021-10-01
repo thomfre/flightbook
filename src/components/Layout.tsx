@@ -1,6 +1,6 @@
-import Container from '@material-ui/core/Container';
-import { createTheme } from '@material-ui/core/styles';
-import ThemeProvider from '@material-ui/core/styles/ThemeProvider';
+import Container from '@mui/material/Container';
+import { createTheme } from '@mui/material/styles';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
