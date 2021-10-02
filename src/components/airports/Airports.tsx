@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { setTitle } from '../../tools/SetTitle';
 import AirportList from './AirportList';
 import AirportMap from './AirportMap';
+import AirportStatistics from './AirportStatistics';
 
 const Airports = (): React.ReactElement => {
     const theme = useTheme();
@@ -21,6 +22,7 @@ const Airports = (): React.ReactElement => {
             </Typography>
             <AirportMap />
             <AirportList />
+            <AirportStatistics />
         </Container>
     );
 };

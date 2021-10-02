@@ -6,11 +6,13 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
 import SpeedIcon from '@mui/icons-material/Speed';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import { Breadcrumbs, Link } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
@@ -70,24 +72,35 @@ const FlightElevation = ({ data }: { data: any }) => {
 const Flight = (): React.ReactElement => {
     const [flight, setFlight] = useState<Tracklog>();
     const [airports, setAirports] = useState<any[]>([]);
+    const [error, setError] = useState(false);
 
     const [flightYear, setFlightYear] = useState('');
 
     const { params }: { params: { filename: string } } = useRouteMatch();
 
     useEffect(() => {
+        setError(false);
+
         fetch(`/tracklogs/${params.filename}.json`)
             .then((response) => response.json())
             .then((data) => {
                 setFlight(data);
                 setAirports([data.geoJson.coordinates[0], data.geoJson.coordinates[data.geoJson.coordinates.length - 1]]);
                 setTitle(`Flight ${data?.name}`);
+            })
+            .catch((err) => {
+                console.error(err);
+                setError(true);
             });
     }, []);
 
     useEffect(() => {
         setFlightYear(flight?.date?.split('-')[0] ?? '');
     }, [flight]);
+
+    if (error) {
+        return <Alert severity="error">Unable to load flight</Alert>;
+    }
 
     if (!flight || airports.length === 0) {
         return <CircularProgress />;
@@ -133,12 +146,14 @@ const Flight = (): React.ReactElement => {
         null,
         flight.speedElevationPoints.map((p: any) => p.elevation)
     );
+
     const altitudeAverage = getAverage(flight.speedElevationPoints.map((p: any) => p.elevation));
 
     const speedMax = Math.max.apply(
         null,
         flight.speedElevationPoints.map((p: any) => p.speed)
     );
+
     const speedAverage = getAverage(flight.speedElevationPoints.map((p: any) => p.speed));
 
     return (
