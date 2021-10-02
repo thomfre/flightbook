@@ -6,6 +6,8 @@ export interface Tracklog {
     aircraft: string;
     youtube?: string;
     blogpost?: string;
+    facebookPost?: string;
+    gallery?: string;
     totalDistance: number;
     geoJson: GeoJSON.Feature;
     speedElevationPoints: SpeedElevationPoint[];

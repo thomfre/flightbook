@@ -5,4 +5,6 @@ export interface TracklogInfo {
     aircraft: string;
     hasYoutube: boolean;
     hasBlogpost: boolean;
+    hasFacebookPost: boolean;
+    hasGallery: boolean;
 }

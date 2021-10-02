@@ -1,9 +1,11 @@
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import ArticleIcon from '@mui/icons-material/Article';
 import EventIcon from '@mui/icons-material/Event';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import FlightIcon from '@mui/icons-material/Flight';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
+import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import SpeedIcon from '@mui/icons-material/Speed';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import Alert from '@mui/material/Alert';
@@ -224,7 +226,10 @@ const Flight = (): React.ReactElement => {
                     />
                 )}
             </Stack>
-            {((flight.youtube && flight.youtube.length > 0) || (flight.blogpost && flight.blogpost.length > 0)) && (
+            {((flight.youtube && flight.youtube.length > 0) ||
+                (flight.blogpost && flight.blogpost.length > 0) ||
+                (flight.facebookPost && flight.facebookPost.length > 0) ||
+                (flight.gallery && flight.gallery.length > 0)) && (
                 <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
                     {flight.youtube && flight.youtube.length > 0 && (
                         <Chip
@@ -237,11 +242,37 @@ const Flight = (): React.ReactElement => {
                             clickable
                         />
                     )}
+
                     {flight.blogpost && flight.blogpost.length > 0 && (
                         <Chip icon={<ArticleIcon />} label={'Read blog post'} color="primary" component="a" href={flight.blogpost} target="_blank" clickable />
                     )}
+
+                    {flight.facebookPost && flight.facebookPost.length > 0 && (
+                        <Chip
+                            icon={<FacebookIcon />}
+                            label={'View Facebook post'}
+                            color="primary"
+                            component="a"
+                            href={flight.facebookPost}
+                            target="_blank"
+                            clickable
+                        />
+                    )}
+
+                    {flight.gallery && flight.gallery.length > 0 && (
+                        <Chip
+                            icon={<PhotoLibraryIcon />}
+                            label={'View image gallery'}
+                            color="primary"
+                            component="a"
+                            href={flight.gallery}
+                            target="_blank"
+                            clickable
+                        />
+                    )}
                 </Stack>
             )}
+
             <Line
                 // @ts-ignore
                 type="line"

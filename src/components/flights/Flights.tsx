@@ -2,7 +2,9 @@ import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import ArticleIcon from '@mui/icons-material/Article';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import MapIcon from '@mui/icons-material/Map';
+import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -84,6 +86,16 @@ const Flights = (): React.ReactElement => {
                                         </ListItemIcon>
                                         <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
                                         <ListItemSecondaryAction>
+                                            {track.hasFacebookPost && (
+                                                <ListItemIcon>
+                                                    <FacebookIcon color="primary" />
+                                                </ListItemIcon>
+                                            )}
+                                            {track.hasGallery && (
+                                                <ListItemIcon>
+                                                    <PhotoLibraryIcon color="primary" />
+                                                </ListItemIcon>
+                                            )}
                                             {track.hasBlogpost && (
                                                 <ListItemIcon>
                                                     <ArticleIcon color="primary" />

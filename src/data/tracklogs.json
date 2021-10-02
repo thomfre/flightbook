@@ -6,7 +6,9 @@
       "name": "Oslo - ENGM Gardermoen",
       "aircraft": "LN-ABC",
       "hasYoutube": false,
-      "hasBlogpost": false
+      "hasBlogpost": false,
+      "hasFacebookPost": false,
+      "hasGallery": false
     }
   ]
 }
