@@ -112,7 +112,7 @@ const Header = (): React.ReactElement => {
                     </ListItem>
                     <ListItem button key="aircrafts" component="a" href="/aircrafts">
                         <ListItemIcon>
-                            <FlightTakeoffIcon />
+                            <FlightIcon />
                         </ListItemIcon>
                         <ListItemText primary="Aircrafts" />
                     </ListItem>
