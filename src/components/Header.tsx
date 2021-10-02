@@ -1,3 +1,4 @@
+import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import FlightIcon from '@mui/icons-material/Flight';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -18,6 +19,7 @@ import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Flightbook from '../data/flightbook.json';
+import HomeIcon from '@mui/icons-material/Home';
 
 const Header = (): React.ReactElement => {
     const theme = useTheme();
@@ -49,17 +51,38 @@ const Header = (): React.ReactElement => {
                 </Typography>
                 <Hidden smDown>
                     <Box sx={{ flexGrow: 1 }} />
-                    <IconButton edge="start" color="inherit" aria-label="statistics" sx={{ mr: 2 }} onClick={() => history.push('/')}>
+                    <IconButton edge="start" color="inherit" aria-label="home" title="Home" sx={{ mr: 2 }} onClick={() => history.push('/')}>
+                        <HomeIcon />
+                    </IconButton>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="statistics"
+                        title="Statistics"
+                        sx={{ mr: 2 }}
+                        onClick={() => history.push('/statistics')}>
                         <StackedLineChartIcon />
                     </IconButton>
-                    <IconButton edge="start" color="inherit" aria-label="airports" sx={{ mr: 2 }} onClick={() => history.push('/airports')}>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="airports"
+                        title="Airports visited"
+                        sx={{ mr: 2 }}
+                        onClick={() => history.push('/airports')}>
                         <FlightTakeoffIcon />
                     </IconButton>
-                    <IconButton edge="start" color="inherit" aria-label="aircrafts" sx={{ mr: 2 }} onClick={() => history.push('/aircrafts')}>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="aircrafts"
+                        title="Aircrafts flown"
+                        sx={{ mr: 2 }}
+                        onClick={() => history.push('/aircrafts')}>
                         <FlightIcon />
                     </IconButton>
-                    <IconButton edge="start" color="inherit" aria-label="flights" sx={{ mr: 2 }} onClick={() => history.push('/flights')}>
-                        <FlightIcon />
+                    <IconButton edge="start" color="inherit" aria-label="flights" title="Flights" sx={{ mr: 2 }} onClick={() => history.push('/flights')}>
+                        <AirplaneTicketIcon />
                     </IconButton>
                 </Hidden>
             </Toolbar>
@@ -69,7 +92,13 @@ const Header = (): React.ReactElement => {
                         <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', maxWidth: '90%', padding: '10px' }} />
                     </ListItem>
                     <Divider />
-                    <ListItem button key="stats" component="a" href="/">
+                    <ListItem button key="home" component="a" href="/">
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Statistics" />
+                    </ListItem>
+                    <ListItem button key="stats" component="a" href="/statistics">
                         <ListItemIcon>
                             <StackedLineChartIcon />
                         </ListItemIcon>
@@ -89,7 +118,7 @@ const Header = (): React.ReactElement => {
                     </ListItem>
                     <ListItem button key="flights" component="a" href="/flights">
                         <ListItemIcon>
-                            <FlightIcon />
+                            <AirplaneTicketIcon />
                         </ListItemIcon>
                         <ListItemText primary="Flights" />
                     </ListItem>

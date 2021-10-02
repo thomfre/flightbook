@@ -4,6 +4,7 @@ import Aircrafts from './aircrafts/Aircrafts';
 import Airports from './airports/Airports';
 import Flight from './flight/Flight';
 import Flights from './flights/Flights';
+import Home from './home/Home';
 import Statistics from './stats/Statistics';
 
 const Routes = (): React.ReactElement => {
@@ -21,8 +22,11 @@ const Routes = (): React.ReactElement => {
             <Route path={['/aircrafts/:aircraft', '/aircrafts']}>
                 <Aircrafts />
             </Route>
-            <Route path={['/flighttime', '/']}>
+            <Route path={['/flighttime', '/stats', '/statistics']}>
                 <Statistics />
+            </Route>
+            <Route path="/">
+                <Home />
             </Route>
         </Switch>
     );

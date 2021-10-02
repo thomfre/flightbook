@@ -1,10 +1,4 @@
-import { Breadcrumbs, Link } from '@mui/material';
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import CircularProgress from '@mui/material/CircularProgress';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import ArticleIcon from '@mui/icons-material/Article';
 import EventIcon from '@mui/icons-material/Event';
 import FlightIcon from '@mui/icons-material/Flight';
@@ -12,6 +6,13 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
 import SpeedIcon from '@mui/icons-material/Speed';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { Breadcrumbs, Link } from '@mui/material';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import CircularProgress from '@mui/material/CircularProgress';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
 import L, { Icon, LatLngTuple } from 'leaflet';
@@ -160,7 +161,7 @@ const Flight = (): React.ReactElement => {
                 </Grid>
                 <Grid item md={10} sm={12}>
                     <Typography variant="h4" sx={{ display: 'inline' }}>
-                        <FlightIcon fontSize="large" /> {flight?.name}
+                        <AirplaneTicketIcon fontSize="large" /> {flight?.name}
                     </Typography>
                 </Grid>
                 <Grid item md={2} sm={12}>

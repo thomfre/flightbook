@@ -1,3 +1,10 @@
+import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
+import ArticleIcon from '@mui/icons-material/Article';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MapIcon from '@mui/icons-material/Map';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import { ListItemSecondaryAction } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -6,20 +13,13 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import FlightIcon from '@mui/icons-material/Flight';
-import MapIcon from '@mui/icons-material/Map';
 import { default as React, useEffect } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import Tracklogs from '../../data/tracklogs.json';
 import { TracklogInfo } from '../../models/tracklog/TracklogInfo';
 import { setTitle } from '../../tools/SetTitle';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import ArticleIcon from '@mui/icons-material/Article';
-import { ListItemSecondaryAction } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
 const Flights = (): React.ReactElement => {
     const { params }: { params: { year?: string; filter?: string } } = useRouteMatch();
@@ -58,7 +58,7 @@ const Flights = (): React.ReactElement => {
     return (
         <Container maxWidth="lg">
             <Typography variant="h3" sx={{ paddingBottom: theme.spacing(1) }}>
-                <FlightIcon fontSize="large" /> Flights{filterRegistration && ` - ${filterRegistration}`}
+                <AirplaneTicketIcon fontSize="large" /> Flights{filterRegistration && ` - ${filterRegistration}`}
             </Typography>
             {filteredTracks.length === 0 && <Typography component="i">No flights found</Typography>}
             {trackYears.map((year, index) => (
