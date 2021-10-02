@@ -86,14 +86,14 @@ const Flights = (): React.ReactElement => {
                                         </ListItemIcon>
                                         <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
                                         <ListItemSecondaryAction>
+                                            {track.hasGallery && (
+                                                <ListItemIcon>
+                                                    <PhotoLibraryIcon color="success" />
+                                                </ListItemIcon>
+                                            )}
                                             {track.hasFacebookPost && (
                                                 <ListItemIcon>
                                                     <FacebookIcon color="primary" />
-                                                </ListItemIcon>
-                                            )}
-                                            {track.hasGallery && (
-                                                <ListItemIcon>
-                                                    <PhotoLibraryIcon color="primary" />
                                                 </ListItemIcon>
                                             )}
                                             {track.hasBlogpost && (

@@ -263,7 +263,7 @@ const Flight = (): React.ReactElement => {
                         <Chip
                             icon={<PhotoLibraryIcon />}
                             label={'View image gallery'}
-                            color="primary"
+                            color="success"
                             component="a"
                             href={flight.gallery}
                             target="_blank"
