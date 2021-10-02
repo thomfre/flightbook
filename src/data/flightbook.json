@@ -17,10 +17,8 @@
     {
       "name": "Oslo Gardermoen",
       "icao": "ENGM",
-      "coordinates": [
-        60.197701,
-        11.100532
-      ],
+      "isoCountry": "NO",
+      "coordinates": [60.197701, 11.100532],
       "firstVisited": "1970-01-01T00:00:00.000Z",
       "lastVisited": "1970-01-01T00:00:00.000Z",
       "asDual": true,

@@ -9,5 +9,6 @@
         "heightgraph",
         "unmount",
         "youtube"
-    ]
+    ],
+    "editor.formatOnSave": true
 }

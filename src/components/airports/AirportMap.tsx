@@ -1,3 +1,9 @@
+import EventIcon from '@mui/icons-material/Event';
+import FlightIcon from '@mui/icons-material/Flight';
+import FlightLandIcon from '@mui/icons-material/FlightLand';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import PersonIcon from '@mui/icons-material/Person';
+import SchoolIcon from '@mui/icons-material/School';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -7,12 +13,6 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import EventIcon from '@mui/icons-material/Event';
-import FlightIcon from '@mui/icons-material/Flight';
-import FlightLandIcon from '@mui/icons-material/FlightLand';
-import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
-import PersonIcon from '@mui/icons-material/Person';
-import SchoolIcon from '@mui/icons-material/School';
 import dayjs from 'dayjs';
 import { Icon, LatLngBounds, LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -20,6 +20,7 @@ import React from 'react';
 import { LayerGroup, LayersControl, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import Airports from '../../data/airports.json';
 import Flightbook from '../../data/flightbook.json';
+import { getAirportLabel } from '../../tools/AirportTools';
 
 const AirportMap = (): React.ReactElement => {
     const markerIconGreen = new Icon({
@@ -45,21 +46,6 @@ const AirportMap = (): React.ReactElement => {
         [Math.min.apply(null, latitudes), Math.min.apply(null, longitudes)],
         [Math.max.apply(null, latitudes), Math.max.apply(null, longitudes)]
     ]);
-
-    const getAirportLabel = (type: string): string => {
-        switch (type) {
-            case 'large_airport':
-                return 'Large';
-            case 'medium_airport':
-                return 'Medium';
-            case 'small_airport':
-                return 'Small';
-            case 'seaplane_base':
-                return 'Seaplane base';
-            default:
-                return type;
-        }
-    };
 
     return (
         <React.Fragment>

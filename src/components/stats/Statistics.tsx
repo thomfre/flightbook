@@ -1,0 +1,57 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HistoryIcon from '@mui/icons-material/History';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import React, { useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { setTitle } from '../../tools/SetTitle';
+import FlightTimeMonths from './FlightTimeMonths';
+
+const Statistics = (): React.ReactElement => {
+    const location = useLocation();
+    const history = useHistory();
+
+    useEffect(() => {
+        setTitle('Statistics');
+    }, []);
+
+    const locationIs = (identifier: string, expandedIfEmpty: boolean = false): boolean => {
+        const pathParts = location.pathname?.split('/');
+        if (pathParts === null || pathParts.length < 1) {
+            return expandedIfEmpty;
+        }
+
+        return pathParts[1].toLowerCase() === identifier.toLowerCase() || (pathParts[1] === '' && expandedIfEmpty);
+    };
+
+    const accordionExpanded = (route: string, expanded: boolean) => {
+        if (expanded) {
+            history.replace(`/${route}`);
+        } else if (location.pathname.startsWith(`/${route}`)) {
+            history.replace('/');
+        }
+    };
+
+    return (
+        <Container maxWidth="lg" sx={{ paddingBottom: '10px' }}>
+            <Accordion
+                defaultExpanded={locationIs('flighttime', true)}
+                onChange={(_event, expanded) => accordionExpanded('flighttime', expanded)}
+                TransitionProps={{ unmountOnExit: true }}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h4">
+                        <HistoryIcon /> Flight time per month
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <FlightTimeMonths />
+                </AccordionDetails>
+            </Accordion>
+        </Container>
+    );
+};
+
+export default Statistics;

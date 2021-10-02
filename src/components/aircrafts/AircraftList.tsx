@@ -1,11 +1,11 @@
+import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import InfoIcon from '@mui/icons-material/Info';
 import React, { useState } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import Flightbook from '../../../data/flightbook.json';
+import Flightbook from '../../data/flightbook.json';
 import AircraftDialog from './AircraftDialog';
 
 const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {

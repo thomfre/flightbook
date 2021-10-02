@@ -1,24 +1,24 @@
-import Avatar from '@mui/material/Avatar/Avatar';
+import EventIcon from '@mui/icons-material/Event';
+import FlightIcon from '@mui/icons-material/Flight';
+import MapIcon from '@mui/icons-material/Map';
+import PersonIcon from '@mui/icons-material/Person';
+import SchoolIcon from '@mui/icons-material/School';
 import { Button } from '@mui/material';
+import Avatar from '@mui/material/Avatar/Avatar';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import EventIcon from '@mui/icons-material/Event';
-import FlightIcon from '@mui/icons-material/Flight';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MapIcon from '@mui/icons-material/Map';
-import PersonIcon from '@mui/icons-material/Person';
-import React from 'react';
-import SchoolIcon from '@mui/icons-material/School';
 import Stack from '@mui/material/Stack';
-import Tracklogs from '../../../data/tracklogs.json';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
+import React from 'react';
+import Tracklogs from '../../data/tracklogs.json';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement => {
     const firstFlown = dayjs(aircraft.firstFlown);

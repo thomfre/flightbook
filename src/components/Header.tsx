@@ -1,6 +1,12 @@
-import { Divider } from '@mui/material';
+import FlightIcon from '@mui/icons-material/Flight';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import MenuIcon from '@mui/icons-material/Menu';
+import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
+import Hidden from '@mui/material/Hidden';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,14 +15,13 @@ import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import FlightIcon from '@mui/icons-material/Flight';
-import MenuIcon from '@mui/icons-material/Menu';
-import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Flightbook from '../data/flightbook.json';
 
 const Header = (): React.ReactElement => {
     const theme = useTheme();
+    const history = useHistory();
     const [drawerOpen, setDrawerOpen] = useState(false);
     const drawerWidth = 240;
 
@@ -27,9 +32,11 @@ const Header = (): React.ReactElement => {
     return (
         <AppBar position="fixed">
             <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={toggleDrawer}>
-                    <MenuIcon />
-                </IconButton>
+                <Hidden mdUp>
+                    <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={toggleDrawer}>
+                        <MenuIcon />
+                    </IconButton>
+                </Hidden>
                 {Flightbook.parentPage ? (
                     <a href={Flightbook.parentPage ?? ''}>
                         <img src="/logo.svg" alt="Logo" style={{ maxHeight: '34px', maxWidth: '90%', padding: '10px', filter: 'invert(1)' }} />
@@ -40,6 +47,21 @@ const Header = (): React.ReactElement => {
                 <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
                     Flightbook
                 </Typography>
+                <Hidden smDown>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <IconButton edge="start" color="inherit" aria-label="statistics" sx={{ mr: 2 }} onClick={() => history.push('/')}>
+                        <StackedLineChartIcon />
+                    </IconButton>
+                    <IconButton edge="start" color="inherit" aria-label="airports" sx={{ mr: 2 }} onClick={() => history.push('/airports')}>
+                        <FlightTakeoffIcon />
+                    </IconButton>
+                    <IconButton edge="start" color="inherit" aria-label="aircrafts" sx={{ mr: 2 }} onClick={() => history.push('/aircrafts')}>
+                        <FlightIcon />
+                    </IconButton>
+                    <IconButton edge="start" color="inherit" aria-label="flights" sx={{ mr: 2 }} onClick={() => history.push('/flights')}>
+                        <FlightIcon />
+                    </IconButton>
+                </Hidden>
             </Toolbar>
             <Drawer open={drawerOpen} onClose={toggleDrawer}>
                 <List sx={{ width: drawerWidth, backgroundColor: theme?.palette?.background?.paper ?? 'white' }}>
@@ -53,7 +75,19 @@ const Header = (): React.ReactElement => {
                         </ListItemIcon>
                         <ListItemText primary="Statistics" />
                     </ListItem>
-                    <ListItem button key="stats" component="a" href="/flights">
+                    <ListItem button key="airports" component="a" href="/airports">
+                        <ListItemIcon>
+                            <FlightTakeoffIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Airports" />
+                    </ListItem>
+                    <ListItem button key="aircrafts" component="a" href="/aircrafts">
+                        <ListItemIcon>
+                            <FlightTakeoffIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Aircrafts" />
+                    </ListItem>
+                    <ListItem button key="flights" component="a" href="/flights">
                         <ListItemIcon>
                             <FlightIcon />
                         </ListItemIcon>
