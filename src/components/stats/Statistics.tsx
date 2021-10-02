@@ -20,18 +20,18 @@ const Statistics = (): React.ReactElement => {
 
     const locationIs = (identifier: string, expandedIfEmpty: boolean = false): boolean => {
         const pathParts = location.pathname?.split('/');
-        if (pathParts === null || pathParts.length < 1) {
+        if (pathParts === null || pathParts.length < 3) {
             return expandedIfEmpty;
         }
 
-        return pathParts[1].toLowerCase() === identifier.toLowerCase() || (pathParts[1] === '' && expandedIfEmpty);
+        return pathParts[2]?.toLowerCase() === identifier.toLowerCase() || (pathParts[2] === '' && expandedIfEmpty);
     };
 
     const accordionExpanded = (route: string, expanded: boolean) => {
         if (expanded) {
-            history.replace(`/${route}`);
-        } else if (location.pathname.startsWith(`/${route}`)) {
-            history.replace('/');
+            history.replace(`/statistics/${route}`);
+        } else if (location.pathname.startsWith(`/statistics/${route}`)) {
+            history.replace('/statistics');
         }
     };
 

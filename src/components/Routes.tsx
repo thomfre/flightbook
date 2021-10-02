@@ -22,7 +22,7 @@ const Routes = (): React.ReactElement => {
             <Route path={['/aircrafts/:aircraft', '/aircrafts']}>
                 <Aircrafts />
             </Route>
-            <Route path={['/flighttime', '/stats', '/statistics']}>
+            <Route path={['/statistics/flighttime', '/stats', '/statistics']}>
                 <Statistics />
             </Route>
             <Route path="/">
