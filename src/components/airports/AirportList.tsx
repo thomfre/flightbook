@@ -33,7 +33,7 @@ const Airport = ({ airport }: { airport: any }): React.ReactElement => {
     const infoClicked = (): void => {
         const newValue = !detailsOpen;
         setDetailsOpen(newValue);
-        history.replace(newValue ? '/airports/' + airport.icao : '/aircrafts');
+        history.replace(newValue ? '/airports/' + airport.icao : '/airports');
     };
 
     const handleInfoClose = (): void => {
