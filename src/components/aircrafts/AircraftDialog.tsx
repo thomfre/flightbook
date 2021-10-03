@@ -62,6 +62,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         // @ts-ignore
                                         Flightbook.aircraftGallerySearch.replace('{AIRCRAFT}', aircraft.registration)
                                     }
+                                    target="_blank"
                                     variant="filled"
                                     color="success"
                                     clickable

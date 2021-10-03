@@ -69,6 +69,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                         // @ts-ignore
                                         Flightbook.airportGallerySearch.replace('{AIRPORT}', airport.icao)
                                     }
+                                    target="_blank"
                                     variant="filled"
                                     color="success"
                                     clickable
