@@ -60,7 +60,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                     component="a"
                                     href={
                                         // @ts-ignore
-                                        Flightbook.aircraftGallerySearch.replace('{AIRCRAFT}', aircraft.registration)
+                                        Flightbook.aircraftGallerySearch.replace('{AIRCRAFT}', aircraft.registration.replace('-', ''))
                                     }
                                     target="_blank"
                                     variant="filled"
