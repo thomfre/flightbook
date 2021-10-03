@@ -25,7 +25,7 @@ import { setTitle } from '../../tools/SetTitle';
 import { uniqueValues } from '../../tools/UniqueValues';
 
 const Flights = (): React.ReactElement => {
-    const { params }: { params: { year?: string; filter?: string } } = useRouteMatch();
+    const { params }: { params: { year?: string; filter?: string; airport?: string } } = useRouteMatch();
     const theme = useTheme();
     const history = useHistory();
 
@@ -35,19 +35,31 @@ const Flights = (): React.ReactElement => {
 
     const filterYear = (params.year && parseInt(params.year, 10)) || (params.filter && !isNaN(parseInt(params.filter, 10)) && parseInt(params.filter, 10));
     const filterRegistration = params.filter && isNaN(parseInt(params.filter, 10)) && params.filter;
+    const filterAirport = !!params.airport && params.airport;
 
     const filteredTracks = Tracklogs?.tracks
-        .filter((t) => !filterRegistration || t.aircraft === filterRegistration)
+        .filter(
+            (t) =>
+                (!filterRegistration && !filterAirport) ||
+                (filterRegistration && t.aircraft.toLowerCase() === filterRegistration.toLowerCase()) ||
+                (filterAirport && t.airports.filter((a) => a.toLowerCase() === filterAirport.toLowerCase()).length > 0)
+        )
         .sort((a, b) => b.date.localeCompare(a.date));
 
     const trackYears = filteredTracks.map((t) => parseInt(t.date.split('-')[0], 10)).filter(uniqueValues);
 
     const accordionExpanded = (year: number, expanded: boolean) => {
-        if (filterRegistration) {
+        if (filterAirport) {
+            if (expanded) {
+                history.replace(`/flights/${year}/airport/${filterAirport}`);
+            } else if (location.pathname.startsWith(`/flights/${year}/airport/${filterAirport}`)) {
+                history.replace(`/flights/airport/${filterAirport}`);
+            }
+        } else if (filterRegistration) {
             if (expanded) {
                 history.replace(`/flights/${year}/${filterRegistration}`);
-            } else if (location.pathname.startsWith(`/flights/${year}`)) {
-                history.replace('/flights');
+            } else if (location.pathname.startsWith(`/flights/${year}/${filterRegistration}`)) {
+                history.replace(`/flights/${filterRegistration}`);
             }
         } else {
             if (expanded) {
@@ -61,7 +73,8 @@ const Flights = (): React.ReactElement => {
     return (
         <Container maxWidth="lg">
             <Typography variant="h3" sx={{ paddingBottom: theme.spacing(1) }}>
-                <AirplaneTicketIcon fontSize="large" /> Flights{filterRegistration && ` - ${filterRegistration}`}
+                <AirplaneTicketIcon fontSize="large" /> Flights{filterRegistration && ` - ${filterRegistration.toUpperCase()}`}
+                {filterAirport && ` - ${filterAirport.toUpperCase()}`}
             </Typography>
             {filteredTracks.length === 0 && <Typography component="i">No flights found</Typography>}
             {trackYears.map((year, index) => (

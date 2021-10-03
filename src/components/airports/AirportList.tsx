@@ -13,10 +13,64 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import dayjs from 'dayjs';
+import 'flag-icon-css/css/flag-icon.css';
 import 'leaflet/dist/leaflet.css';
 import React, { useState } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
-import 'flag-icon-css/css/flag-icon.css';
+import AirportDialog from './AirportDialog';
+
+const Airport = ({ airport }: { airport: any }): React.ReactElement => {
+    const history = useHistory();
+    const { params }: { params: { airport?: string } } = useRouteMatch();
+
+    const locationIsAirport = (icao: string): boolean => {
+        return params.airport?.toLowerCase() === icao.toLowerCase();
+    };
+
+    const [detailsOpen, setDetailsOpen] = useState(locationIsAirport(airport.icao));
+
+    const infoClicked = (): void => {
+        const newValue = !detailsOpen;
+        setDetailsOpen(newValue);
+        history.replace(newValue ? '/airports/' + airport.icao : '/aircrafts');
+    };
+
+    const handleInfoClose = (): void => {
+        setDetailsOpen(false);
+    };
+
+    const firstVisited = dayjs(airport.firstVisited);
+    const lastVisited = dayjs(airport.lastVisited);
+
+    return (
+        <TableRow key={airport.icao} sx={{ '&:last-child td, &:last-child th': { border: 0 }, cursor: 'pointer' }} onClick={infoClicked}>
+            <TableCell component="th" scope="row">
+                <span className={`flag-icon flag-icon-${airport.isoCountry.toLowerCase()}`}></span> {airport.icao}
+            </TableCell>
+            <TableCell>{airport.name}</TableCell>
+            <TableCell>
+                {firstVisited.format('MMMM Do, YYYY')} ({firstVisited.fromNow()})
+            </TableCell>
+            <TableCell>
+                {lastVisited.format('MMMM Do, YYYY')} ({lastVisited.fromNow()})
+            </TableCell>
+            <TableCell>{airport.distinctVisitDates}</TableCell>
+            <TableCell>
+                <Hidden mdDown>
+                    <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'row' }}>
+                        {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />}
+                        {!!airport.asPic && <Chip icon={<PersonIcon />} label="PIC" title="Visited as pilot in command" variant="outlined" color="primary" />}
+                        {!!airport.asFrom && <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />}
+                        {!!airport.asTo && <Chip icon={<FlightLandIcon />} label="To" title="Arrived at" variant="outlined" color="primary" />}
+                        {!!airport.asVia && <Chip icon={<FlightIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />}
+                    </Stack>
+                </Hidden>
+            </TableCell>
+            <AirportDialog airport={airport} dialogOpen={detailsOpen} handleClose={handleInfoClose} />
+        </TableRow>
+    );
+};
 
 const descendingComparator = (a: { [x: string]: number }, b: { [x: string]: number }, orderBy: string | number) => {
     if (b[orderBy] < a[orderBy]) {
@@ -90,48 +144,7 @@ const AirportList = (): React.ReactElement => {
                 </TableHead>
                 <TableBody>
                     {Flightbook.airports.sort(getComparator(order, orderBy)).map((airport) => {
-                        const firstVisited = dayjs(airport.firstVisited);
-                        const lastVisited = dayjs(airport.lastVisited);
-                        return (
-                            <TableRow key={airport.icao} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">
-                                    <span className={`flag-icon flag-icon-${airport.isoCountry.toLowerCase()}`}></span> {airport.icao}
-                                </TableCell>
-                                <TableCell>{airport.name}</TableCell>
-                                <TableCell>
-                                    {firstVisited.format('MMMM Do, YYYY')} ({firstVisited.fromNow()})
-                                </TableCell>
-                                <TableCell>
-                                    {lastVisited.format('MMMM Do, YYYY')} ({lastVisited.fromNow()})
-                                </TableCell>
-                                <TableCell>{airport.distinctVisitDates}</TableCell>
-                                <TableCell>
-                                    <Hidden mdDown>
-                                        <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'row' }}>
-                                            {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />}
-                                            {!!airport.asPic && (
-                                                <Chip
-                                                    icon={<PersonIcon />}
-                                                    label="PIC"
-                                                    title="Visited as pilot in command"
-                                                    variant="outlined"
-                                                    color="primary"
-                                                />
-                                            )}
-                                            {!!airport.asFrom && (
-                                                <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />
-                                            )}
-                                            {!!airport.asTo && (
-                                                <Chip icon={<FlightLandIcon />} label="To" title="Arrived at" variant="outlined" color="primary" />
-                                            )}
-                                            {!!airport.asVia && (
-                                                <Chip icon={<FlightIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />
-                                            )}
-                                        </Stack>
-                                    </Hidden>
-                                </TableCell>
-                            </TableRow>
-                        );
+                        return <Airport key={airport.icao} airport={airport} />;
                     })}
                 </TableBody>
             </Table>

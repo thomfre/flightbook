@@ -31,7 +31,7 @@ const AirportStatistics = (): React.ReactElement => {
                     <b>{countriesVisited.length}</b> {countriesVisited.length === 1 ? 'country' : 'countries'} visited
                     <ul>
                         {countriesVisited.map((countryCode) => (
-                            <li>
+                            <li key={countryCode}>
                                 <span className={`flag-icon flag-icon-${countryCode.toLowerCase()}`}></span> {isoCodeToCountryName(countryCode)}
                             </li>
                         ))}

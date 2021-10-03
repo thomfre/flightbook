@@ -10,13 +10,13 @@ import Statistics from './stats/Statistics';
 const Routes = (): React.ReactElement => {
     return (
         <Switch>
-            <Route path={['/flights/:year/:filter', '/flights/:filter', '/flights']}>
+            <Route path={['/flights/airport/:airport', '/flights/:year/airport/:airport', '/flights/:year/:filter', '/flights/:filter', '/flights']}>
                 <Flights />
             </Route>
             <Route path="/flight/:filename">
                 <Flight />
             </Route>
-            <Route path="/airports">
+            <Route path={['/airports/:airport', '/airports']}>
                 <Airports />
             </Route>
             <Route path={['/aircrafts/:aircraft', '/aircrafts']}>

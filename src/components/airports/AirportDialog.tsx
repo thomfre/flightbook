@@ -1,5 +1,7 @@
 import EventIcon from '@mui/icons-material/Event';
 import FlightIcon from '@mui/icons-material/Flight';
+import FlightLandIcon from '@mui/icons-material/FlightLand';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
@@ -22,19 +24,21 @@ import React from 'react';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 
-const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement => {
-    const firstFlown = dayjs(aircraft.firstFlown);
-    const lastFlown = dayjs(aircraft.lastFlown);
+const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement => {
+    const firstVisited = dayjs(airport.firstVisited);
+    const lastVisited = dayjs(airport.lastVisited);
 
-    const filteredTracklogs = Tracklogs.tracks.filter((t) => t.aircraft === aircraft.registration).sort((a, b) => b.date.localeCompare(a.date));
+    const filteredTracklogs = Tracklogs.tracks
+        .filter((t) => t.airports.filter((a) => a === airport.icao).length > 0)
+        .sort((a, b) => b.date.localeCompare(a.date));
 
     return (
         <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>
             <DialogContent onClick={(e) => e.stopPropagation()} style={{ padding: 0, margin: 0 }}>
-                {aircraft.picture && (
+                {airport.picture && (
                     <img
-                        src={aircraft.picture}
-                        title={aircraft.registration}
+                        src={airport.picture}
+                        title={airport.icao}
                         loading="lazy"
                         style={{ width: '100%', maxHeight: '300px', objectFit: 'cover', margin: 0, padding: 0 }}
                     />
@@ -42,17 +46,20 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                 <Grid container>
                     <Grid item xs={12} marginBottom={2}>
                         <Typography variant="h3" align="center" paddingTop={2}>
-                            {aircraft.registration}
+                            {airport.icao}
                         </Typography>
                         <Typography variant="subtitle1" align="center">
-                            {aircraft.type}
+                            {airport.name}
                         </Typography>
                         <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
-                            {!!aircraft.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Flown with instructor" variant="outlined" />}
-                            {!!aircraft.asPic && (
-                                <Chip icon={<PersonIcon />} label="PIC" title="Flown as pilot in command" variant="outlined" color="primary" />
+                            {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />}
+                            {!!airport.asPic && (
+                                <Chip icon={<PersonIcon />} label="PIC" title="Visited as pilot in command" variant="outlined" color="primary" />
                             )}
-                            {Flightbook.aircraftGallerySearch && (
+                            {!!airport.asFrom && <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />}
+                            {!!airport.asTo && <Chip icon={<FlightLandIcon />} label="To" title="Arrived at" variant="outlined" color="primary" />}
+                            {!!airport.asVia && <Chip icon={<FlightIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />}
+                            {Flightbook.airportGallerySearch && (
                                 <Chip
                                     icon={<PhotoLibraryIcon />}
                                     label="Search gallery"
@@ -60,7 +67,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                     component="a"
                                     href={
                                         // @ts-ignore
-                                        Flightbook.aircraftGallerySearch.replace('{AIRCRAFT}', aircraft.registration)
+                                        Flightbook.airportGallerySearch.replace('{AIRPORT}', airport.icao)
                                     }
                                     variant="filled"
                                     color="success"
@@ -77,7 +84,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         <EventIcon />
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={`${firstFlown.format('MMMM Do, YYYY')} (${firstFlown.fromNow()})`} secondary="First flown" />
+                                <ListItemText primary={`${firstVisited.format('MMMM Do, YYYY')} (${firstVisited.fromNow()})`} secondary="First visited" />
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
@@ -85,7 +92,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         <EventIcon />
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={`${lastFlown.format('MMMM Do, YYYY')} (${lastFlown.fromNow()})`} secondary="Last flown" />
+                                <ListItemText primary={`${lastVisited.format('MMMM Do, YYYY')} (${lastVisited.fromNow()})`} secondary="Last visited" />
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
@@ -93,7 +100,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         <FlightIcon />
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={aircraft.numberOfFlights} secondary="Number of flights" />
+                                <ListItemText primary={airport.distinctVisitDates} secondary="Number of distinct visit dates" />
                             </ListItem>
                         </List>
                     </Grid>
@@ -112,7 +119,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         </ListItem>
                                     ))}
                                 </List>
-                                <Button variant="outlined" color="primary" component="a" href={`/flights/${aircraft.registration}`}>
+                                <Button variant="outlined" color="primary" component="a" href={`/flights/airport/${airport.icao}`}>
                                     View more
                                 </Button>
                             </React.Fragment>
@@ -124,4 +131,4 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
     );
 };
 
-export default AircraftDialog;
+export default AirportDialog;

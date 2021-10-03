@@ -5,6 +5,7 @@
       "date": "2021-01-01",
       "name": "Oslo - ENGM Gardermoen",
       "aircraft": "LN-ABC",
+      "airports": ["ENGM"],
       "hasYoutube": false,
       "hasBlogpost": false,
       "hasFacebookPost": false,
