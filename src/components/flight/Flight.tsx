@@ -25,6 +25,7 @@ import { default as React, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { GeoJSON, MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
 import { useRouteMatch } from 'react-router-dom';
+import YouTube from 'react-youtube';
 import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
 import UnitChip, { UnitType } from './UnitChip';
@@ -272,7 +273,6 @@ const Flight = (): React.ReactElement => {
                     )}
                 </Stack>
             )}
-
             <Line
                 // @ts-ignore
                 type="line"
@@ -310,6 +310,18 @@ const Flight = (): React.ReactElement => {
                     }
                 }}
             />
+
+            {flight.youtube && flight.youtube.length > 0 && (
+                <div className="youtube-container">
+                    <YouTube
+                        videoId={flight.youtube.split('=').pop()}
+                        opts={{
+                            host: 'https://www.youtube-nocookie.com',
+                            playerVars: { autoplay: 0, rel: 0 }
+                        }}
+                    />
+                </div>
+            )}
         </Box>
     );
 };
