@@ -16,35 +16,14 @@ import dayjs from 'dayjs';
 import 'flag-icon-css/css/flag-icon.css';
 import 'leaflet/dist/leaflet.css';
 import React, { useState } from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
-import AirportDialog from './AirportDialog';
 
-const Airport = ({ airport }: { airport: any }): React.ReactElement => {
-    const history = useHistory();
-    const { params }: { params: { airport?: string } } = useRouteMatch();
-
-    const locationIsAirport = (icao: string): boolean => {
-        return params.airport?.toLowerCase() === icao.toLowerCase();
-    };
-
-    const [detailsOpen, setDetailsOpen] = useState(locationIsAirport(airport.icao));
-
-    const infoClicked = (): void => {
-        const newValue = !detailsOpen;
-        setDetailsOpen(newValue);
-        history.replace(newValue ? '/airports/' + airport.icao : '/airports');
-    };
-
-    const handleInfoClose = (): void => {
-        setDetailsOpen(false);
-    };
-
+const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (icao: string) => void }): React.ReactElement => {
     const firstVisited = dayjs(airport.firstVisited);
     const lastVisited = dayjs(airport.lastVisited);
 
     return (
-        <TableRow key={airport.icao} sx={{ '&:last-child td, &:last-child th': { border: 0 }, cursor: 'pointer' }} onClick={infoClicked}>
+        <TableRow key={airport.icao} sx={{ '&:last-child td, &:last-child th': { border: 0 }, cursor: 'pointer' }} onClick={() => airportClicked(airport.icao)}>
             <TableCell component="th" scope="row">
                 <span className={`flag-icon flag-icon-${airport.isoCountry.toLowerCase()}`}></span> {airport.icao}
             </TableCell>
@@ -67,7 +46,6 @@ const Airport = ({ airport }: { airport: any }): React.ReactElement => {
                     </Stack>
                 </Hidden>
             </TableCell>
-            <AirportDialog airport={airport} dialogOpen={detailsOpen} handleClose={handleInfoClose} />
         </TableRow>
     );
 };
@@ -86,7 +64,7 @@ const getComparator = (order: string, orderBy: string) => {
     return order === 'desc' ? (a: any, b: any) => descendingComparator(a, b, orderBy) : (a: any, b: any) => -descendingComparator(a, b, orderBy);
 };
 
-const AirportList = (): React.ReactElement => {
+const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) => void }): React.ReactElement => {
     const [orderBy, setOrderBy] = useState('');
     const [order, setOrder] = useState<'asc' | 'desc'>('asc');
 
@@ -144,7 +122,7 @@ const AirportList = (): React.ReactElement => {
                 </TableHead>
                 <TableBody>
                     {Flightbook.airports.sort(getComparator(order, orderBy)).map((airport) => {
-                        return <Airport key={airport.icao} airport={airport} />;
+                        return <Airport key={airport.icao} airport={airport} airportClicked={onAirportClicked} />;
                     })}
                 </TableBody>
             </Table>

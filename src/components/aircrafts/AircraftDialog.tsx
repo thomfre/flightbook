@@ -22,11 +22,15 @@ import React from 'react';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 
-const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement => {
-    const firstFlown = dayjs(aircraft.firstFlown);
-    const lastFlown = dayjs(aircraft.lastFlown);
+const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
+    const firstFlown = dayjs(aircraft?.firstFlown);
+    const lastFlown = dayjs(aircraft?.lastFlown);
 
-    const filteredTracklogs = Tracklogs.tracks.filter((t) => t.aircraft === aircraft.registration).sort((a, b) => b.date.localeCompare(a.date));
+    const filteredTracklogs = Tracklogs.tracks.filter((t) => t.aircraft === aircraft?.registration).sort((a, b) => b.date.localeCompare(a.date));
+
+    if (!aircraft) {
+        return null;
+    }
 
     return (
         <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>

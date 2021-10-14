@@ -11,8 +11,7 @@
       "lastFlown": "1970-01-01T00:00:00.000Z",
       "numberOfFlights": 1,
       "asDual": true,
-      "asPic": true,
-      "picture": null
+      "asPic": true
     }
   ],
   "airports": [
@@ -28,8 +27,7 @@
       "asFrom": true,
       "asTo": true,
       "asVia": true,
-      "distinctVisitDates": 1,
-      "picture": null
+      "distinctVisitDates": 1
     }
   ],
   "flightTimeMonths": [

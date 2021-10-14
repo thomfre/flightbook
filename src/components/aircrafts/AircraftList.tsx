@@ -3,53 +3,34 @@ import IconButton from '@mui/material/IconButton';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import React, { useState } from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import React from 'react';
 import Flightbook from '../../data/flightbook.json';
-import AircraftDialog from './AircraftDialog';
 
-const Aircraft = ({ aircraft }: { aircraft: any }): React.ReactElement => {
-    const history = useHistory();
-    const { params }: { params: { aircraft?: string } } = useRouteMatch();
-
-    const locationIsAirplane = (registration: string): boolean => {
-        return params.aircraft?.toLowerCase() === registration.toLowerCase();
-    };
-
-    const [detailsOpen, setDetailsOpen] = useState(locationIsAirplane(aircraft.registration));
-
-    const infoClicked = (): void => {
-        const newValue = !detailsOpen;
-        setDetailsOpen(newValue);
-        history.replace(newValue ? '/aircrafts/' + aircraft.registration : '/aircrafts');
-    };
-
-    const handleInfoClose = (): void => {
-        setDetailsOpen(false);
-    };
-
+const Aircraft = ({ aircraft, aircraftClicked }: { aircraft: any; aircraftClicked: (registration: string) => void }): React.ReactElement => {
     return (
-        <ImageListItem onClick={infoClicked} sx={{ cursor: 'pointer' }}>
+        <ImageListItem onClick={() => aircraftClicked(aircraft.registration)} sx={{ cursor: 'pointer' }}>
             {aircraft.picture && <img src={aircraft.picture} title={aircraft.registration} loading="lazy" />}
             <ImageListItemBar
                 title={aircraft.registration}
                 subtitle={aircraft.type}
                 actionIcon={
-                    <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }} aria-label={`info about ${aircraft.registration}`} onClick={infoClicked}>
+                    <IconButton
+                        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                        aria-label={`info about ${aircraft.registration}`}
+                        onClick={() => aircraftClicked(aircraft.registration)}>
                         <InfoIcon />
                     </IconButton>
                 }
             />
-            <AircraftDialog aircraft={aircraft} dialogOpen={detailsOpen} handleClose={handleInfoClose} />
         </ImageListItem>
     );
 };
 
-const AircraftList = (): React.ReactElement => {
+const AircraftList = ({ onAircraftClicked }: { onAircraftClicked: (registration: string) => void }): React.ReactElement => {
     return (
         <ImageList>
             {Flightbook.aircrafts.map((aircraft) => (
-                <Aircraft key={aircraft.registration} aircraft={aircraft} />
+                <Aircraft key={aircraft.registration} aircraft={aircraft} aircraftClicked={onAircraftClicked} />
             ))}
         </ImageList>
     );

@@ -24,13 +24,17 @@ import React from 'react';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 
-const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement => {
-    const firstVisited = dayjs(airport.firstVisited);
-    const lastVisited = dayjs(airport.lastVisited);
+const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
+    const firstVisited = dayjs(airport?.firstVisited);
+    const lastVisited = dayjs(airport?.lastVisited);
 
     const filteredTracklogs = Tracklogs.tracks
-        .filter((t) => t.airports.filter((a) => a === airport.icao).length > 0)
+        .filter((t) => t.airports.filter((a) => a === airport?.icao).length > 0)
         .sort((a, b) => b.date.localeCompare(a.date));
+
+    if (!airport) {
+        return null;
+    }
 
     return (
         <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>
