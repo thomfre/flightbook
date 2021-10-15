@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Aircrafts from './aircrafts/Aircrafts';
 import Airports from './airports/Airports';
 import Flight from './flight/Flight';
+import AllFlights from './flights/AllFlights';
 import Flights from './flights/Flights';
 import Home from './home/Home';
 import Statistics from './stats/Statistics';
@@ -10,6 +11,9 @@ import Statistics from './stats/Statistics';
 const Routes = (): React.ReactElement => {
     return (
         <Switch>
+            <Route path={['/flights/map/all', '/flights/map/:year']}>
+                <AllFlights />
+            </Route>
             <Route path={['/flights/airport/:airport', '/flights/:year/airport/:airport', '/flights/:year/:filter', '/flights/:filter', '/flights']}>
                 <Flights />
             </Route>
