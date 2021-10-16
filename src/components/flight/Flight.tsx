@@ -14,7 +14,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+import NiceLink from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
@@ -24,7 +24,7 @@ import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { GeoJSON, MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
-import { useRouteMatch } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
@@ -79,6 +79,7 @@ const Flight = (): React.ReactElement => {
 
     const [flightYear, setFlightYear] = useState('');
 
+    const history = useHistory();
     const { params }: { params: { filename: string } } = useRouteMatch();
 
     useEffect(() => {
@@ -164,17 +165,17 @@ const Flight = (): React.ReactElement => {
             <Grid container>
                 <Grid item md={12}>
                     <Breadcrumbs>
-                        <Link color="inherit" href="/flights">
+                        <Link to="/flights" component={NiceLink} color="inherit">
                             Flights
                         </Link>
                         {flightYear !== '' && (
-                            <Link color="inherit" href={`/flights/${flightYear}`}>
+                            <Link to={`/flights/${flightYear}`} component={NiceLink} color="inherit">
                                 {flightYear}
                             </Link>
                         )}
-                        <Link color="text.primary" href="" aria-current="page">
+                        <Typography color="text.primary" aria-current="page">
                             {flight?.name}
-                        </Link>
+                        </Typography>
                     </Breadcrumbs>
                 </Grid>
                 <Grid item md={10} sm={12}>
@@ -221,8 +222,7 @@ const Flight = (): React.ReactElement => {
                         label={flight.aircraft}
                         variant="outlined"
                         color="primary"
-                        component="a"
-                        href={`/aircrafts/${flight.aircraft}`}
+                        onClick={() => history.push(`/aircrafts/${flight.aircraft}`)}
                         clickable
                     />
                 )}

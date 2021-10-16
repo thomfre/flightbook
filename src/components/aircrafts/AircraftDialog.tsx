@@ -19,10 +19,13 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
+    const history = useHistory();
+
     const firstFlown = dayjs(aircraft?.firstFlown);
     const lastFlown = dayjs(aircraft?.lastFlown);
 
@@ -109,7 +112,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                             <React.Fragment>
                                 <List>
                                     {filteredTracklogs.slice(0, 3).map((track) => (
-                                        <ListItem key={track.filename} button component="a" href={`/flight/${track.filename.replace('.json', '')}`}>
+                                        <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
                                             <ListItemIcon>
                                                 <MapIcon />
                                             </ListItemIcon>
@@ -117,9 +120,14 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         </ListItem>
                                     ))}
                                 </List>
-                                <Button variant="outlined" color="primary" component="a" href={`/flights/${aircraft.registration}`}>
+                                <Link
+                                    to={`/flights/${aircraft.registration}`}
+                                    component={Button}
+                                    /* @ts-ignore */
+                                    variant="outlined"
+                                    color="primary">
                                     View more
-                                </Button>
+                                </Link>
                             </React.Fragment>
                         )}
                     </Grid>

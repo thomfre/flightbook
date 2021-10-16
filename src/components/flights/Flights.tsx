@@ -9,6 +9,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -18,7 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { default as React, useEffect } from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Tracklogs from '../../data/tracklogs.json';
 import { TracklogInfo } from '../../models/tracklog/TracklogInfo';
 import { setTitle } from '../../tools/SetTitle';
@@ -93,7 +94,7 @@ const Flights = (): React.ReactElement => {
                             {filteredTracks
                                 .filter((t) => t.date.startsWith(`${year}-`))
                                 .map((track: TracklogInfo) => (
-                                    <ListItem key={track.filename} button component="a" href={`/flight/${track.filename.replace('.json', '')}`}>
+                                    <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
                                         <ListItemIcon>
                                             <MapIcon />
                                         </ListItemIcon>
@@ -123,6 +124,15 @@ const Flights = (): React.ReactElement => {
                                     </ListItem>
                                 ))}
                         </List>
+                        <Link
+                            to={`/flights/map/${year}`}
+                            component={Button}
+                            /* @ts-ignore */
+                            variant="outlined"
+                            color="primary"
+                            startIcon={<MapIcon />}>
+                            View all on map
+                        </Link>
                     </AccordionDetails>
                 </Accordion>
             ))}

@@ -1,6 +1,7 @@
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import FlightIcon from '@mui/icons-material/Flight';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import AppBar from '@mui/material/AppBar';
@@ -19,7 +20,6 @@ import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Flightbook from '../data/flightbook.json';
-import HomeIcon from '@mui/icons-material/Home';
 
 const Header = (): React.ReactElement => {
     const theme = useTheme();

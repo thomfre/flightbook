@@ -2,8 +2,10 @@ import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import EventIcon from '@mui/icons-material/Event';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
+import NiceLink from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
@@ -11,7 +13,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
 import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
-import { useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import Tracklogs from '../../data/tracklogs.json';
 import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
@@ -89,6 +91,18 @@ const AllFlights = (): React.ReactElement => {
     return (
         <Box>
             <Grid container>
+                <Grid item md={12}>
+                    <Breadcrumbs>
+                        <Link to="/flights" component={NiceLink} color="inherit">
+                            Flights
+                        </Link>
+                        {flightYear && (
+                            <Link to={`/flights/${flightYear}`} component={NiceLink} color="inherit">
+                                {flightYear}
+                            </Link>
+                        )}
+                    </Breadcrumbs>
+                </Grid>
                 <Grid item md={10} sm={12}>
                     <Typography variant="h4" sx={{ display: 'inline' }}>
                         <AirplaneTicketIcon fontSize="large" /> All flights
