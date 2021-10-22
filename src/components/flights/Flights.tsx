@@ -11,6 +11,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Hidden from '@mui/material/Hidden';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -100,26 +101,28 @@ const Flights = (): React.ReactElement => {
                                         </ListItemIcon>
                                         <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
                                         <ListItemSecondaryAction>
-                                            {track.hasGallery && (
-                                                <ListItemIcon>
-                                                    <PhotoLibraryIcon color="success" />
-                                                </ListItemIcon>
-                                            )}
-                                            {track.hasFacebookPost && (
-                                                <ListItemIcon>
-                                                    <FacebookIcon color="primary" />
-                                                </ListItemIcon>
-                                            )}
-                                            {track.hasBlogpost && (
-                                                <ListItemIcon>
-                                                    <ArticleIcon color="primary" />
-                                                </ListItemIcon>
-                                            )}
-                                            {track.hasYoutube && (
-                                                <ListItemIcon>
-                                                    <YouTubeIcon color="secondary" />
-                                                </ListItemIcon>
-                                            )}
+                                            <Hidden mdDown>
+                                                {track.hasGallery && (
+                                                    <ListItemIcon>
+                                                        <PhotoLibraryIcon color="success" />
+                                                    </ListItemIcon>
+                                                )}
+                                                {track.hasFacebookPost && (
+                                                    <ListItemIcon>
+                                                        <FacebookIcon color="primary" />
+                                                    </ListItemIcon>
+                                                )}
+                                                {track.hasBlogpost && (
+                                                    <ListItemIcon>
+                                                        <ArticleIcon color="primary" />
+                                                    </ListItemIcon>
+                                                )}
+                                                {track.hasYoutube && (
+                                                    <ListItemIcon>
+                                                        <YouTubeIcon color="secondary" />
+                                                    </ListItemIcon>
+                                                )}
+                                            </Hidden>
                                         </ListItemSecondaryAction>
                                     </ListItem>
                                 ))}
