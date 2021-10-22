@@ -7,6 +7,10 @@ import advancedFormat from 'dayjs/plugin/advancedFormat';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import screenfull from 'screenfull';
+
+// https://github.com/brunob/leaflet.fullscreen/issues/81#issuecomment-793197922
+window.screenfull = screenfull;
 
 const configureDayJs = (): void => {
     dayjs.extend(relativeTime);

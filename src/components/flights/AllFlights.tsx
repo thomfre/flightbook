@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
 import L from 'leaflet';
+import 'leaflet.fullscreen';
+import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
 import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
@@ -114,7 +116,7 @@ const AllFlights = (): React.ReactElement => {
                     </Typography>
                 </Grid>
             </Grid>
-            <MapContainer scrollWheelZoom={true} style={{ minHeight: '700px' }}>
+            <MapContainer scrollWheelZoom={true} style={{ minHeight: '700px' }} fullscreenControl={true} fullscreenControlOptions={{ position: 'topleft' }}>
                 <TileLayer
                     attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,
                 <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

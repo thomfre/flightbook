@@ -1,14 +1,4 @@
 {
-    "cSpell.words": [
-        "Flightbook",
-        "Tracklog",
-        "Tracklogs",
-        "aircrafts",
-        "blogpost",
-        "flighttime",
-        "heightgraph",
-        "unmount",
-        "youtube"
-    ],
-    "editor.formatOnSave": true
+  "cSpell.words": ["aircrafts", "blogpost", "Flightbook", "flighttime", "heightgraph", "screenfull", "Tracklog", "Tracklogs", "unmount", "youtube"],
+  "editor.formatOnSave": true
 }

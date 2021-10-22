@@ -3,6 +3,8 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Icon, LatLngBounds, LatLngTuple } from 'leaflet';
+import 'leaflet.fullscreen';
+import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet/dist/leaflet.css';
 import React from 'react';
 import { LayerGroup, LayersControl, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
@@ -37,7 +39,12 @@ const AirportMap = ({ onAirportClicked }: { onAirportClicked: (icao: string) => 
 
     return (
         <React.Fragment>
-            <MapContainer scrollWheelZoom={true} style={{ minHeight: '700px' }} bounds={boundingBox}>
+            <MapContainer
+                scrollWheelZoom={true}
+                style={{ minHeight: '700px' }}
+                bounds={boundingBox}
+                fullscreenControl={true}
+                fullscreenControlOptions={{ position: 'topleft' }}>
                 <TileLayer
                     attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,
                 <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
