@@ -143,6 +143,14 @@ const Flight = (): React.ReactElement => {
         ]
     };
 
+    const getYouTubeId = (url: string): string => {
+        if (url.includes('=')) {
+            return url.split('=').pop() ?? '';
+        }
+
+        return url.split('/').pop() ?? '';
+    };
+
     const getAverage = (array: number[]): number => {
         const sum = array.reduce((a, b) => a + b, 0);
         return sum / array.length || 0;
@@ -316,7 +324,7 @@ const Flight = (): React.ReactElement => {
             {flight.youtube && flight.youtube.length > 0 && (
                 <div className="youtube-container">
                     <YouTube
-                        videoId={flight.youtube.split('=').pop()}
+                        videoId={getYouTubeId(flight.youtube)}
                         opts={{
                             host: 'https://www.youtube-nocookie.com',
                             playerVars: { autoplay: 0, rel: 0 }
