@@ -102,11 +102,6 @@ const Flights = (): React.ReactElement => {
                                         <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
                                         <ListItemSecondaryAction>
                                             <Hidden mdDown>
-                                                {track.hasGallery && (
-                                                    <ListItemIcon>
-                                                        <PhotoLibraryIcon color="success" />
-                                                    </ListItemIcon>
-                                                )}
                                                 {track.hasFacebookPost && (
                                                     <ListItemIcon>
                                                         <FacebookIcon color="primary" />
@@ -120,6 +115,11 @@ const Flights = (): React.ReactElement => {
                                                 {track.hasYoutube && (
                                                     <ListItemIcon>
                                                         <YouTubeIcon color="secondary" />
+                                                    </ListItemIcon>
+                                                )}
+                                                {track.hasGallery && (
+                                                    <ListItemIcon>
+                                                        <PhotoLibraryIcon color="success" />
                                                     </ListItemIcon>
                                                 )}
                                             </Hidden>
