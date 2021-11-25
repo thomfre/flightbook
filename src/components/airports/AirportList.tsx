@@ -13,7 +13,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import dayjs from 'dayjs';
-import 'flag-icon-css/css/flag-icon.css';
+import 'flag-icon-css/css/flag-icons.css';
 import 'leaflet/dist/leaflet.css';
 import React, { useState } from 'react';
 import Flightbook from '../../data/flightbook.json';
