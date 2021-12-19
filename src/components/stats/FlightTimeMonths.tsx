@@ -76,8 +76,8 @@ const FlightTimeMonths = (): React.ReactElement => {
 
                                         label +=
                                             minutes > 0
-                                                ? `${hours} hour${hours !== 1 && 's'}, ${minutes} minute${minutes !== 1 && 's'}`
-                                                : `${hours} hour${hours !== 1 && 's'}`;
+                                                ? `${hours} hour${hours !== 1 ? 's' : ''}, ${minutes} minute${minutes !== 1 ? 's' : ''}`
+                                                : `${hours} hour${hours !== 1 ? 's' : ''}`;
                                     } else {
                                         label += context.parsed.y;
                                     }
