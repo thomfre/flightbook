@@ -128,7 +128,13 @@ const Flights = (): React.ReactElement => {
                                 ))}
                         </List>
                         <Link
-                            to={`/flights/map/${year}`}
+                            to={
+                                filterAirport
+                                    ? `/flights/map/${year}/airport/${filterAirport}`
+                                    : filterRegistration
+                                    ? `/flights/map/${year}/${filterRegistration}`
+                                    : `/flights/map/${year}`
+                            }
                             component={Button}
                             /* @ts-ignore */
                             variant="outlined"

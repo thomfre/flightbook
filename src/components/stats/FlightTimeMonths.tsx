@@ -1,9 +1,9 @@
-import { BarController, BarElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement } from 'chart.js';
+import { BarController, BarElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Flightbook from '../../data/flightbook.json';
 
-ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, BarController);
+ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, BarController, Tooltip);
 
 const FlightTimeMonths = (): React.ReactElement => {
     const chartData = {

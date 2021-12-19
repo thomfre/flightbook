@@ -18,6 +18,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
+import 'flag-icon-css/css/flag-icons.css';
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
@@ -52,7 +53,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                             {aircraft.registration}
                         </Typography>
                         <Typography variant="subtitle1" align="center">
-                            {aircraft.type}
+                            <span className={`flag-icon flag-icon-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
                         </Typography>
                         <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
                             {!!aircraft.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Flown with instructor" variant="outlined" />}

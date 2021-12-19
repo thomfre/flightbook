@@ -19,7 +19,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
-import { BarElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement } from 'chart.js';
+import { BarElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
 import L, { Icon, LatLngTuple } from 'leaflet';
 import 'leaflet.fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
@@ -33,7 +33,7 @@ import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
 import UnitChip, { UnitType } from './UnitChip';
 
-ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement);
+ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, Tooltip);
 
 const FlightElevation = ({ data }: { data: any }) => {
     const map = useMap();

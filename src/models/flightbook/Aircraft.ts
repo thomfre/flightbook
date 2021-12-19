@@ -1,5 +1,6 @@
 export interface Aircraft {
     registration: string;
+    isoCountry: string;
     type: string;
     firstFlown: string;
     lastFlown: string;

@@ -6,6 +6,7 @@
   "aircrafts": [
     {
       "registration": "LN-ABC",
+      "isoCountry": "NO",
       "type": "C172",
       "firstFlown": "1970-01-01T00:00:00.000Z",
       "lastFlown": "1970-01-01T00:00:00.000Z",

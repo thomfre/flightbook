@@ -11,7 +11,15 @@ import Statistics from './stats/Statistics';
 const Routes = (): React.ReactElement => {
     return (
         <Switch>
-            <Route path={['/flights/map/all', '/flights/map/:year']}>
+            <Route
+                path={[
+                    '/flights/map/all/airport/:airport',
+                    '/flights/map/all/:filter',
+                    '/flights/map/all',
+                    '/flights/map/:year/airport/:airport',
+                    '/flights/map/:year/:filter',
+                    '/flights/map/:year'
+                ]}>
                 <AllFlights />
             </Route>
             <Route path={['/flights/airport/:airport', '/flights/:year/airport/:airport', '/flights/:year/:filter', '/flights/:filter', '/flights']}>

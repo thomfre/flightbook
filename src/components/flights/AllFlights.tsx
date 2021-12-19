@@ -44,16 +44,26 @@ const AllFlights = (): React.ReactElement => {
 
     const [flightYear, setFlightYear] = useState<number | undefined>(undefined);
 
-    const { params }: { params: { year: string } } = useRouteMatch();
+    const { params }: { params: { year?: string; filter?: string; airport?: string } } = useRouteMatch();
 
     const [tracks, setTracks] = useState<GeoJSON.Feature[]>([]);
     const [loading, setLoading] = useState(true);
 
+    const filterRegistration = params.filter && isNaN(parseInt(params.filter, 10)) && params.filter;
+    const filterAirport = !!params.airport && params.airport;
+
     const loadData = async () => {
         setError(false);
 
+        const filteredTracks = Tracklogs?.tracks.filter(
+            (t) =>
+                (!filterRegistration && !filterAirport) ||
+                (filterRegistration && t.aircraft.toLowerCase() === filterRegistration.toLowerCase()) ||
+                (filterAirport && t.airports.filter((a) => a.toLowerCase() === filterAirport.toLowerCase()).length > 0)
+        );
+
         const fetchedTracks = await Promise.all(
-            Tracklogs.tracks
+            filteredTracks
                 .filter((t) => !params.year || t.date.split('-')[0] === params.year)
                 .map(async (track) => {
                     const data: Tracklog = await fetch(`/tracklogs/${track.filename}`).then((response) => response.json());
@@ -107,7 +117,8 @@ const AllFlights = (): React.ReactElement => {
                 </Grid>
                 <Grid item md={10} sm={12}>
                     <Typography variant="h4" sx={{ display: 'inline' }}>
-                        <AirplaneTicketIcon fontSize="large" /> All flights
+                        <AirplaneTicketIcon fontSize="large" /> All flights{filterRegistration && ` - ${filterRegistration.toUpperCase()}`}
+                        {filterAirport && ` - ${filterAirport.toUpperCase()}`}
                     </Typography>
                 </Grid>
                 <Grid item md={2} sm={12}>

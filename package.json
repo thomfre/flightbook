@@ -1,23 +1,23 @@
 {
   "name": "flightbook",
-  "version": "0.8.6",
+  "version": "0.9.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.6.0",
+    "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.2.0",
-    "@mui/material": "^5.2.1",
+    "@mui/icons-material": "^5.2.4",
+    "@mui/material": "^5.2.4",
     "@thomfre/leaflet.heightgraph": "git+https://github.com/thomfre/Leaflet.Heightgraph.git",
-    "chart.js": "^3.6.0",
+    "chart.js": "^3.6.2",
     "dayjs": "^1.10.7",
-    "flag-icon-css": "^4.1.6",
+    "flag-icon-css": "^4.1.7",
     "leaflet": "^1.7.1",
-    "leaflet.fullscreen": "^2.1.0",
+    "leaflet.fullscreen": "^2.2.0",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.0.0",
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.2.2",
-    "react-markdown": "^7.1.0",
+    "react-markdown": "^7.1.1",
     "react-router-dom": "^5.3.0",
     "react-youtube": "^7.13.1",
     "screenfull": "^5.2.0"
@@ -42,8 +42,8 @@
     "react-scripts": "4.0.3",
     "eslint": "^7.32.0",
     "eslint-config-react-typescript": "^1.0.8",
-    "prettier": "^2.5.0",
-    "typescript": "^4.5.2"
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
