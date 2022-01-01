@@ -11,6 +11,10 @@ export interface Tracklog {
     blogpost?: string;
     facebookPost?: string;
     gallery?: string;
+    altitudeMax: number;
+    altitudeAverage: number;
+    speedMax: number;
+    speedAverage: number;
     totalDistance: number;
     geoJson: GeoJSON.Feature;
     speedElevationPoints: SpeedElevationPoint[];

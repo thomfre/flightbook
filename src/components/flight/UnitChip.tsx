@@ -11,16 +11,18 @@ export enum UnitType {
     Altitude
 }
 
-const ConvertedValue = ({ value, type }: { value: number; type: UnitType }): React.ReactElement | null => {
+export const ConvertedValue = ({ value, type }: { value: number; type: UnitType }): React.ReactElement | null => {
+    const formatter = new Intl.NumberFormat('nb-NO', { maximumFractionDigits: 0 });
+
     switch (type) {
         case UnitType.Distance:
             return (
                 <List sx={{ padding: 0, margin: 0 }}>
                     <ListItem>
-                        <ListItemText>{(value * 1.852).toFixed(0)} km</ListItemText>
+                        <ListItemText>{formatter.format(value * 1.852)} km</ListItemText>
                     </ListItem>
                     <ListItem>
-                        <ListItemText>{(value * 1.151).toFixed(0)} mi</ListItemText>
+                        <ListItemText>{formatter.format(value * 1.151)} mi</ListItemText>
                     </ListItem>
                 </List>
             );
@@ -28,10 +30,10 @@ const ConvertedValue = ({ value, type }: { value: number; type: UnitType }): Rea
             return (
                 <List sx={{ padding: 0, margin: 0 }}>
                     <ListItem>
-                        <ListItemText>{(value * 1.852).toFixed(0)} km/h</ListItemText>
+                        <ListItemText>{formatter.format(value * 1.852)} km/h</ListItemText>
                     </ListItem>
                     <ListItem>
-                        <ListItemText>{(value * 1.151).toFixed(0)} MpH</ListItemText>
+                        <ListItemText>{formatter.format(value * 1.151)} MpH</ListItemText>
                     </ListItem>
                 </List>
             );
@@ -39,7 +41,7 @@ const ConvertedValue = ({ value, type }: { value: number; type: UnitType }): Rea
             return (
                 <List sx={{ padding: 0, margin: 0 }}>
                     <ListItem>
-                        <ListItemText>{(value / 3.281).toFixed(0)} m</ListItemText>
+                        <ListItemText>{formatter.format(value / 3.281)} m</ListItemText>
                     </ListItem>
                 </List>
             );

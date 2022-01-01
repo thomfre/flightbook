@@ -154,25 +154,6 @@ const Flight = (): React.ReactElement => {
         return url.split('/').pop() ?? '';
     };
 
-    const getAverage = (array: number[]): number => {
-        const sum = array.reduce((a, b) => a + b, 0);
-        return sum / array.length || 0;
-    };
-
-    const altitudeMax = Math.max.apply(
-        null,
-        flight.speedElevationPoints.map((p: any) => p.elevation)
-    );
-
-    const altitudeAverage = getAverage(flight.speedElevationPoints.map((p: any) => p.elevation));
-
-    const speedMax = Math.max.apply(
-        null,
-        flight.speedElevationPoints.map((p: any) => p.speed)
-    );
-
-    const speedAverage = getAverage(flight.speedElevationPoints.map((p: any) => p.speed));
-
     return (
         <Box>
             <Grid container>
@@ -218,15 +199,25 @@ const Flight = (): React.ReactElement => {
                 <FlightElevation data={flight?.geoJson} />
             </MapContainer>
             <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
-                <UnitChip icon={<FlightTakeoffIcon />} label={`Max altitude: ${altitudeMax.toFixed(0)} ft`} value={altitudeMax} type={UnitType.Altitude} />
                 <UnitChip
                     icon={<FlightTakeoffIcon />}
-                    label={`Average altitude: ${altitudeAverage.toFixed(0)} ft`}
-                    value={altitudeAverage}
+                    label={`Max altitude: ${flight.altitudeMax.toFixed(0)} ft`}
+                    value={flight.altitudeMax}
                     type={UnitType.Altitude}
                 />
-                <UnitChip icon={<SpeedIcon />} label={`Max speed: ${speedMax.toFixed(0)} kt`} value={speedMax} type={UnitType.Speed} />
-                <UnitChip icon={<SpeedIcon />} label={`Average speed: ${speedAverage.toFixed(0)} kt`} value={speedAverage} type={UnitType.Speed} />
+                <UnitChip
+                    icon={<FlightTakeoffIcon />}
+                    label={`Average altitude: ${flight.altitudeAverage.toFixed(0)} ft`}
+                    value={flight.altitudeAverage}
+                    type={UnitType.Altitude}
+                />
+                <UnitChip icon={<SpeedIcon />} label={`Max speed: ${flight.speedMax.toFixed(0)} kt`} value={flight.speedMax} type={UnitType.Speed} />
+                <UnitChip
+                    icon={<SpeedIcon />}
+                    label={`Average speed: ${flight.speedAverage.toFixed(0)} kt`}
+                    value={flight.speedAverage}
+                    type={UnitType.Speed}
+                />
                 <UnitChip icon={<MapIcon />} label={`Distance: ${flight.totalDistance.toFixed(1)} nm`} value={flight.totalDistance} type={UnitType.Distance} />
 
                 {flight.aircraft && (

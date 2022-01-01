@@ -39,5 +39,20 @@
       "picMinutes": 0,
       "numberOfFlights": 0
     }
+  ],
+  "flightStatistics": [
+    {
+      "year": null,
+      "altitudeMax": 1234,
+      "altitudeMaxFlight": "2021-01-01",
+      "altitudeAverage": 1200,
+      "speedMax": 123,
+      "speedMaxFlight": "2021-01-01",
+      "speedAverage": 100,
+      "distanceTotal": 12345.0,
+      "distanceMax": 123.4,
+      "distanceMaxFlight": "2021-01-01",
+      "distanceAverage": 100.0
+    }
   ]
 }

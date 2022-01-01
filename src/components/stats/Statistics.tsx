@@ -1,3 +1,4 @@
+import BarChartIcon from '@mui/icons-material/BarChart';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import HistoryIcon from '@mui/icons-material/History';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
@@ -10,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { setTitle } from '../../tools/SetTitle';
+import FlightStatistics from './FlightStatistics';
 import FlightTimeMonths from './FlightTimeMonths';
 
 const Statistics = (): React.ReactElement => {
@@ -54,6 +56,19 @@ const Statistics = (): React.ReactElement => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <FlightTimeMonths />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion
+                defaultExpanded={locationIs('flights', true)}
+                onChange={(_event, expanded) => accordionExpanded('flights', expanded)}
+                TransitionProps={{ unmountOnExit: true }}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h4">
+                        <BarChartIcon /> Flight statistics
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <FlightStatistics />
                 </AccordionDetails>
             </Accordion>
         </Container>
