@@ -4,6 +4,7 @@ export interface TracklogInfo {
     name: string;
     aircraft: string;
     airports: string[];
+    asPic: boolean;
     hasYoutube: boolean;
     hasBlogpost: boolean;
     hasFacebookPost: boolean;

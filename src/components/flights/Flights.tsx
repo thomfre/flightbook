@@ -99,7 +99,10 @@ const Flights = (): React.ReactElement => {
                                         <ListItemIcon>
                                             <MapIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary={track.name} secondary={track.aircraft ? `${track.aircraft} | ${track.date}` : track.date} />
+                                        <ListItemText
+                                            primary={track.name}
+                                            secondary={track.aircraft ? `${track.aircraft}${track.asPic ? ' | PIC' : ''} | ${track.date}` : track.date}
+                                        />
                                         <ListItemSecondaryAction>
                                             <Hidden mdDown>
                                                 {track.hasFacebookPost && (

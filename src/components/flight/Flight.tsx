@@ -5,6 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import FlightIcon from '@mui/icons-material/Flight';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
+import PersonIcon from '@mui/icons-material/Person';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import SpeedIcon from '@mui/icons-material/Speed';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -219,6 +220,8 @@ const Flight = (): React.ReactElement => {
                     type={UnitType.Speed}
                 />
                 <UnitChip icon={<MapIcon />} label={`Distance: ${flight.totalDistance.toFixed(1)} nm`} value={flight.totalDistance} type={UnitType.Distance} />
+
+                {!!flight.asPic && <Chip icon={<PersonIcon />} label="PIC" title="Flown as pilot in command" variant="outlined" color="primary" />}
 
                 {flight.aircraft && (
                     <Chip

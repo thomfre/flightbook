@@ -7,6 +7,7 @@ export interface Tracklog {
     from: string;
     to: string;
     via: string[];
+    asPic: boolean;
     youtube?: string;
     blogpost?: string;
     facebookPost?: string;
