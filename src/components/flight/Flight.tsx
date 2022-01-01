@@ -32,7 +32,8 @@ import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
-import UnitChip, { UnitType } from './UnitChip';
+import { formatNumber } from '../common/Number';
+import UnitChip, { UnitType } from '../common/UnitChip';
 
 ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, Tooltip);
 
@@ -202,24 +203,29 @@ const Flight = (): React.ReactElement => {
             <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
                 <UnitChip
                     icon={<FlightTakeoffIcon />}
-                    label={`Max altitude: ${flight.altitudeMax.toFixed(0)} ft`}
+                    label={`Max altitude: ${formatNumber(flight.altitudeMax, 'ft')}`}
                     value={flight.altitudeMax}
                     type={UnitType.Altitude}
                 />
                 <UnitChip
                     icon={<FlightTakeoffIcon />}
-                    label={`Average altitude: ${flight.altitudeAverage.toFixed(0)} ft`}
+                    label={`Average altitude: ${formatNumber(flight.altitudeAverage, 'ft')}`}
                     value={flight.altitudeAverage}
                     type={UnitType.Altitude}
                 />
                 <UnitChip icon={<SpeedIcon />} label={`Max speed: ${flight.speedMax.toFixed(0)} kt`} value={flight.speedMax} type={UnitType.Speed} />
                 <UnitChip
                     icon={<SpeedIcon />}
-                    label={`Average speed: ${flight.speedAverage.toFixed(0)} kt`}
+                    label={`Average speed: ${formatNumber(flight.speedAverage, 'kts')}`}
                     value={flight.speedAverage}
                     type={UnitType.Speed}
                 />
-                <UnitChip icon={<MapIcon />} label={`Distance: ${flight.totalDistance.toFixed(1)} nm`} value={flight.totalDistance} type={UnitType.Distance} />
+                <UnitChip
+                    icon={<MapIcon />}
+                    label={`Distance: ${formatNumber(flight.totalDistance, 'nm', 1)}`}
+                    value={flight.totalDistance}
+                    type={UnitType.Distance}
+                />
 
                 {!!flight.asPic && <Chip icon={<PersonIcon />} label="PIC" title="Flown as pilot in command" variant="outlined" color="primary" />}
 

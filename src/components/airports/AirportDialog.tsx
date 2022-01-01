@@ -108,6 +108,14 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                         <FlightIcon />
                                     </Avatar>
                                 </ListItemAvatar>
+                                <ListItemText primary={airport.totalFlights} secondary="Number of flights to/from/via this airport" />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <FlightIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
                                 <ListItemText primary={airport.distinctVisitDates} secondary="Number of distinct visit dates" />
                             </ListItem>
                         </List>

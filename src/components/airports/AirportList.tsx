@@ -35,6 +35,7 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
                 {lastVisited.format('MMMM Do, YYYY')} ({lastVisited.fromNow()})
             </TableCell>
             <TableCell>{airport.distinctVisitDates}</TableCell>
+            <TableCell>{airport.totalFlights}</TableCell>
             <TableCell>
                 <Hidden mdDown>
                     <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'row' }}>
@@ -114,7 +115,15 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
                                 active={orderBy === 'distinctVisitDates'}
                                 direction={orderBy === 'distinctVisitDates' ? order : 'asc'}
                                 onClick={createSortHandler('distinctVisitDates')}>
-                                Times visited
+                                Dates visited
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell key="totalFlights" sortDirection={orderBy === 'totalFlights' ? order : false} sx={{ fontWeight: 'bold' }}>
+                            <TableSortLabel
+                                active={orderBy === 'totalFlights'}
+                                direction={orderBy === 'totalFlights' ? order : 'asc'}
+                                onClick={createSortHandler('totalFlights')}>
+                                Flights
                             </TableSortLabel>
                         </TableCell>
                         <TableCell></TableCell>

@@ -10,7 +10,8 @@ import { BarController, BarElement, CategoryScale, Chart as ChartJS, LinearScale
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
-import { ConvertedValue, UnitType } from '../flight/UnitChip';
+import Number from '../common/Number';
+import { ConvertedValue, UnitType } from '../common/UnitChip';
 
 ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, BarController, ChartJsTooltip);
 
@@ -46,11 +47,13 @@ const FlightStatistics = (): React.ReactElement => {
             <TableBody>
                 {Flightbook.flightStatistics.map((f) => {
                     return (
-                        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableRow key={f.year ?? 0} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell sx={{ fontWeight: 'bold' }}>{f.year ?? 'Overall'}</TableCell>
                             <TableCell>
                                 <Tooltip title={<ConvertedValue value={f.altitudeMax} type={UnitType.Altitude} />}>
-                                    <span>{f.altitudeMax} ft</span>
+                                    <span>
+                                        <Number value={f.altitudeMax} unit="ft" />
+                                    </span>
                                 </Tooltip>{' '}
                                 <IconButton size="small" onClick={() => history.push(`/flight/${f.altitudeMaxFlight}`)}>
                                     <LaunchIcon fontSize="inherit" />
@@ -58,12 +61,16 @@ const FlightStatistics = (): React.ReactElement => {
                             </TableCell>
                             <TableCell>
                                 <Tooltip title={<ConvertedValue value={f.altitudeAverage} type={UnitType.Altitude} />}>
-                                    <span>{f.altitudeAverage} ft</span>
+                                    <span>
+                                        <Number value={f.altitudeAverage} unit="ft" />
+                                    </span>
                                 </Tooltip>
                             </TableCell>
                             <TableCell>
                                 <Tooltip title={<ConvertedValue value={f.speedMax} type={UnitType.Speed} />}>
-                                    <span>{f.speedMax} kts</span>
+                                    <span>
+                                        <Number value={f.speedMax} unit="kts" />
+                                    </span>
                                 </Tooltip>{' '}
                                 <IconButton size="small" onClick={() => history.push(`/flight/${f.speedMaxFlight}`)}>
                                     <LaunchIcon fontSize="inherit" />
@@ -71,12 +78,16 @@ const FlightStatistics = (): React.ReactElement => {
                             </TableCell>
                             <TableCell>
                                 <Tooltip title={<ConvertedValue value={f.speedAverage} type={UnitType.Speed} />}>
-                                    <span>{f.speedAverage} kts</span>
+                                    <span>
+                                        <Number value={f.speedAverage} unit="kts" />
+                                    </span>
                                 </Tooltip>
                             </TableCell>
                             <TableCell>
                                 <Tooltip title={<ConvertedValue value={f.distanceMax} type={UnitType.Distance} />}>
-                                    <span>{f.distanceMax.toFixed(2)} nm</span>
+                                    <span>
+                                        <Number value={f.distanceMax} numberOfDecimals={2} unit="nm" />
+                                    </span>
                                 </Tooltip>{' '}
                                 <IconButton size="small" onClick={() => history.push(`/flight/${f.distanceMaxFlight}`)}>
                                     <LaunchIcon fontSize="inherit" />
@@ -84,12 +95,16 @@ const FlightStatistics = (): React.ReactElement => {
                             </TableCell>
                             <TableCell>
                                 <Tooltip title={<ConvertedValue value={f.distanceAverage} type={UnitType.Distance} />}>
-                                    <span>{f.distanceAverage.toFixed(2)} nm</span>
+                                    <span>
+                                        <Number value={f.distanceAverage} numberOfDecimals={2} unit="nm" />
+                                    </span>
                                 </Tooltip>
                             </TableCell>
                             <TableCell>
                                 <Tooltip title={<ConvertedValue value={f.distanceTotal} type={UnitType.Distance} />}>
-                                    <span>{f.distanceTotal.toFixed(2)} nm</span>
+                                    <span>
+                                        <Number value={f.distanceTotal} numberOfDecimals={2} unit="nm" />
+                                    </span>
                                 </Tooltip>
                             </TableCell>
                         </TableRow>
