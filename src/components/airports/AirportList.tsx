@@ -36,6 +36,7 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
             </TableCell>
             <TableCell>{airport.distinctVisitDates}</TableCell>
             <TableCell>{airport.totalFlights}</TableCell>
+            <TableCell>{airport.aircrafts.length}</TableCell>
             <TableCell>
                 <Hidden mdDown>
                     <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'row' }}>
@@ -51,7 +52,17 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
     );
 };
 
-const descendingComparator = (a: { [x: string]: number }, b: { [x: string]: number }, orderBy: string | number) => {
+const descendingComparator = (a: { [x: string]: any }, b: { [x: string]: any }, orderBy: string | number) => {
+    if (orderBy === 'aircrafts') {
+        if (b[orderBy].length < a[orderBy].length) {
+            return -1;
+        }
+        if (b[orderBy].length > a[orderBy].length) {
+            return 1;
+        }
+        return 0;
+    }
+
     if (b[orderBy] < a[orderBy]) {
         return -1;
     }
@@ -66,7 +77,7 @@ const getComparator = (order: string, orderBy: string) => {
 };
 
 const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) => void }): React.ReactElement => {
-    const [orderBy, setOrderBy] = useState('');
+    const [orderBy, setOrderBy] = useState('firstVisited');
     const [order, setOrder] = useState<'asc' | 'desc'>('asc');
 
     const handleRequestSort = (event: any, property: React.SetStateAction<string>) => {
@@ -124,6 +135,14 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
                                 direction={orderBy === 'totalFlights' ? order : 'asc'}
                                 onClick={createSortHandler('totalFlights')}>
                                 Flights
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell key="aircrafts" sortDirection={orderBy === 'aircrafts' ? order : false} sx={{ fontWeight: 'bold' }}>
+                            <TableSortLabel
+                                active={orderBy === 'aircrafts'}
+                                direction={orderBy === 'aircrafts' ? order : 'asc'}
+                                onClick={createSortHandler('aircrafts')}>
+                                Aircrafts
                             </TableSortLabel>
                         </TableCell>
                         <TableCell></TableCell>

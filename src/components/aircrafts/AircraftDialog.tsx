@@ -1,5 +1,6 @@
 import EventIcon from '@mui/icons-material/Event';
 import FlightIcon from '@mui/icons-material/Flight';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
@@ -102,7 +103,23 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         <FlightIcon />
                                     </Avatar>
                                 </ListItemAvatar>
+                                <ListItemText primary={aircraft.distinctFlightDates} secondary="Distinct flight dates" />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <FlightIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
                                 <ListItemText primary={aircraft.numberOfFlights} secondary="Number of flights" />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <FlightTakeoffIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText primary={aircraft.numberOfAirports} secondary="Number of airports visited" />
                             </ListItem>
                         </List>
                     </Grid>

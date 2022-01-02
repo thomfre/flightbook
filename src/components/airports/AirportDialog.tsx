@@ -118,6 +118,23 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                 </ListItemAvatar>
                                 <ListItemText primary={airport.distinctVisitDates} secondary="Number of distinct visit dates" />
                             </ListItem>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <FlightIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={
+                                        <Stack direction="row" spacing={1}>
+                                            {airport.aircrafts.map((a: string) => (
+                                                <Chip key={a} label={a} size="small" onClick={() => history.push(`/aircrafts/${a}`)} />
+                                            ))}
+                                        </Stack>
+                                    }
+                                    secondary="Aircrafts flown here"
+                                />
+                            </ListItem>
                         </List>
                     </Grid>
                     <Grid item lg={6} md={12} padding={2}>
