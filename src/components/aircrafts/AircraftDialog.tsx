@@ -24,6 +24,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
+import FlickrFeed from '../common/FlickrFeed';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
     const history = useHistory();
@@ -148,6 +149,9 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                 </Link>
                             </React.Fragment>
                         )}
+                    </Grid>
+                    <Grid item lg={12} md={12} padding={2} paddingBottom={1}>
+                        <FlickrFeed tag={aircraft.registration} />
                     </Grid>
                 </Grid>
             </DialogContent>

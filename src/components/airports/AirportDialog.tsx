@@ -27,6 +27,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
+import FlickrFeed from '../common/FlickrFeed';
 
 const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
     const history = useHistory();
@@ -197,6 +198,9 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                             </React.Fragment>
                         )}
                     </Grid>
+                </Grid>
+                <Grid item lg={12} md={12} padding={2} paddingBottom={1}>
+                    <FlickrFeed tag={airport.icao} />
                 </Grid>
             </DialogContent>
         </Dialog>

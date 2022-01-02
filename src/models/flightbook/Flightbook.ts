@@ -8,6 +8,7 @@ export interface Flightbook {
     parentPage?: string;
     airportGallerySearch?: string;
     aircraftGallerySearch?: string;
+    flickrProxyUrl?: string;
     generatedDate: string;
     aircrafts: Aircraft[];
     airports: Airport[];
