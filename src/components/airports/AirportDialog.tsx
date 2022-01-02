@@ -1,3 +1,4 @@
+import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 import EventIcon from '@mui/icons-material/Event';
 import FlightIcon from '@mui/icons-material/Flight';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
@@ -21,6 +22,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 import React from 'react';
@@ -28,6 +30,8 @@ import { Link, useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 import FlickrFeed from '../common/FlickrFeed';
+import Number from '../common/Number';
+import { ConvertedValue, UnitType } from '../common/UnitChip';
 
 const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
     const history = useHistory();
@@ -76,9 +80,11 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                             <Typography variant="subtitle1" title="Airport region">
                                 {airport.region}
                             </Typography>
-                            <Typography variant="subtitle1" title="Field elevation">
-                                {airport.fieldElevation} ft
-                            </Typography>
+                            <Tooltip title={<ConvertedValue value={airport.fieldElevation} type={UnitType.Altitude} />}>
+                                <Typography variant="subtitle1" title="Field elevation">
+                                    <Number value={airport.fieldElevation} unit="ft" />
+                                </Typography>
+                            </Tooltip>
                             {airport.wikipedia && (
                                 <IconButton
                                     aria-label="Open Wikipedia"
@@ -97,8 +103,8 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                 <Chip icon={<PersonIcon />} label="PIC" title="Visited as pilot in command" variant="outlined" color="primary" />
                             )}
                             {!!airport.asFrom && <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />}
+                            {!!airport.asVia && <Chip icon={<AirlineStopsIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />}
                             {!!airport.asTo && <Chip icon={<FlightLandIcon />} label="To" title="Arrived at" variant="outlined" color="primary" />}
-                            {!!airport.asVia && <Chip icon={<FlightIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />}
                             {Flightbook.airportGallerySearch && (
                                 <Chip
                                     icon={<PhotoLibraryIcon />}

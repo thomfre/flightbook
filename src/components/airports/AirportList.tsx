@@ -12,11 +12,14 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
+import Tooltip from '@mui/material/Tooltip';
 import dayjs from 'dayjs';
 import 'flag-icon-css/css/flag-icons.css';
 import 'leaflet/dist/leaflet.css';
 import React, { useState } from 'react';
 import Flightbook from '../../data/flightbook.json';
+import Number from '../common/Number';
+import { ConvertedValue, UnitType } from '../common/UnitChip';
 
 const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (icao: string) => void }): React.ReactElement => {
     const firstVisited = dayjs(airport.firstVisited);
@@ -28,7 +31,13 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
                 <span className={`flag-icon flag-icon-${airport.isoCountry.toLowerCase()}`}></span> {airport.icao}
             </TableCell>
             <TableCell>{airport.name}</TableCell>
-            <TableCell>{airport.fieldElevation} ft</TableCell>
+            <TableCell>
+                <Tooltip title={<ConvertedValue value={airport.fieldElevation} type={UnitType.Altitude} />}>
+                    <span>
+                        <Number value={airport.fieldElevation} unit="ft" />
+                    </span>
+                </Tooltip>
+            </TableCell>
             <TableCell>
                 {firstVisited.format('MMMM Do, YYYY')} ({firstVisited.fromNow()})
             </TableCell>

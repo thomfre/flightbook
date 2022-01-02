@@ -9,11 +9,18 @@
       "registration": "LN-ABC",
       "isoCountry": "NO",
       "type": "C172",
+      "manufacturer": null,
+      "model": null,
+      "class": null,
+      "manufacturedYear": null,
       "firstFlown": "1970-01-01T00:00:00.000Z",
       "lastFlown": "1970-01-01T00:00:00.000Z",
+      "distinctFlightDates": 1,
       "numberOfFlights": 1,
+      "numberOfAirports": 1,
       "asDual": true,
-      "asPic": true
+      "asPic": true,
+      "picture": null
     }
   ],
   "airports": [
@@ -21,7 +28,10 @@
       "name": "Oslo Gardermoen",
       "icao": "ENGM",
       "isoCountry": "NO",
+      "region": "Viken",
       "coordinates": [60.197701, 11.100532],
+      "fieldElevation": 123,
+      "wikipedia": null,
       "firstVisited": "1970-01-01T00:00:00.000Z",
       "lastVisited": "1970-01-01T00:00:00.000Z",
       "asDual": true,
@@ -29,7 +39,10 @@
       "asFrom": true,
       "asTo": true,
       "asVia": true,
-      "distinctVisitDates": 1
+      "distinctVisitDates": 1,
+      "totalFlights": 1,
+      "aircrafts": [],
+      "picture": null
     }
   ],
   "flightTimeMonths": [

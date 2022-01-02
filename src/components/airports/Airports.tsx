@@ -50,7 +50,7 @@ const Airports = (): React.ReactElement => {
             </Typography>
             <AirportMap onAirportClicked={airportClicked} />
             <AirportList onAirportClicked={airportClicked} />
-            <AirportStatistics />
+            <AirportStatistics onAirportClicked={airportClicked} />
             <AirportDialog airport={selectedAirport} dialogOpen={detailsOpen} handleClose={handleInfoClose} />
         </Container>
     );
