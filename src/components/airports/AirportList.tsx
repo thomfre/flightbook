@@ -28,6 +28,7 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
                 <span className={`flag-icon flag-icon-${airport.isoCountry.toLowerCase()}`}></span> {airport.icao}
             </TableCell>
             <TableCell>{airport.name}</TableCell>
+            <TableCell>{airport.fieldElevation} ft</TableCell>
             <TableCell>
                 {firstVisited.format('MMMM Do, YYYY')} ({firstVisited.fromNow()})
             </TableCell>
@@ -103,6 +104,14 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
                         <TableCell key="name" sortDirection={orderBy === 'name' ? order : false} sx={{ fontWeight: 'bold' }}>
                             <TableSortLabel active={orderBy === 'name'} direction={orderBy === 'name' ? order : 'asc'} onClick={createSortHandler('name')}>
                                 Airport
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell key="fieldElevation" sortDirection={orderBy === 'fieldElevation' ? order : false} sx={{ fontWeight: 'bold' }}>
+                            <TableSortLabel
+                                active={orderBy === 'fieldElevation'}
+                                direction={orderBy === 'fieldElevation' ? order : 'asc'}
+                                onClick={createSortHandler('fieldElevation')}>
+                                Elevation
                             </TableSortLabel>
                         </TableCell>
                         <TableCell key="firstVisited" sortDirection={orderBy === 'firstVisited' ? order : false} sx={{ fontWeight: 'bold' }}>

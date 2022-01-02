@@ -1,8 +1,13 @@
 export interface Airport {
     name: string;
     icao: string;
+    iata: string;
+    type: string;
     isoCountry: string;
+    region: string;
     coordinates: number[];
+    fieldElevation?: number;
+    wikipedia: string;
     firstVisited: string;
     lastVisited: string;
     asDual: boolean;

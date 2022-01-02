@@ -1,13 +1,16 @@
+import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import ArticleIcon from '@mui/icons-material/Article';
 import EventIcon from '@mui/icons-material/Event';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import FlightIcon from '@mui/icons-material/Flight';
+import FlightLandIcon from '@mui/icons-material/FlightLand';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import SpeedIcon from '@mui/icons-material/Speed';
+import TerrainIcon from '@mui/icons-material/Terrain';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -202,13 +205,13 @@ const Flight = (): React.ReactElement => {
             </MapContainer>
             <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
                 <UnitChip
-                    icon={<FlightTakeoffIcon />}
+                    icon={<TerrainIcon />}
                     label={`Max altitude: ${formatNumber(flight.altitudeMax, 'ft')}`}
                     value={flight.altitudeMax}
                     type={UnitType.Altitude}
                 />
                 <UnitChip
-                    icon={<FlightTakeoffIcon />}
+                    icon={<TerrainIcon />}
                     label={`Average altitude: ${formatNumber(flight.altitudeAverage, 'ft')}`}
                     value={flight.altitudeAverage}
                     type={UnitType.Altitude}
@@ -240,6 +243,15 @@ const Flight = (): React.ReactElement => {
                     />
                 )}
             </Stack>
+
+            <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={0}>
+                <Chip icon={<FlightTakeoffIcon />} label={flight.from} onClick={() => history.push(`/airports/${flight.from}`)} clickable />
+                {flight.via?.map((a) => (
+                    <Chip key={a} icon={<AirlineStopsIcon />} label={a} onClick={() => history.push(`/airports/${a}`)} clickable />
+                ))}
+                <Chip icon={<FlightLandIcon />} label={flight.to} onClick={() => history.push(`/airports/${flight.to}`)} clickable />
+            </Stack>
+
             {((flight.youtube && flight.youtube.length > 0) ||
                 (flight.blogpost && flight.blogpost.length > 0) ||
                 (flight.facebookPost && flight.facebookPost.length > 0) ||

@@ -3,6 +3,7 @@ import FlightIcon from '@mui/icons-material/Flight';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MapIcon from '@mui/icons-material/Map';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import PersonIcon from '@mui/icons-material/Person';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import SchoolIcon from '@mui/icons-material/School';
@@ -11,7 +12,9 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -55,9 +58,40 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                         <Typography variant="h3" align="center" paddingTop={2}>
                             {airport.icao}
                         </Typography>
-                        <Typography variant="subtitle1" align="center">
-                            {airport.name}
-                        </Typography>
+                        <Stack
+                            justifyContent="center"
+                            spacing={1}
+                            marginBottom={1}
+                            alignItems="center"
+                            direction="row"
+                            divider={<Divider orientation="vertical" flexItem />}>
+                            <Typography variant="subtitle1" align="center">
+                                {airport.name}
+                            </Typography>
+                            {airport.iata && (
+                                <Typography variant="subtitle1" align="center" title="IATA code">
+                                    {airport.iata}
+                                </Typography>
+                            )}
+                            <Typography variant="subtitle1">{airport.type}</Typography>
+                            <Typography variant="subtitle1" title="Airport region">
+                                {airport.region}
+                            </Typography>
+                            <Typography variant="subtitle1" title="Field elevation">
+                                {airport.fieldElevation} ft
+                            </Typography>
+                            {airport.wikipedia && (
+                                <IconButton
+                                    aria-label="Open Wikipedia"
+                                    title="Open Wikipedia"
+                                    size="small"
+                                    component="a"
+                                    href={airport.wikipedia}
+                                    target="_blank">
+                                    <OpenInNewIcon fontSize="small" />
+                                </IconButton>
+                            )}
+                        </Stack>
                         <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
                             {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />}
                             {!!airport.asPic && (
