@@ -68,6 +68,9 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                             </Typography>
                             {aircraft.class && <Typography variant="subtitle1">{getAircraftClassName(aircraft.class)}</Typography>}
                             {(aircraft.manufacturer || aircraft.model) && <Typography variant="subtitle1">{getAircraftMakeAndModel(aircraft)}</Typography>}
+                            {aircraft.manufacturedYear && (
+                                <Typography variant="subtitle1">~{new Date().getFullYear() - aircraft.manufacturedYear} years old</Typography>
+                            )}
                         </Stack>
                         <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
                             {!!aircraft.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Flown with instructor" variant="outlined" />}

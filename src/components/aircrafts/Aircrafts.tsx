@@ -15,6 +15,7 @@ import { Aircraft } from '../../models/flightbook/Aircraft';
 import { setTitle } from '../../tools/SetTitle';
 import AircraftDialog from './AircraftDialog';
 import AircraftList from './AircraftList';
+import AircraftStatistics from './AircraftStatistics';
 
 const Aircrafts = (): React.ReactElement => {
     const theme = useTheme();
@@ -93,6 +94,7 @@ const Aircrafts = (): React.ReactElement => {
                 </Grid>
             </Grid>
             <AircraftList onAircraftClicked={aircraftClicked} orderBy={orderBy} order={order} />
+            <AircraftStatistics onAircraftClicked={aircraftClicked} />
             <AircraftDialog aircraft={selectedAircraft} dialogOpen={detailsOpen} handleClose={handleInfoClose} />
         </Container>
     );
