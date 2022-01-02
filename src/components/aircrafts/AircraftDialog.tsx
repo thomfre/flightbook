@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -24,6 +25,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
+import { getAircraftClassName, getAircraftMakeAndModel } from '../../tools/AircraftTools';
 import FlickrFeed from '../common/FlickrFeed';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
@@ -54,9 +56,19 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                         <Typography variant="h3" align="center" paddingTop={2}>
                             {aircraft.registration}
                         </Typography>
-                        <Typography variant="subtitle1" align="center">
-                            <span className={`flag-icon flag-icon-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
-                        </Typography>
+                        <Stack
+                            justifyContent="center"
+                            spacing={1}
+                            marginBottom={1}
+                            alignItems="center"
+                            direction="row"
+                            divider={<Divider orientation="vertical" flexItem />}>
+                            <Typography variant="subtitle1">
+                                <span className={`flag-icon flag-icon-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
+                            </Typography>
+                            {aircraft.class && <Typography variant="subtitle1">{getAircraftClassName(aircraft.class)}</Typography>}
+                            {(aircraft.manufacturer || aircraft.model) && <Typography variant="subtitle1">{getAircraftMakeAndModel(aircraft)}</Typography>}
+                        </Stack>
                         <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
                             {!!aircraft.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Flown with instructor" variant="outlined" />}
                             {!!aircraft.asPic && (

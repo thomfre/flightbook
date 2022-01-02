@@ -66,11 +66,9 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                             alignItems="center"
                             direction="row"
                             divider={<Divider orientation="vertical" flexItem />}>
-                            <Typography variant="subtitle1" align="center">
-                                {airport.name}
-                            </Typography>
+                            <Typography variant="subtitle1">{airport.name}</Typography>
                             {airport.iata && (
-                                <Typography variant="subtitle1" align="center" title="IATA code">
+                                <Typography variant="subtitle1" title="IATA code">
                                     {airport.iata}
                                 </Typography>
                             )}

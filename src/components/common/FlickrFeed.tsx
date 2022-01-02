@@ -35,7 +35,7 @@ const FlickrFeed = ({ tag }: { tag: string }): React.ReactElement => {
     return (
         <Box>
             <Typography variant="h5">Latest images</Typography>
-            <ImageList cols={4}>
+            <ImageList cols={4} variant="quilted" rowHeight={121}>
                 {images.map((image) => (
                     <ImageListItem key={image.link} component="a" href={image.link} target="_blank">
                         <img src={image.media.m.replace('_m.jpg', '.jpg')} />

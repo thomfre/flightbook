@@ -6,7 +6,7 @@ export interface Airport {
     isoCountry: string;
     region: string;
     coordinates: number[];
-    fieldElevation?: number;
+    fieldElevation?: number | null;
     wikipedia: string;
     firstVisited: string;
     lastVisited: string;
@@ -18,5 +18,5 @@ export interface Airport {
     distinctVisitDates: number;
     totalFlights: number;
     aircrafts: string[];
-    picture?: string;
+    picture?: string | null;
 }
