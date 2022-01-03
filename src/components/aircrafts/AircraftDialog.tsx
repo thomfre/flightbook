@@ -12,6 +12,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import Hidden from '@mui/material/Hidden';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -27,6 +28,7 @@ import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 import { getAircraftClassName, getAircraftMakeAndModel } from '../../tools/AircraftTools';
 import FlickrFeed from '../common/FlickrFeed';
+import ManufacturerLogo from './ManufacturerLogo';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
     const history = useHistory();
@@ -39,6 +41,8 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
     if (!aircraft) {
         return null;
     }
+
+    console.log(aircraft.operator);
 
     return (
         <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>
@@ -54,24 +58,41 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                 <Grid container>
                     <Grid item xs={12} marginBottom={2}>
                         <Typography variant="h3" align="center" paddingTop={2}>
+                            <Hidden mdDown>
+                                <ManufacturerLogo manufacturer={aircraft.manufacturer} />
+                            </Hidden>
                             {aircraft.registration}
+                            <Hidden mdDown>
+                                {aircraft.operator && aircraft.operator.picture && (
+                                    <a href={aircraft.operator.url} target="_blank">
+                                        <img
+                                            src={aircraft.operator.picture}
+                                            title={aircraft.operator.name}
+                                            loading="lazy"
+                                            style={{ maxHeight: '100px', maxWidth: '100px', paddingRight: 8, float: 'right' }}
+                                        />
+                                    </a>
+                                )}
+                            </Hidden>
                         </Typography>
-                        <Stack
-                            justifyContent="center"
-                            spacing={1}
-                            marginBottom={1}
-                            alignItems="center"
-                            direction="row"
-                            divider={<Divider orientation="vertical" flexItem />}>
-                            <Typography variant="subtitle1">
-                                <span className={`flag-icon flag-icon-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
-                            </Typography>
-                            {aircraft.class && <Typography variant="subtitle1">{getAircraftClassName(aircraft.class)}</Typography>}
-                            {(aircraft.manufacturer || aircraft.model) && <Typography variant="subtitle1">{getAircraftMakeAndModel(aircraft)}</Typography>}
-                            {aircraft.manufacturedYear && (
-                                <Typography variant="subtitle1">~{new Date().getFullYear() - aircraft.manufacturedYear} years old</Typography>
-                            )}
-                        </Stack>
+                        <Hidden mdDown>
+                            <Stack
+                                justifyContent="center"
+                                spacing={1}
+                                marginBottom={1}
+                                alignItems="center"
+                                direction="row"
+                                divider={<Divider orientation="vertical" flexItem />}>
+                                <Typography variant="subtitle1">
+                                    <span className={`flag-icon flag-icon-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
+                                </Typography>
+                                {aircraft.class && <Typography variant="subtitle1">{getAircraftClassName(aircraft.class)}</Typography>}
+                                {(aircraft.manufacturer || aircraft.model) && <Typography variant="subtitle1">{getAircraftMakeAndModel(aircraft)}</Typography>}
+                                {aircraft.manufacturedYear && (
+                                    <Typography variant="subtitle1">~{new Date().getFullYear() - aircraft.manufacturedYear} years old</Typography>
+                                )}
+                            </Stack>
+                        </Hidden>
                         <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
                             {!!aircraft.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Flown with instructor" variant="outlined" />}
                             {!!aircraft.asPic && (

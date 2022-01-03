@@ -6,6 +6,7 @@ export interface Aircraft {
     model?: string | null;
     class?: string | null;
     manufacturedYear?: number | null;
+    operator: AircraftOperator;
     firstFlown: string;
     lastFlown: string;
     distinctFlightDates: number;
@@ -14,4 +15,10 @@ export interface Aircraft {
     asDual: boolean;
     asPic: boolean;
     picture?: string | null;
+}
+
+export interface AircraftOperator {
+    name: string;
+    url?: string;
+    picture?: string;
 }
