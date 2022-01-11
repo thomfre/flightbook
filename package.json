@@ -6,7 +6,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.4",
-    "@mui/material": "^5.2.4",
+    "@mui/material": "^5.2.5",
     "@thomfre/leaflet.heightgraph": "git+https://github.com/thomfre/Leaflet.Heightgraph.git",
     "chart.js": "^3.6.2",
     "dayjs": "^1.10.7",
