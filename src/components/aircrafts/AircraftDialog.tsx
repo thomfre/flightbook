@@ -28,6 +28,7 @@ import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 import { getAircraftClassName, getAircraftMakeAndModel } from '../../tools/AircraftTools';
 import FlickrFeed from '../common/FlickrFeed';
+import YouTubeList from '../common/YouTubeList';
 import ManufacturerLogo from './ManufacturerLogo';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
@@ -41,8 +42,6 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
     if (!aircraft) {
         return null;
     }
-
-    console.log(aircraft.operator);
 
     return (
         <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>
@@ -166,7 +165,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                         {filteredTracklogs.length > 0 && (
                             <React.Fragment>
                                 <List>
-                                    {filteredTracklogs.slice(0, 3).map((track) => (
+                                    {filteredTracklogs.slice(0, 4).map((track) => (
                                         <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
                                             <ListItemIcon>
                                                 <MapIcon />
@@ -188,6 +187,9 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                     </Grid>
                     <Grid item lg={12} md={12} padding={2} paddingBottom={1}>
                         <FlickrFeed tag={aircraft.registration} />
+                    </Grid>
+                    <Grid item lg={12} md={12} padding={2} paddingBottom={1}>
+                        <YouTubeList aircraft={aircraft.registration} />
                     </Grid>
                 </Grid>
             </DialogContent>

@@ -35,6 +35,7 @@ import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
+import { getYouTubeId } from '../../tools/YouTubeTools';
 import { formatNumber } from '../common/Number';
 import UnitChip, { UnitType } from '../common/UnitChip';
 
@@ -149,14 +150,6 @@ const Flight = (): React.ReactElement => {
                 pointRadius: 0
             }
         ]
-    };
-
-    const getYouTubeId = (url: string): string => {
-        if (url.includes('=')) {
-            return url.split('=').pop() ?? '';
-        }
-
-        return url.split('/').pop() ?? '';
     };
 
     return (

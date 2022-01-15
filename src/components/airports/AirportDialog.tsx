@@ -32,6 +32,7 @@ import Tracklogs from '../../data/tracklogs.json';
 import FlickrFeed from '../common/FlickrFeed';
 import Number from '../common/Number';
 import { ConvertedValue, UnitType } from '../common/UnitChip';
+import YouTubeList from '../common/YouTubeList';
 
 const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
     const history = useHistory();
@@ -205,6 +206,9 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                 </Grid>
                 <Grid item lg={12} md={12} padding={2} paddingBottom={1}>
                     <FlickrFeed tag={airport.icao} />
+                </Grid>
+                <Grid item lg={12} md={12} padding={2} paddingBottom={1}>
+                    <YouTubeList airport={airport.icao} />
                 </Grid>
             </DialogContent>
         </Dialog>
