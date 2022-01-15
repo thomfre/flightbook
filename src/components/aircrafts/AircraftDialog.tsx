@@ -21,7 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
-import 'flag-icon-css/css/flag-icons.css';
+import 'flag-icons/css/flag-icons.css';
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';

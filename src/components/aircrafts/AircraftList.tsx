@@ -5,7 +5,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import dayjs from 'dayjs';
-import 'flag-icon-css/css/flag-icons.css';
+import 'flag-icons/css/flag-icons.css';
 import React from 'react';
 import Flightbook from '../../data/flightbook.json';
 

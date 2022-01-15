@@ -1,6 +1,6 @@
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import 'flag-icon-css/css/flag-icons.css';
+import 'flag-icons/css/flag-icons.css';
 import React from 'react';
 import Flightbook from '../../data/flightbook.json';
 import { isoCodeToCountryName } from '../../tools/CountryTools';
