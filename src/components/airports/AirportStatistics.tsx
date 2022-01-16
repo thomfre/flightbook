@@ -1,3 +1,4 @@
+import Chip from '@mui/material/Chip';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import 'flag-icons/css/flag-icons.css';
@@ -38,22 +39,14 @@ const AirportStatistics = ({ onAirportClicked }: { onAirportClicked: (icao: stri
                     <Tooltip title={<ConvertedValue value={highestElevation.fieldElevation} type={UnitType.Altitude} />}>
                         <b>{formatNumber(highestElevation.fieldElevation)} ft</b>
                     </Tooltip>{' '}
-                    (
-                    <span onClick={() => onAirportClicked(highestElevation.icao)} style={{ cursor: 'pointer' }}>
-                        {highestElevation.icao}
-                    </span>
-                    )
+                    <Chip label={highestElevation.icao} size="small" onClick={() => onAirportClicked(highestElevation.icao)} />
                 </li>
                 <li>
                     Lowest elevation{' '}
                     <Tooltip title={<ConvertedValue value={lowestElevation.fieldElevation} type={UnitType.Altitude} />}>
                         <b>{formatNumber(lowestElevation.fieldElevation)} ft</b>
                     </Tooltip>{' '}
-                    (
-                    <span onClick={() => onAirportClicked(lowestElevation.icao)} style={{ cursor: 'pointer' }}>
-                        {lowestElevation.icao}
-                    </span>
-                    )
+                    <Chip label={lowestElevation.icao} size="small" onClick={() => onAirportClicked(lowestElevation.icao)} />
                 </li>
                 <li>
                     <b>{countriesVisited.length}</b> {countriesVisited.length === 1 ? 'country' : 'countries'} visited

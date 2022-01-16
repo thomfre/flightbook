@@ -6,12 +6,14 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { setTitle } from '../../tools/SetTitle';
 import FlightStatistics from './FlightStatistics';
+import FlightStatisticsStreakSlump from './FlightStatisticsStreakSlump';
 import FlightTimeStatistics from './FlightTimeStatistics';
 
 const Statistics = (): React.ReactElement => {
@@ -69,6 +71,8 @@ const Statistics = (): React.ReactElement => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <FlightStatistics />
+                    <Divider sx={{ margin: 2 }} />
+                    <FlightStatisticsStreakSlump />
                 </AccordionDetails>
             </Accordion>
         </Container>

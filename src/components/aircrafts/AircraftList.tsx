@@ -12,7 +12,7 @@ import Flightbook from '../../data/flightbook.json';
 const AircraftEntry = ({ aircraft, aircraftClicked }: { aircraft: any; aircraftClicked: (registration: string) => void }): React.ReactElement => {
     return (
         <ImageListItem onClick={() => aircraftClicked(aircraft.registration)} sx={{ cursor: 'pointer' }}>
-            {aircraft.picture && <img src={aircraft.picture} title={aircraft.registration} loading="lazy" />}
+            {aircraft.picture && <img src={aircraft.picture} title={aircraft.registration} loading="eager" />}
             <ImageListItemBar
                 title={aircraft.registration}
                 subtitle={

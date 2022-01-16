@@ -1,3 +1,4 @@
+import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import Flightbook from '../../data/flightbook.json';
@@ -34,11 +35,7 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
                         ~{currentYear - oldestAircraft.manufacturedYear} year{currentYear - oldestAircraft.manufacturedYear === 1 ? '' : 's'} old (
                         {oldestAircraft.manufacturedYear})
                     </b>{' '}
-                    (
-                    <span onClick={() => onAircraftClicked(oldestAircraft.registration)} style={{ cursor: 'pointer' }}>
-                        {oldestAircraft.registration}
-                    </span>
-                    )
+                    <Chip label={oldestAircraft.registration} size="small" onClick={() => onAircraftClicked(oldestAircraft.registration)} />
                 </li>
                 <li>
                     Newest aircraft flown is{' '}
@@ -46,11 +43,7 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
                         ~{currentYear - newestAircraft.manufacturedYear} year{currentYear - newestAircraft.manufacturedYear === 1 ? '' : 's'} old (
                         {newestAircraft.manufacturedYear})
                     </b>{' '}
-                    (
-                    <span onClick={() => onAircraftClicked(newestAircraft.registration)} style={{ cursor: 'pointer' }}>
-                        {newestAircraft.registration}
-                    </span>
-                    )
+                    <Chip label={newestAircraft.registration} size="small" onClick={() => onAircraftClicked(newestAircraft.registration)} />
                 </li>
                 <li>
                     Aircrafts from <b>{uniqueManufacturers.length}</b> {uniqueManufacturers.length === 1 ? 'manufacturer' : 'manufacturers'} flown
