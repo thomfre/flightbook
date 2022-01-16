@@ -5,14 +5,14 @@ import { FlightTimeMonth } from '../../models/flightbook/FlightTimeMonth';
 
 ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, BarController, Tooltip, Legend);
 
-const FlightTimeMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactElement => {
+const LandingMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactElement => {
     const chartData = {
         labels: data.map((f) => f.month),
         datasets: [
             {
                 type: 'line',
-                label: 'Total flight time',
-                data: data.map((f) => f.flightTimeMinutes / 60),
+                label: 'Total landings',
+                data: data.map((f) => f.landings),
                 fill: false,
                 backgroundColor: 'rgb(0, 99, 132)',
                 borderColor: 'rgba(0, 99, 132, 0.8)',
@@ -21,8 +21,8 @@ const FlightTimeMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactEle
             },
             {
                 type: 'line',
-                label: 'Dual time',
-                data: data.map((f) => f.dualMinutes / 60),
+                label: 'Dual landings',
+                data: data.map((f) => f.dualLandings),
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.8)',
@@ -31,8 +31,8 @@ const FlightTimeMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactEle
             },
             {
                 type: 'line',
-                label: 'PIC time',
-                data: data.map((f) => f.picMinutes / 60),
+                label: 'PIC landings',
+                data: data.map((f) => f.picLandings),
                 fill: false,
                 backgroundColor: 'rgb(0, 0, 132)',
                 borderColor: 'rgba(0, 0, 132, 0.8)',
@@ -41,8 +41,8 @@ const FlightTimeMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactEle
             },
             {
                 type: 'line',
-                label: 'Night time',
-                data: data.map((f) => f.nightMinutes / 60),
+                label: 'Night landings',
+                data: data.map((f) => f.nightLandings),
                 fill: false,
                 backgroundColor: 'rgb(0, 0, 51)',
                 borderColor: 'rgba(0, 0, 51, 0.8)',
@@ -80,17 +80,7 @@ const FlightTimeMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactEle
                                 }
 
                                 if (context.parsed.y !== null) {
-                                    if (context.dataset.label.includes('time')) {
-                                        const hours = Math.floor(context.parsed.y);
-                                        const minutes = Math.round((context.parsed.y - hours) * 60);
-
-                                        label +=
-                                            minutes > 0
-                                                ? `${hours} hour${hours !== 1 ? 's' : ''}, ${minutes} minute${minutes !== 1 ? 's' : ''}`
-                                                : `${hours} hour${hours !== 1 ? 's' : ''}`;
-                                    } else {
-                                        label += context.parsed.y;
-                                    }
+                                    label += context.parsed.y;
                                 }
 
                                 return label;
@@ -118,4 +108,4 @@ const FlightTimeMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactEle
     );
 };
 
-export default FlightTimeMonths;
+export default LandingMonths;

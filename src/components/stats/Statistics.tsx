@@ -12,7 +12,7 @@ import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { setTitle } from '../../tools/SetTitle';
 import FlightStatistics from './FlightStatistics';
-import FlightTimeMonths from './FlightTimeMonths';
+import FlightTimeStatistics from './FlightTimeStatistics';
 
 const Statistics = (): React.ReactElement => {
     const location = useLocation();
@@ -55,7 +55,7 @@ const Statistics = (): React.ReactElement => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <FlightTimeMonths />
+                    <FlightTimeStatistics />
                 </AccordionDetails>
             </Accordion>
             <Accordion

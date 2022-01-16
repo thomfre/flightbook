@@ -23,7 +23,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
-import { BarElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
 import L, { Icon, LatLngTuple } from 'leaflet';
 import 'leaflet.fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
@@ -39,7 +39,7 @@ import { getYouTubeId } from '../../tools/YouTubeTools';
 import { formatNumber } from '../common/Number';
 import UnitChip, { UnitType } from '../common/UnitChip';
 
-ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, Tooltip);
+ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, Tooltip, Legend);
 
 const FlightElevation = ({ data }: { data: any }) => {
     const map = useMap();
