@@ -53,7 +53,7 @@ const AirportStatistics = ({ onAirportClicked }: { onAirportClicked: (icao: stri
                     <ul>
                         {countriesVisited.map((countryCode) => (
                             <li key={countryCode}>
-                                <span className={`flag-icon flag-icon-${countryCode.toLowerCase()}`}></span> {isoCodeToCountryName(countryCode)}
+                                <span className={`fi fi-${countryCode.toLowerCase()}`}></span> {isoCodeToCountryName(countryCode)}
                             </li>
                         ))}
                     </ul>

@@ -83,7 +83,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                 direction="row"
                                 divider={<Divider orientation="vertical" flexItem />}>
                                 <Typography variant="subtitle1">
-                                    <span className={`flag-icon flag-icon-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
+                                    <span className={`fi fi-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
                                 </Typography>
                                 {aircraft.class && <Typography variant="subtitle1">{getAircraftClassName(aircraft.class)}</Typography>}
                                 {(aircraft.manufacturer || aircraft.model) && <Typography variant="subtitle1">{getAircraftMakeAndModel(aircraft)}</Typography>}

@@ -18,7 +18,7 @@ const AircraftEntry = ({ aircraft, aircraftClicked }: { aircraft: any; aircraftC
                 subtitle={
                     <Stack direction="row" spacing={1} divider={<div>&bull;</div>}>
                         <div>
-                            <span className={`flag-icon flag-icon-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
+                            <span className={`fi fi-${aircraft.isoCountry.toLowerCase()}`}></span> {aircraft.type}
                         </div>
                         <div>
                             {aircraft.numberOfFlights} flight{aircraft.numberOfFlights !== 1 && 's'}

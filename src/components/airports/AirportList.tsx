@@ -28,7 +28,7 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
     return (
         <TableRow key={airport.icao} sx={{ '&:last-child td, &:last-child th': { border: 0 }, cursor: 'pointer' }} onClick={() => airportClicked(airport.icao)}>
             <TableCell component="th" scope="row">
-                <span className={`flag-icon flag-icon-${airport.isoCountry.toLowerCase()}`}></span> {airport.icao}
+                <span className={`fi fi-${airport.isoCountry.toLowerCase()}`}></span> {airport.icao}
             </TableCell>
             <TableCell>{airport.name}</TableCell>
             <TableCell>
