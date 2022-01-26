@@ -13,7 +13,6 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import TerrainIcon from '@mui/icons-material/Terrain';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -24,13 +23,13 @@ import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
-import L, { Icon, LatLngTuple } from 'leaflet';
+import { Icon, LatLngTuple } from 'leaflet';
 import 'leaflet.fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { GeoJSON, MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
+import { GeoJSON, MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { Tracklog } from '../../models/tracklog/Tracklog';
@@ -38,50 +37,10 @@ import { setTitle } from '../../tools/SetTitle';
 import { getYouTubeId } from '../../tools/YouTubeTools';
 import { formatNumber } from '../common/Number';
 import UnitChip, { UnitType } from '../common/UnitChip';
+import FlightElevation from './FlightElevation';
+import Metar from './Metar';
 
 ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, Tooltip, Legend);
-
-const FlightElevation = ({ data }: { data: any }) => {
-    const map = useMap();
-
-    useEffect(() => {
-        const heightgraphData = [
-            {
-                type: 'FeatureCollection',
-                features: [
-                    {
-                        type: 'Feature',
-                        geometry: data,
-                        properties: {
-                            attributeType: '3'
-                        }
-                    }
-                ],
-                properties: {
-                    summary: 'Elevation'
-                }
-            }
-        ];
-
-        // @ts-ignore
-        const hg = L.control.heightgraph({ expand: false });
-        hg.addTo(map);
-        hg.addData(heightgraphData);
-
-        const group = new L.FeatureGroup();
-
-        map.eachLayer((layer) => {
-            // @ts-ignore
-            if (layer.getBounds || layer.getLatLng) {
-                group.addLayer(layer);
-            }
-        });
-
-        map.fitBounds(group.getBounds());
-    }, []);
-
-    return null;
-};
 
 const Flight = (): React.ReactElement => {
     const [flight, setFlight] = useState<Tracklog>();
@@ -153,7 +112,7 @@ const Flight = (): React.ReactElement => {
     };
 
     return (
-        <Box>
+        <>
             <Grid container>
                 <Grid item md={12}>
                     <Breadcrumbs>
@@ -329,6 +288,8 @@ const Flight = (): React.ReactElement => {
                 }}
             />
 
+            <Metar metars={flight.metars} />
+
             {flight.youtube && flight.youtube.length > 0 && (
                 <div className="youtube-container">
                     <YouTube
@@ -340,7 +301,7 @@ const Flight = (): React.ReactElement => {
                     />
                 </div>
             )}
-        </Box>
+        </>
     );
 };
 

@@ -17,6 +17,7 @@ export interface Tracklog {
     speedMax: number;
     speedAverage: number;
     totalDistance: number;
+    metars: string[];
     geoJson: GeoJSON.Feature;
     speedElevationPoints: SpeedElevationPoint[];
 }

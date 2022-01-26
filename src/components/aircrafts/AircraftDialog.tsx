@@ -66,7 +66,8 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                         bottom: 0,
                         left: 0,
                         width: '100%',
-                        padding: 2,
+                        paddingTop: 2,
+                        paddingBottom: 2,
                         marginBottom: 1,
                         backgroundColor: 'rgba(0,0,0,0.4)'
                     }}>

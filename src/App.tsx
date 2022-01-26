@@ -12,6 +12,10 @@ import screenfull from 'screenfull';
 // https://github.com/brunob/leaflet.fullscreen/issues/81#issuecomment-793197922
 window.screenfull = screenfull;
 
+if (!process.env.NODE_ENV || process.env.NODE_ENV !== 'development') {
+    console.log = function () {};
+}
+
 const configureDayJs = (): void => {
     dayjs.extend(relativeTime);
     dayjs.extend(customParseFormat);
