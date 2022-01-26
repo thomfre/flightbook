@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Hidden from '@mui/material/Hidden';
@@ -19,6 +20,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 import 'flag-icons/css/flag-icons.css';
@@ -33,6 +35,7 @@ import ManufacturerLogo from './ManufacturerLogo';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
     const history = useHistory();
+    const theme = useTheme();
 
     const firstFlown = dayjs(aircraft?.firstFlown);
     const lastFlown = dayjs(aircraft?.lastFlown);
@@ -45,7 +48,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
 
     return (
         <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>
-            <DialogContent onClick={(e) => e.stopPropagation()} style={{ padding: 0, margin: 0 }}>
+            <DialogTitle onClick={(e) => e.stopPropagation()} style={{ padding: 0, margin: 0, position: 'relative' }}>
                 {aircraft.picture && (
                     <img
                         src={aircraft.picture}
@@ -54,26 +57,40 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                         style={{ width: '100%', maxHeight: '300px', objectFit: 'cover', margin: 0, padding: 0 }}
                     />
                 )}
+                <Typography
+                    variant="h2"
+                    color={theme.palette.common.white}
+                    align="center"
+                    sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                        padding: 2,
+                        marginBottom: 1,
+                        backgroundColor: 'rgba(0,0,0,0.4)'
+                    }}>
+                    {aircraft.registration}
+                </Typography>
+            </DialogTitle>
+            <DialogContent onClick={(e) => e.stopPropagation()} style={{ padding: 0, margin: 0 }}>
                 <Grid container>
                     <Grid item xs={12} marginBottom={2}>
-                        <Typography variant="h3" align="center" paddingTop={2}>
-                            <Hidden mdDown>
-                                <ManufacturerLogo manufacturer={aircraft.manufacturer} />
-                            </Hidden>
-                            {aircraft.registration}
-                            <Hidden mdDown>
-                                {aircraft.operator && aircraft.operator.picture && (
-                                    <a href={aircraft.operator.url} target="_blank">
-                                        <img
-                                            src={aircraft.operator.picture}
-                                            title={aircraft.operator.name}
-                                            loading="lazy"
-                                            style={{ maxHeight: '100px', maxWidth: '100px', paddingRight: 8, float: 'right' }}
-                                        />
-                                    </a>
-                                )}
-                            </Hidden>
-                        </Typography>
+                        <Hidden mdDown>
+                            <ManufacturerLogo manufacturer={aircraft.manufacturer} />
+                        </Hidden>
+                        <Hidden mdDown>
+                            {aircraft.operator && aircraft.operator.picture && (
+                                <a href={aircraft.operator.url} target="_blank">
+                                    <img
+                                        src={aircraft.operator.picture}
+                                        title={aircraft.operator.name}
+                                        loading="lazy"
+                                        style={{ maxHeight: '100px', maxWidth: '100px', paddingRight: 8, float: 'right' }}
+                                    />
+                                </a>
+                            )}
+                        </Hidden>
                         <Hidden mdDown>
                             <Stack
                                 justifyContent="center"
@@ -163,7 +180,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                         <Typography variant="h5">Last flights</Typography>
                         {filteredTracklogs.length === 0 && <Typography component="i">No flight track logs found</Typography>}
                         {filteredTracklogs.length > 0 && (
-                            <React.Fragment>
+                            <>
                                 <List>
                                     {filteredTracklogs.slice(0, 4).map((track) => (
                                         <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
@@ -182,7 +199,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                     color="primary">
                                     View more
                                 </Link>
-                            </React.Fragment>
+                            </>
                         )}
                     </Grid>
                     <Grid item lg={12} md={12} padding={2} paddingBottom={1}>

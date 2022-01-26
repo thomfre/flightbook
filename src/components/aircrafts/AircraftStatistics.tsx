@@ -18,7 +18,7 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
     const currentYear = new Date().getFullYear();
 
     return (
-        <React.Fragment>
+        <>
             <Typography component="h3" variant="h4" sx={{ marginTop: 1 }}>
                 Statistics
             </Typography>
@@ -62,7 +62,7 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
                     </ul>
                 </li>
             </ul>
-        </React.Fragment>
+        </>
     );
 };
 

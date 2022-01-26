@@ -38,7 +38,7 @@ const AirportMap = ({ onAirportClicked }: { onAirportClicked: (icao: string) => 
     ]);
 
     return (
-        <React.Fragment>
+        <>
             <MapContainer
                 scrollWheelZoom={true}
                 style={{ minHeight: '700px' }}
@@ -112,7 +112,7 @@ const AirportMap = ({ onAirportClicked }: { onAirportClicked: (icao: string) => 
                     sx={{ borderRadius: '0 !important' }}
                 />
             </Stack>
-        </React.Fragment>
+        </>
     );
 };
 

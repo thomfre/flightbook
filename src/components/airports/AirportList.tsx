@@ -101,7 +101,7 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
     };
 
     return (
-        <React.Fragment>
+        <>
             <Table sx={{ marginTop: 1 }}>
                 <TableHead>
                     <TableRow>
@@ -172,7 +172,7 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
                     })}
                 </TableBody>
             </Table>
-        </React.Fragment>
+        </>
     );
 };
 

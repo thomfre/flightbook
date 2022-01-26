@@ -13,8 +13,10 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import Hidden from '@mui/material/Hidden';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -22,6 +24,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
@@ -36,6 +39,7 @@ import YouTubeList from '../common/YouTubeList';
 
 const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
     const history = useHistory();
+    const theme = useTheme();
 
     const firstVisited = dayjs(airport?.firstVisited);
     const lastVisited = dayjs(airport?.lastVisited);
@@ -50,7 +54,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
 
     return (
         <Dialog fullWidth maxWidth={false} open={dialogOpen} onClose={handleClose} sx={{ padding: 0, margin: 'auto', height: '100%', maxWidth: '1400px' }}>
-            <DialogContent onClick={(e) => e.stopPropagation()} style={{ padding: 0, margin: 0 }}>
+            <DialogTitle onClick={(e) => e.stopPropagation()} sx={{ padding: 0, margin: 0, position: 'relative' }}>
                 {airport.picture && (
                     <img
                         src={airport.picture}
@@ -59,45 +63,61 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                         style={{ width: '100%', maxHeight: '300px', objectFit: 'cover', margin: 0, padding: 0 }}
                     />
                 )}
+                <Typography
+                    variant="h2"
+                    color={theme.palette.common.white}
+                    align="center"
+                    sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                        padding: 2,
+                        marginBottom: 1,
+                        backgroundColor: 'rgba(0,0,0,0.4)'
+                    }}>
+                    {airport.icao}
+                </Typography>
+            </DialogTitle>
+            <DialogContent onClick={(e) => e.stopPropagation()} style={{ padding: 0, margin: 0 }}>
                 <Grid container>
                     <Grid item xs={12} marginBottom={2}>
-                        <Typography variant="h3" align="center" paddingTop={2}>
-                            {airport.icao}
-                        </Typography>
-                        <Stack
-                            justifyContent="center"
-                            spacing={1}
-                            marginBottom={1}
-                            alignItems="center"
-                            direction="row"
-                            divider={<Divider orientation="vertical" flexItem />}>
-                            <Typography variant="subtitle1">{airport.name}</Typography>
-                            {airport.iata && (
-                                <Typography variant="subtitle1" title="IATA code">
-                                    {airport.iata}
+                        <Hidden mdDown>
+                            <Stack
+                                justifyContent="center"
+                                spacing={1}
+                                marginBottom={1}
+                                alignItems="center"
+                                direction="row"
+                                divider={<Divider orientation="vertical" flexItem />}>
+                                <Typography variant="subtitle1">{airport.name}</Typography>
+                                {airport.iata && (
+                                    <Typography variant="subtitle1" title="IATA code">
+                                        {airport.iata}
+                                    </Typography>
+                                )}
+                                <Typography variant="subtitle1">{airport.type}</Typography>
+                                <Typography variant="subtitle1" title="Airport region">
+                                    {airport.region}
                                 </Typography>
-                            )}
-                            <Typography variant="subtitle1">{airport.type}</Typography>
-                            <Typography variant="subtitle1" title="Airport region">
-                                {airport.region}
-                            </Typography>
-                            <Tooltip title={<ConvertedValue value={airport.fieldElevation} type={UnitType.Altitude} />}>
-                                <Typography variant="subtitle1" title="Field elevation">
-                                    <Number value={airport.fieldElevation} unit="ft" />
-                                </Typography>
-                            </Tooltip>
-                            {airport.wikipedia && (
-                                <IconButton
-                                    aria-label="Open Wikipedia"
-                                    title="Open Wikipedia"
-                                    size="small"
-                                    component="a"
-                                    href={airport.wikipedia}
-                                    target="_blank">
-                                    <OpenInNewIcon fontSize="small" />
-                                </IconButton>
-                            )}
-                        </Stack>
+                                <Tooltip title={<ConvertedValue value={airport.fieldElevation} type={UnitType.Altitude} />}>
+                                    <Typography variant="subtitle1" title="Field elevation">
+                                        <Number value={airport.fieldElevation} unit="ft" />
+                                    </Typography>
+                                </Tooltip>
+                                {airport.wikipedia && (
+                                    <IconButton
+                                        aria-label="Open Wikipedia"
+                                        title="Open Wikipedia"
+                                        size="small"
+                                        component="a"
+                                        href={airport.wikipedia}
+                                        target="_blank">
+                                        <OpenInNewIcon fontSize="small" />
+                                    </IconButton>
+                                )}
+                            </Stack>
+                        </Hidden>
                         <Stack justifyContent="center" spacing={1} alignItems="center" direction="row">
                             {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />}
                             {!!airport.asPic && (
@@ -181,7 +201,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                         <Typography variant="h5">Last flights</Typography>
                         {filteredTracklogs.length === 0 && <Typography component="i">No flight track logs found</Typography>}
                         {filteredTracklogs.length > 0 && (
-                            <React.Fragment>
+                            <>
                                 <List>
                                     {filteredTracklogs.slice(0, 3).map((track) => (
                                         <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
@@ -200,7 +220,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                     color="primary">
                                     View more
                                 </Link>
-                            </React.Fragment>
+                            </>
                         )}
                     </Grid>
                 </Grid>

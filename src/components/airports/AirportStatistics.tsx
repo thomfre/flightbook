@@ -19,7 +19,7 @@ const AirportStatistics = ({ onAirportClicked }: { onAirportClicked: (icao: stri
     const highestElevation = Flightbook.airports.filter((airport) => airport.fieldElevation != null).sort((a, b) => b.fieldElevation - a.fieldElevation)[0];
 
     return (
-        <React.Fragment>
+        <>
             <Typography component="h3" variant="h4" sx={{ marginTop: 1 }}>
                 Statistics
             </Typography>
@@ -59,7 +59,7 @@ const AirportStatistics = ({ onAirportClicked }: { onAirportClicked: (icao: stri
                     </ul>
                 </li>
             </ul>
-        </React.Fragment>
+        </>
     );
 };
 
