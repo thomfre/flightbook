@@ -32,7 +32,7 @@ const Layout = (): React.ReactElement => {
             <Header />
             <Container
                 component="main"
-                sx={{ flex: '1 0 auto', paddingTop: theme.spacing(10), paddingBottom: theme.spacing(10), backgroundColor: '#fafafa' }}
+                sx={{ flex: '1 0 auto', paddingTop: theme.spacing(10), paddingBottom: theme.spacing(6), backgroundColor: '#fafafa' }}
                 maxWidth={false}>
                 <Routes />
             </Container>

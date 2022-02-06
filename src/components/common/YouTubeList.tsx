@@ -44,8 +44,8 @@ const YouTubeList = ({ aircraft = undefined, airport = undefined }: { aircraft?:
     return (
         <Box>
             <Typography variant="h5">Latest videos</Typography>
-            {videos.map((video) => (
-                <div className="youtube-container">
+            {videos.map((video, index) => (
+                <div key={index} className="youtube-container">
                     <YouTube
                         videoId={getYouTubeId(video)}
                         opts={{

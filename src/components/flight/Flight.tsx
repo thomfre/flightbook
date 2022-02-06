@@ -222,7 +222,7 @@ const Flight = (): React.ReactElement => {
                     )}
 
                     {flight.blogpost && flight.blogpost.length > 0 && (
-                        <Chip icon={<ArticleIcon />} label={'Read blog post'} color="primary" component="a" href={flight.blogpost} target="_blank" clickable />
+                        <Chip icon={<ArticleIcon />} label={'Read blog post'} color="primary" component="a" href={flight.blogpost} clickable />
                     )}
 
                     {flight.facebookPost && flight.facebookPost.length > 0 && (

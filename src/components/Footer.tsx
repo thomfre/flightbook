@@ -1,8 +1,8 @@
+import GitHubIcon from '@mui/icons-material/GitHub';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import dayjs from 'dayjs';
 import { default as React } from 'react';
 import packageJson from '../../package.json';

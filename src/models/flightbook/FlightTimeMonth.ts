@@ -9,4 +9,5 @@ export interface FlightTimeMonth {
     dualLandings: number;
     picLandings: number;
     nightLandings: number;
+    airports: string[];
 }

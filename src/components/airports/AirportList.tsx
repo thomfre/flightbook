@@ -5,10 +5,13 @@ import PersonIcon from '@mui/icons-material/Person';
 import SchoolIcon from '@mui/icons-material/School';
 import Chip from '@mui/material/Chip';
 import Hidden from '@mui/material/Hidden';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
@@ -87,6 +90,8 @@ const getComparator = (order: string, orderBy: string) => {
 };
 
 const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) => void }): React.ReactElement => {
+    const theme = useTheme();
+
     const [orderBy, setOrderBy] = useState('firstVisited');
     const [order, setOrder] = useState<'asc' | 'desc'>('asc');
 
@@ -101,7 +106,7 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
     };
 
     return (
-        <>
+        <TableContainer component={Paper} sx={{ marginTop: theme.spacing(2) }} variant="outlined">
             <Table sx={{ marginTop: 1 }}>
                 <TableHead>
                     <TableRow>
@@ -172,7 +177,7 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
                     })}
                 </TableBody>
             </Table>
-        </>
+        </TableContainer>
     );
 };
 

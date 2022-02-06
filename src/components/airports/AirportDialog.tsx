@@ -75,7 +75,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                         paddingTop: 2,
                         paddingBottom: 2,
                         marginBottom: 1,
-                        backgroundColor: 'rgba(0,0,0,0.4)'
+                        backgroundColor: 'rgba(0,0,0,0.5)'
                     }}>
                     {airport.icao}
                 </Typography>
