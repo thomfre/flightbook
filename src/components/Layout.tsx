@@ -31,12 +31,17 @@ const Layout = (): React.ReactElement => {
         <ThemeProvider theme={theme}>
             <Header />
             <Container
+                maxWidth={false}
                 component="main"
-                sx={{ flex: '1 0 auto', paddingTop: theme.spacing(10), paddingBottom: theme.spacing(6), backgroundColor: '#fafafa' }}
-                maxWidth={false}>
-                <Routes />
+                sx={{ height: '100%', width: '100%', overflow: 'auto', display: 'flex', flexDirection: 'column' }}
+                style={{ padding: 0, margin: 0 }}>
+                <Container
+                    sx={{ flex: '1 0 auto', paddingTop: theme.spacing(2), paddingBottom: theme.spacing(7), backgroundColor: '#fafafa' }}
+                    maxWidth={false}>
+                    <Routes />
+                </Container>
+                <Footer />
             </Container>
-            <Footer />
         </ThemeProvider>
     );
 };

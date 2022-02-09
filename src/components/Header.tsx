@@ -32,7 +32,7 @@ const Header = (): React.ReactElement => {
     };
 
     return (
-        <AppBar position="fixed">
+        <AppBar position="sticky">
             <Toolbar>
                 <Hidden mdUp>
                     <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={toggleDrawer}>
