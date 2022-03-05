@@ -10,7 +10,7 @@
     "@thomfre/leaflet.heightgraph": "git+https://github.com/thomfre/Leaflet.Heightgraph.git",
     "chart.js": "^3.7.0",
     "dayjs": "^1.10.7",
-    "flag-icons": "^6.0.3",
+    "flag-icons": "^6.1.1",
     "leaflet": "^1.7.1",
     "leaflet.fullscreen": "^2.2.0",
     "metar-plot": "^1.4.3",
