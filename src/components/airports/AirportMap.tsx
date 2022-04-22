@@ -43,7 +43,9 @@ const AirportMap = ({ onAirportClicked }: { onAirportClicked: (icao: string) => 
                 scrollWheelZoom={true}
                 style={{ minHeight: '700px' }}
                 bounds={boundingBox}
+                // @ts-ignore
                 fullscreenControl={true}
+                // @ts-ignore
                 fullscreenControlOptions={{ position: 'topleft' }}>
                 <TileLayer
                     attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,

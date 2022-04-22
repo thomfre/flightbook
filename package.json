@@ -12,7 +12,7 @@
     "dayjs": "^1.11.1",
     "flag-icons": "^6.2.0",
     "leaflet": "^1.8.0",
-    "leaflet.fullscreen": "^2.2.0",
+    "leaflet.fullscreen": "^2.3.0",
     "metar-plot": "^1.4.3",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.1.0",

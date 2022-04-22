@@ -127,7 +127,13 @@ const AllFlights = (): React.ReactElement => {
                     </Typography>
                 </Grid>
             </Grid>
-            <MapContainer scrollWheelZoom={true} style={{ minHeight: '700px' }} fullscreenControl={true} fullscreenControlOptions={{ position: 'topleft' }}>
+            <MapContainer
+                scrollWheelZoom={true}
+                style={{ minHeight: '700px' }}
+                // @ts-ignore
+                fullscreenControl={true}
+                // @ts-ignore
+                fullscreenControlOptions={{ position: 'topleft' }}>
                 <TileLayer
                     attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,
                 <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
