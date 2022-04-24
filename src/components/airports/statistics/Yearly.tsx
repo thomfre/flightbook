@@ -18,8 +18,6 @@ const AirportStatisticsYearly = (): React.ReactElement => {
                     .filter(uniqueValues).length
         );
 
-        console.log(values);
-
         return {
             labels: years,
             datasets: [

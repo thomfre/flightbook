@@ -23,8 +23,6 @@ const FlightTimeStatistics = (): React.ReactElement => {
     const [selectedYear, setSelectedYear] = useState<number[] | null>([maxYear]);
     const [showEverything, setShowEverything] = useState(true);
 
-    console.log(years);
-
     useEffect(() => {
         if (!selectedYear || selectedYear.length === 0 || showEverything) {
             setFlightTimeMonths(Flightbook.flightTimeMonths);
