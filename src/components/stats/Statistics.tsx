@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import React, { useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { setTitle } from '../../tools/SetTitle';
 import FlightStatistics from './FlightStatistics';
 import FlightStatisticsStreakSlump from './FlightStatisticsStreakSlump';
@@ -18,7 +18,7 @@ import FlightTimeStatistics from './FlightTimeStatistics';
 
 const Statistics = (): React.ReactElement => {
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
 
     useEffect(() => {
@@ -36,9 +36,9 @@ const Statistics = (): React.ReactElement => {
 
     const accordionExpanded = (route: string, expanded: boolean) => {
         if (expanded) {
-            history.replace(`/statistics/${route}`);
+            navigate(`/statistics/${route}`, { replace: true });
         } else if (location.pathname.startsWith(`/statistics/${route}`)) {
-            history.replace('/statistics');
+            navigate('/statistics', { replace: true });
         }
     };
 

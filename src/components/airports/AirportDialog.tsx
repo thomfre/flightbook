@@ -29,7 +29,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 import FlickrFeed from '../common/FlickrFeed';
@@ -38,7 +38,7 @@ import { ConvertedValue, UnitType } from '../common/UnitChip';
 import YouTubeList from '../common/YouTubeList';
 
 const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
 
     const firstVisited = dayjs(airport?.firstVisited);
@@ -189,7 +189,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                     primary={
                                         <Stack direction="row" spacing={1}>
                                             {airport.aircrafts.map((a: string) => (
-                                                <Chip key={a} label={a} size="small" onClick={() => history.push(`/aircrafts/${a}`)} />
+                                                <Chip key={a} label={a} size="small" onClick={() => navigate(`/aircrafts/${a}`)} />
                                             ))}
                                         </Stack>
                                     }
@@ -205,7 +205,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                             <>
                                 <List>
                                     {filteredTracklogs.slice(0, 3).map((track) => (
-                                        <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
+                                        <ListItem key={track.filename} button onClick={() => navigate(`/flight/${track.filename.replace('.json', '')}`)}>
                                             <ListItemIcon>
                                                 <MapIcon />
                                             </ListItemIcon>
@@ -213,14 +213,9 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                         </ListItem>
                                     ))}
                                 </List>
-                                <Link
-                                    to={`/flights/airport/${airport.icao}`}
-                                    component={Button}
-                                    /* @ts-ignore */
-                                    variant="outlined"
-                                    color="primary">
+                                <Button variant="outlined" color="primary" onClick={() => navigate(`/flights/airport/${airport.icao}`)}>
                                     View more
-                                </Link>
+                                </Button>
                             </>
                         )}
                     </Grid>

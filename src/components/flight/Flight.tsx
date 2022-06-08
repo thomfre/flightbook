@@ -17,7 +17,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
-import NiceLink from '@mui/material/Link';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
@@ -30,7 +30,7 @@ import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { GeoJSON, MapContainer, Marker, TileLayer } from 'react-leaflet';
-import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
@@ -49,13 +49,18 @@ const Flight = (): React.ReactElement => {
 
     const [flightYear, setFlightYear] = useState('');
 
-    const history = useHistory();
-    const { params }: { params: { filename: string } } = useRouteMatch();
+    const navigate = useNavigate();
+    const { filename }: { filename?: string } = useParams();
 
     useEffect(() => {
         setError(false);
 
-        fetch(`/tracklogs/${params.filename}.json`)
+        if (!filename || filename.length === 0) {
+            setError(true);
+            return;
+        }
+
+        fetch(`/tracklogs/${filename}.json`)
             .then((response) => response.json())
             .then((data) => {
                 setFlight(data);
@@ -116,11 +121,11 @@ const Flight = (): React.ReactElement => {
             <Grid container>
                 <Grid item md={12}>
                     <Breadcrumbs>
-                        <Link to="/flights" component={NiceLink} color="inherit">
+                        <Link color="inherit" onClick={() => navigate('/flights')} sx={{ cursor: 'pointer' }}>
                             Flights
                         </Link>
                         {flightYear !== '' && (
-                            <Link to={`/flights/${flightYear}`} component={NiceLink} color="inherit">
+                            <Link color="inherit" onClick={() => navigate(`/flights/${flightYear}`)} sx={{ cursor: 'pointer' }}>
                                 {flightYear}
                             </Link>
                         )}
@@ -196,18 +201,18 @@ const Flight = (): React.ReactElement => {
                         label={flight.aircraft}
                         variant="outlined"
                         color="primary"
-                        onClick={() => history.push(`/aircrafts/${flight.aircraft}`)}
+                        onClick={() => navigate(`/aircrafts/${flight.aircraft}`)}
                         clickable
                     />
                 )}
             </Stack>
 
             <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={0}>
-                <Chip icon={<FlightTakeoffIcon />} label={flight.from} onClick={() => history.push(`/airports/${flight.from}`)} clickable />
+                <Chip icon={<FlightTakeoffIcon />} label={flight.from} onClick={() => navigate(`/airports/${flight.from}`)} clickable />
                 {flight.via?.map((a) => (
-                    <Chip key={a} icon={<AirlineStopsIcon />} label={a} onClick={() => history.push(`/airports/${a}`)} clickable />
+                    <Chip key={a} icon={<AirlineStopsIcon />} label={a} onClick={() => navigate(`/airports/${a}`)} clickable />
                 ))}
-                <Chip icon={<FlightLandIcon />} label={flight.to} onClick={() => history.push(`/airports/${flight.to}`)} clickable />
+                <Chip icon={<FlightLandIcon />} label={flight.to} onClick={() => navigate(`/airports/${flight.to}`)} clickable />
             </Stack>
 
             {((flight.youtube && flight.youtube.length > 0) ||

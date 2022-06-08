@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Tooltip from '@mui/material/Tooltip';
 import { BarController, BarElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement, Tooltip as ChartJsTooltip } from 'chart.js';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Number from '../common/Number';
 import { ConvertedValue, UnitType } from '../common/UnitChip';
@@ -16,7 +16,7 @@ import { ConvertedValue, UnitType } from '../common/UnitChip';
 ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement, BarElement, BarController, ChartJsTooltip);
 
 const FlightStatistics = (): React.ReactElement => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     return (
         <Table>
@@ -55,7 +55,7 @@ const FlightStatistics = (): React.ReactElement => {
                                         <Number value={f.altitudeMax} unit="ft" />
                                     </span>
                                 </Tooltip>{' '}
-                                <IconButton size="small" onClick={() => history.push(`/flight/${f.altitudeMaxFlight}`)}>
+                                <IconButton size="small" onClick={() => navigate(`/flight/${f.altitudeMaxFlight}`)}>
                                     <LaunchIcon fontSize="inherit" />
                                 </IconButton>
                             </TableCell>
@@ -72,7 +72,7 @@ const FlightStatistics = (): React.ReactElement => {
                                         <Number value={f.speedMax} unit="kts" />
                                     </span>
                                 </Tooltip>{' '}
-                                <IconButton size="small" onClick={() => history.push(`/flight/${f.speedMaxFlight}`)}>
+                                <IconButton size="small" onClick={() => navigate(`/flight/${f.speedMaxFlight}`)}>
                                     <LaunchIcon fontSize="inherit" />
                                 </IconButton>
                             </TableCell>
@@ -89,7 +89,7 @@ const FlightStatistics = (): React.ReactElement => {
                                         <Number value={f.distanceMax} numberOfDecimals={2} unit="nm" />
                                     </span>
                                 </Tooltip>{' '}
-                                <IconButton size="small" onClick={() => history.push(`/flight/${f.distanceMaxFlight}`)}>
+                                <IconButton size="small" onClick={() => navigate(`/flight/${f.distanceMaxFlight}`)}>
                                     <LaunchIcon fontSize="inherit" />
                                 </IconButton>
                             </TableCell>

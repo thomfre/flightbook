@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import { Aircraft } from '../../models/flightbook/Aircraft';
 import { setTitle } from '../../tools/SetTitle';
@@ -19,8 +19,8 @@ import AircraftStatistics from './AircraftStatistics';
 
 const Aircrafts = (): React.ReactElement => {
     const theme = useTheme();
-    const history = useHistory();
-    const { params }: { params: { aircraft?: string } } = useRouteMatch();
+    const navigate = useNavigate();
+    const { aircraft }: { aircraft?: string } = useParams();
 
     const [orderBy, setOrderBy] = useState('last');
     const [order, setOrder] = useState<'asc' | 'desc'>('desc');
@@ -37,17 +37,17 @@ const Aircrafts = (): React.ReactElement => {
 
         const newValue = !detailsOpen;
         setDetailsOpen(newValue);
-        history.replace(newValue ? '/aircrafts/' + registration : '/aircrafts');
+        navigate(newValue ? '/aircrafts/' + registration : '/aircrafts', { replace: true });
     };
 
     const handleInfoClose = (): void => {
         setDetailsOpen(false);
-        history.replace('/aircrafts');
+        navigate('/aircrafts', { replace: true });
     };
 
     useEffect(() => {
-        if (params.aircraft) {
-            aircraftClicked(params.aircraft);
+        if (aircraft) {
+            aircraftClicked(aircraft);
         }
     }, []);
 

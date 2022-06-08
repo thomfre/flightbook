@@ -20,24 +20,24 @@ import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { default as React, useEffect } from 'react';
-import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Tracklogs from '../../data/tracklogs.json';
 import { TracklogInfo } from '../../models/tracklog/TracklogInfo';
 import { setTitle } from '../../tools/SetTitle';
 import { uniqueValues } from '../../tools/UniqueValues';
 
 const Flights = (): React.ReactElement => {
-    const { params }: { params: { year?: string; filter?: string; airport?: string } } = useRouteMatch();
+    const { year, filter, airport }: { year?: string; filter?: string; airport?: string } = useParams();
     const theme = useTheme();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTitle('Flights');
     }, []);
 
-    const filterYear = (params.year && parseInt(params.year, 10)) || (params.filter && !isNaN(parseInt(params.filter, 10)) && parseInt(params.filter, 10));
-    const filterRegistration = params.filter && isNaN(parseInt(params.filter, 10)) && params.filter;
-    const filterAirport = !!params.airport && params.airport;
+    const filterYear = (year && parseInt(year, 10)) || (filter && !isNaN(parseInt(filter, 10)) && parseInt(filter, 10));
+    const filterRegistration = filter && isNaN(parseInt(filter, 10)) && filter;
+    const filterAirport = !!airport && airport;
 
     const filteredTracks = Tracklogs?.tracks
         .filter(
@@ -50,24 +50,24 @@ const Flights = (): React.ReactElement => {
 
     const trackYears = filteredTracks.map((t) => parseInt(t.date.split('-')[0], 10)).filter(uniqueValues);
 
-    const accordionExpanded = (year: number, expanded: boolean) => {
+    const accordionExpanded = (expandedYear: number, expanded: boolean) => {
         if (filterAirport) {
             if (expanded) {
-                history.replace(`/flights/${year}/airport/${filterAirport}`);
-            } else if (location.pathname.startsWith(`/flights/${year}/airport/${filterAirport}`)) {
-                history.replace(`/flights/airport/${filterAirport}`);
+                navigate(`/flights/${expandedYear}/airport/${filterAirport}`, { replace: true });
+            } else if (location.pathname.startsWith(`/flights/${expandedYear}/airport/${filterAirport}`)) {
+                navigate(`/flights/airport/${filterAirport}`, { replace: true });
             }
         } else if (filterRegistration) {
             if (expanded) {
-                history.replace(`/flights/${year}/${filterRegistration}`);
-            } else if (location.pathname.startsWith(`/flights/${year}/${filterRegistration}`)) {
-                history.replace(`/flights/${filterRegistration}`);
+                navigate(`/flights/${expandedYear}/${filterRegistration}`, { replace: true });
+            } else if (location.pathname.startsWith(`/flights/${expandedYear}/${filterRegistration}`)) {
+                navigate(`/flights/${filterRegistration}`, { replace: true });
             }
         } else {
             if (expanded) {
-                history.replace(`/flights/${year}`);
-            } else if (location.pathname.startsWith(`/flights/${year}`)) {
-                history.replace('/flights');
+                navigate(`/flights/${expandedYear}`, { replace: true });
+            } else if (location.pathname.startsWith(`/flights/${expandedYear}`)) {
+                navigate('/flights', { replace: true });
             }
         }
     };
@@ -79,23 +79,23 @@ const Flights = (): React.ReactElement => {
                 {filterAirport && ` - ${filterAirport.toUpperCase()}`}
             </Typography>
             {filteredTracks.length === 0 && <Typography component="i">No flights found</Typography>}
-            {trackYears.map((year, index) => (
+            {trackYears.map((y, index) => (
                 <Accordion
-                    key={year}
-                    defaultExpanded={(!filterYear && index === 0) || filterYear === year}
+                    key={y}
+                    defaultExpanded={(!filterYear && index === 0) || filterYear === y}
                     TransitionProps={{ unmountOnExit: true }}
-                    onChange={(_event, expanded) => accordionExpanded(year, expanded)}>
+                    onChange={(_event, expanded) => accordionExpanded(y, expanded)}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography variant="h4">
-                            <DateRangeIcon /> {year}
+                            <DateRangeIcon /> {y}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <List>
                             {filteredTracks
-                                .filter((t) => t.date.startsWith(`${year}-`))
+                                .filter((t) => t.date.startsWith(`${y}-`))
                                 .map((track: TracklogInfo) => (
-                                    <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
+                                    <ListItem key={track.filename} button onClick={() => navigate(`/flight/${track.filename.replace('.json', '')}`)}>
                                         <ListItemIcon>
                                             <MapIcon />
                                         </ListItemIcon>
@@ -130,21 +130,21 @@ const Flights = (): React.ReactElement => {
                                     </ListItem>
                                 ))}
                         </List>
-                        <Link
-                            to={
-                                filterAirport
-                                    ? `/flights/map/${year}/airport/${filterAirport}`
-                                    : filterRegistration
-                                    ? `/flights/map/${year}/${filterRegistration}`
-                                    : `/flights/map/${year}`
-                            }
-                            component={Button}
-                            /* @ts-ignore */
+                        <Button
                             variant="outlined"
                             color="primary"
-                            startIcon={<MapIcon />}>
+                            startIcon={<MapIcon />}
+                            onClick={() =>
+                                navigate(
+                                    filterAirport
+                                        ? `/flights/map/${y}/airport/${filterAirport}`
+                                        : filterRegistration
+                                        ? `/flights/map/${y}/${filterRegistration}`
+                                        : `/flights/map/${y}`
+                                )
+                            }>
                             View all on map
-                        </Link>
+                        </Button>
                     </AccordionDetails>
                 </Accordion>
             ))}

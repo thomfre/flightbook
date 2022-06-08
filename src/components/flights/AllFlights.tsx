@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
-import NiceLink from '@mui/material/Link';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import '@thomfre/leaflet.heightgraph';
 import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
@@ -15,7 +15,7 @@ import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet/dist/leaflet.css';
 import { default as React, useEffect, useState } from 'react';
 import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Tracklogs from '../../data/tracklogs.json';
 import { Tracklog } from '../../models/tracklog/Tracklog';
 import { setTitle } from '../../tools/SetTitle';
@@ -40,17 +40,19 @@ const MapAdjuster = () => {
 };
 
 const AllFlights = (): React.ReactElement => {
+    const navigate = useNavigate();
+
     const [error, setError] = useState(false);
 
     const [flightYear, setFlightYear] = useState<number | undefined>(undefined);
 
-    const { params }: { params: { year?: string; filter?: string; airport?: string } } = useRouteMatch();
+    const { year, filter, airport }: { year?: string; filter?: string; airport?: string } = useParams();
 
     const [tracks, setTracks] = useState<GeoJSON.Feature[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const filterRegistration = params.filter && isNaN(parseInt(params.filter, 10)) && params.filter;
-    const filterAirport = !!params.airport && params.airport;
+    const filterRegistration = filter && isNaN(parseInt(filter, 10)) && filter;
+    const filterAirport = !!airport && airport;
 
     const loadData = async () => {
         setError(false);
@@ -64,7 +66,7 @@ const AllFlights = (): React.ReactElement => {
 
         const fetchedTracks = await Promise.all(
             filteredTracks
-                .filter((t) => !params.year || t.date.split('-')[0] === params.year)
+                .filter((t) => !year || t.date.split('-')[0] === year)
                 .map(async (track) => {
                     const data: Tracklog = await fetch(`/tracklogs/${track.filename}`).then((response) => response.json());
                     return data.geoJson ?? null;
@@ -81,9 +83,9 @@ const AllFlights = (): React.ReactElement => {
     };
 
     useEffect(() => {
-        if (params.year) {
-            setFlightYear(parseInt(params.year, 10));
-            setTitle(`All flights - ${params.year}`);
+        if (year) {
+            setFlightYear(parseInt(year, 10));
+            setTitle(`All flights - ${year}`);
         } else {
             setFlightYear(undefined);
             setTitle('All flights');
@@ -101,15 +103,15 @@ const AllFlights = (): React.ReactElement => {
     }
 
     return (
-        <Box>
+        <Box style={{ height: '100%' }}>
             <Grid container>
                 <Grid item md={12}>
                     <Breadcrumbs>
-                        <Link to="/flights" component={NiceLink} color="inherit">
+                        <Link color="inherit" onClick={() => navigate('/flights')} sx={{ cursor: 'pointer' }}>
                             Flights
                         </Link>
                         {flightYear && (
-                            <Link to={`/flights/${flightYear}`} component={NiceLink} color="inherit">
+                            <Link color="inherit" onClick={() => navigate(`/flights/${flightYear}`)} sx={{ cursor: 'pointer' }}>
                                 {flightYear}
                             </Link>
                         )}
@@ -127,26 +129,28 @@ const AllFlights = (): React.ReactElement => {
                     </Typography>
                 </Grid>
             </Grid>
-            <MapContainer
-                scrollWheelZoom={true}
-                style={{ minHeight: '700px' }}
-                // @ts-ignore
-                fullscreenControl={true}
-                // @ts-ignore
-                fullscreenControlOptions={{ position: 'topleft' }}>
-                <TileLayer
-                    attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,
+            <Box style={{ height: '95%' }}>
+                <MapContainer
+                    scrollWheelZoom={true}
+                    style={{ height: '100%' }}
+                    // @ts-ignore
+                    fullscreenControl={true}
+                    // @ts-ignore
+                    fullscreenControlOptions={{ position: 'topleft' }}>
+                    <TileLayer
+                        attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,
                 <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
-                    subdomains="abcd"
-                    minZoom={0}
-                    maxZoom={20}
-                />
-                {tracks.map((track, index) => (
-                    <GeoJSON key={index} data={track} pathOptions={{ color: 'magenta' }} />
-                ))}
-                <MapAdjuster />
-            </MapContainer>
+                        url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
+                        subdomains="abcd"
+                        minZoom={0}
+                        maxZoom={20}
+                    />
+                    {tracks.map((track, index) => (
+                        <GeoJSON key={index} data={track} pathOptions={{ color: 'magenta' }} />
+                    ))}
+                    <MapAdjuster />
+                </MapContainer>
+            </Box>
         </Box>
     );
 };

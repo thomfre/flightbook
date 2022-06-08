@@ -25,7 +25,7 @@ import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 import 'flag-icons/css/flag-icons.css';
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
 import Tracklogs from '../../data/tracklogs.json';
 import { getAircraftClassName, getAircraftMakeAndModel } from '../../tools/AircraftTools';
@@ -34,7 +34,7 @@ import YouTubeList from '../common/YouTubeList';
 import ManufacturerLogo from './ManufacturerLogo';
 
 const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; dialogOpen: boolean; handleClose: any }): React.ReactElement | null => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
 
     const firstFlown = dayjs(aircraft?.firstFlown);
@@ -184,7 +184,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                             <>
                                 <List>
                                     {filteredTracklogs.slice(0, 4).map((track) => (
-                                        <ListItem key={track.filename} button onClick={() => history.push(`/flight/${track.filename.replace('.json', '')}`)}>
+                                        <ListItem key={track.filename} button onClick={() => navigate(`/flight/${track.filename.replace('.json', '')}`)}>
                                             <ListItemIcon>
                                                 <MapIcon />
                                             </ListItemIcon>
@@ -192,14 +192,9 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                                         </ListItem>
                                     ))}
                                 </List>
-                                <Link
-                                    to={`/flights/${aircraft.registration}`}
-                                    component={Button}
-                                    /* @ts-ignore */
-                                    variant="outlined"
-                                    color="primary">
+                                <Button variant="outlined" color="primary" onClick={() => navigate(`/flights/${aircraft.registration}`)}>
                                     View more
-                                </Link>
+                                </Button>
                             </>
                         )}
                     </Grid>

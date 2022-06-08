@@ -18,12 +18,12 @@ import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Flightbook from '../data/flightbook.json';
 
 const Header = (): React.ReactElement => {
     const theme = useTheme();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [drawerOpen, setDrawerOpen] = useState(false);
     const drawerWidth = 240;
 
@@ -51,16 +51,10 @@ const Header = (): React.ReactElement => {
                 </Typography>
                 <Hidden smDown>
                     <Box sx={{ flexGrow: 1 }} />
-                    <IconButton edge="start" color="inherit" aria-label="home" title="Home" sx={{ mr: 2 }} onClick={() => history.push('/')}>
+                    <IconButton edge="start" color="inherit" aria-label="home" title="Home" sx={{ mr: 2 }} onClick={() => navigate('/')}>
                         <HomeIcon />
                     </IconButton>
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="statistics"
-                        title="Statistics"
-                        sx={{ mr: 2 }}
-                        onClick={() => history.push('/statistics')}>
+                    <IconButton edge="start" color="inherit" aria-label="statistics" title="Statistics" sx={{ mr: 2 }} onClick={() => navigate('/statistics')}>
                         <StackedLineChartIcon />
                     </IconButton>
                     <IconButton
@@ -69,7 +63,7 @@ const Header = (): React.ReactElement => {
                         aria-label="airports"
                         title="Airports visited"
                         sx={{ mr: 2 }}
-                        onClick={() => history.push('/airports')}>
+                        onClick={() => navigate('/airports')}>
                         <FlightTakeoffIcon />
                     </IconButton>
                     <IconButton
@@ -78,10 +72,10 @@ const Header = (): React.ReactElement => {
                         aria-label="aircrafts"
                         title="Aircrafts flown"
                         sx={{ mr: 2 }}
-                        onClick={() => history.push('/aircrafts')}>
+                        onClick={() => navigate('/aircrafts')}>
                         <FlightIcon />
                     </IconButton>
-                    <IconButton edge="start" color="inherit" aria-label="flights" title="Flights" sx={{ mr: 2 }} onClick={() => history.push('/flights')}>
+                    <IconButton edge="start" color="inherit" aria-label="flights" title="Flights" sx={{ mr: 2 }} onClick={() => navigate('/flights')}>
                         <AirplaneTicketIcon />
                     </IconButton>
                 </Hidden>
