@@ -90,7 +90,7 @@ const Header = (): React.ReactElement => {
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Statistics" />
+                        <ListItemText primary="Home" />
                     </ListItem>
                     <ListItem button key="stats" component="a" href="/statistics">
                         <ListItemIcon>
