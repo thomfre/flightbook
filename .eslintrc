@@ -1,20 +1,31 @@
 {
-    "extends": "react-typescript",
-    "rules": {
-        "react/display-name": 0,
-        "comma-dangle": 0,
-        "@typescript-eslint/ban-ts-comment": 0,
-        "no-shadow": "off",
-        "@typescript-eslint/no-shadow": ["error"],
-        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
-    },
     "overrides": [
         {
             "files": ["*.ts", "*.tsx"],
+            "parser": "@typescript-eslint/parser",
             "parserOptions": {
                 "project": ["./tsconfig.json"]
+            },
+            "extends": "react-typescript",
+            "rules": {
+                "react/display-name": 0,
+                "comma-dangle": 0,
+                "@typescript-eslint/ban-ts-comment": 0,
+                "no-shadow": "off",
+                "@typescript-eslint/no-shadow": ["error"],
+                "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+                "@typescript-eslint/naming-convention": [
+                    "error",
+                    {
+                        "selector": "objectLiteralProperty",
+                        "format": null,
+                        "filter": {
+                            "regex": "^&:",
+                            "match": true
+                        }
+                    }
+                ]
             }
         }
-    ],
-    "parser": "@typescript-eslint/parser"
+    ]
 }
