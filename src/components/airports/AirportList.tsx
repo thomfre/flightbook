@@ -49,7 +49,7 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
             </TableCell>
             <TableCell>{airport.distinctVisitDates}</TableCell>
             <TableCell>{airport.totalFlights}</TableCell>
-            <TableCell>{airport.aircrafts.length}</TableCell>
+            <TableCell>{airport.aircraft.length}</TableCell>
             <TableCell>
                 <Hidden mdDown>
                     <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'row' }}>
@@ -66,7 +66,7 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
 };
 
 const descendingComparator = (a: { [x: string]: any }, b: { [x: string]: any }, orderBy: string | number) => {
-    if (orderBy === 'aircrafts') {
+    if (orderBy === 'aircraft') {
         if (b[orderBy].length < a[orderBy].length) {
             return -1;
         }
@@ -160,12 +160,12 @@ const AirportList = ({ onAirportClicked }: { onAirportClicked: (icao: string) =>
                                 Flights
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell key="aircrafts" sortDirection={orderBy === 'aircrafts' ? order : false} sx={{ fontWeight: 'bold' }}>
+                        <TableCell key="aircraft" sortDirection={orderBy === 'aircraft' ? order : false} sx={{ fontWeight: 'bold' }}>
                             <TableSortLabel
-                                active={orderBy === 'aircrafts'}
-                                direction={orderBy === 'aircrafts' ? order : 'asc'}
-                                onClick={createSortHandler('aircrafts')}>
-                                Aircrafts
+                                active={orderBy === 'aircraft'}
+                                direction={orderBy === 'aircraft' ? order : 'asc'}
+                                onClick={createSortHandler('aircraft')}>
+                                Aircraft
                             </TableSortLabel>
                         </TableCell>
                         <TableCell></TableCell>

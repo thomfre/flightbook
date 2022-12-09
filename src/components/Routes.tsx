@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes as RouterRoutes } from 'react-router-dom';
-import Aircrafts from './aircrafts/Aircrafts';
+import Aircraft from './aircraft/Aircraft';
 import Airports from './airports/Airports';
 import Flight from './flight/Flight';
 import AllFlights from './flights/AllFlights';
@@ -29,8 +29,8 @@ const Routes = (): React.ReactElement => {
             <Route path="airports" element={<Airports />}>
                 <Route path=":airport" element={<Airports />} />
             </Route>
-            <Route path="/aircrafts" element={<Aircrafts />}>
-                <Route path=":aircraft" element={<Aircrafts />} />
+            <Route path="/aircraft" element={<Aircraft />}>
+                <Route path=":aircraft" element={<Aircraft />} />
             </Route>
             <Route path="/statistics" element={<Statistics />}>
                 <Route path="flighttime" element={<Statistics />} />

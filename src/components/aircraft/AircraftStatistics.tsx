@@ -10,15 +10,15 @@ import { uniqueValues } from '../../tools/UniqueValues';
 const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registration: string) => void }): React.ReactElement => {
     const theme = useTheme();
 
-    const aircraftsFlown = Flightbook.aircrafts.length;
-    const aircraftsFlownAsPic = Flightbook.aircrafts.filter((aircraft) => aircraft.asPic).length;
-    const oldestAircraft = Flightbook.aircrafts.sort((a, b) => a.manufacturedYear - b.manufacturedYear)[0];
-    const newestAircraft = Flightbook.aircrafts.sort((a, b) => b.manufacturedYear - a.manufacturedYear)[0];
-    const uniqueManufacturers = Flightbook.aircrafts
+    const aircraftFlown = Flightbook.aircraft.length;
+    const aircraftFlownAsPic = Flightbook.aircraft.filter((aircraft) => aircraft.asPic).length;
+    const oldestAircraft = Flightbook.aircraft.sort((a, b) => a.manufacturedYear - b.manufacturedYear)[0];
+    const newestAircraft = Flightbook.aircraft.sort((a, b) => b.manufacturedYear - a.manufacturedYear)[0];
+    const uniqueManufacturers = Flightbook.aircraft
         .filter((aircraft) => aircraft.manufacturer && aircraft.manufacturer.length > 0)
         .map((aircraft) => aircraft.manufacturer)
         .filter(uniqueValues);
-    const uniqueTypes = Flightbook.aircrafts.map((aircraft) => aircraft.type).filter(uniqueValues);
+    const uniqueTypes = Flightbook.aircraft.map((aircraft) => aircraft.type).filter(uniqueValues);
 
     const currentYear = new Date().getFullYear();
 
@@ -28,10 +28,10 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
             <CardContent>
                 <ul style={{ marginTop: 0 }}>
                     <li>
-                        <b>{aircraftsFlown}</b> aircraft{aircraftsFlown !== 1 && 's'} flown
+                        <b>{aircraftFlown}</b> aircraft flown
                     </li>
                     <li>
-                        <b>{aircraftsFlownAsPic}</b> aircraft{aircraftsFlownAsPic !== 1 && 's'} flown as PIC
+                        <b>{aircraftFlownAsPic}</b> aircraft flown as PIC
                     </li>
                     <li>
                         Oldest aircraft flown is{' '}
@@ -50,7 +50,7 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
                         <Chip label={newestAircraft.registration} size="small" onClick={() => onAircraftClicked(newestAircraft.registration)} />
                     </li>
                     <li>
-                        Aircrafts from <b>{uniqueManufacturers.length}</b> {uniqueManufacturers.length === 1 ? 'manufacturer' : 'manufacturers'} flown
+                        Aircraft from <b>{uniqueManufacturers.length}</b> {uniqueManufacturers.length === 1 ? 'manufacturer' : 'manufacturers'} flown
                         <ul>
                             {uniqueManufacturers.map((manufacturer) => (
                                 <li key={manufacturer}>{manufacturer}</li>
@@ -58,7 +58,7 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
                         </ul>
                     </li>
                     <li>
-                        Aircrafts from <b>{uniqueTypes.length}</b> {uniqueTypes.length === 1 ? 'model group' : 'model groups'} flown
+                        Aircraft from <b>{uniqueTypes.length}</b> {uniqueTypes.length === 1 ? 'model group' : 'model groups'} flown
                         <ul>
                             {uniqueTypes.map((type) => (
                                 <li key={type}>{type}</li>

@@ -1,4 +1,4 @@
-import { Aircraft } from '../models/flightbook/Aircraft';
+import { AircraftDetails } from '../models/flightbook/Aircraft';
 
 export const getAircraftClassName = (aircraftClass: string): string => {
     switch (aircraftClass) {
@@ -11,7 +11,7 @@ export const getAircraftClassName = (aircraftClass: string): string => {
     }
 };
 
-export const getAircraftMakeAndModel = (aircraft: Aircraft): string => {
+export const getAircraftMakeAndModel = (aircraft: AircraftDetails): string => {
     const parts = [];
 
     if (aircraft.manufacturer) {

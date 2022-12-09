@@ -65,6 +65,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                 )}
                 <Typography
                     variant="h2"
+                    component="div"
                     color={theme.palette.common.white}
                     align="center"
                     sx={{
@@ -102,7 +103,7 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                     {airport.region}
                                 </Typography>
                                 <Tooltip title={<ConvertedValue value={airport.fieldElevation} type={UnitType.Altitude} />}>
-                                    <Typography variant="subtitle1" title="Field elevation">
+                                    <Typography variant="subtitle1">
                                         <Number value={airport.fieldElevation} unit="ft" />
                                     </Typography>
                                 </Tooltip>
@@ -188,12 +189,12 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                                 <ListItemText
                                     primary={
                                         <Stack direction="row" spacing={1}>
-                                            {airport.aircrafts.map((a: string) => (
-                                                <Chip key={a} label={a} size="small" onClick={() => navigate(`/aircrafts/${a}`)} />
+                                            {airport.aircraft.map((a: string) => (
+                                                <Chip key={a} label={a} size="small" onClick={() => navigate(`/aircraft/${a}`)} />
                                             ))}
                                         </Stack>
                                     }
-                                    secondary="Aircrafts flown here"
+                                    secondary="Aircraft flown here"
                                 />
                             </ListItem>
                         </List>

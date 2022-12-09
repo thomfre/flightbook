@@ -1,4 +1,4 @@
-import { Aircraft } from './Aircraft';
+import { AircraftDetails } from './Aircraft';
 import { Airport } from './Airport';
 import { Country } from './Country';
 import { FlightStatistics } from './FlightStatistics';
@@ -10,7 +10,7 @@ export interface Flightbook {
     aircraftGallerySearch?: string;
     flickrProxyUrl?: string;
     generatedDate: string;
-    aircrafts: Aircraft[];
+    aircraft: AircraftDetails[];
     airports: Airport[];
     countries: Country[];
     flightTimeMonths: FlightTimeMonth[];

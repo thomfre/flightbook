@@ -66,13 +66,7 @@ const Header = (): React.ReactElement => {
                         onClick={() => navigate('/airports')}>
                         <FlightTakeoffIcon />
                     </IconButton>
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="aircrafts"
-                        title="Aircrafts flown"
-                        sx={{ mr: 2 }}
-                        onClick={() => navigate('/aircrafts')}>
+                    <IconButton edge="start" color="inherit" aria-label="aircraft" title="Aircraft flown" sx={{ mr: 2 }} onClick={() => navigate('/aircraft')}>
                         <FlightIcon />
                     </IconButton>
                     <IconButton edge="start" color="inherit" aria-label="flights" title="Flights" sx={{ mr: 2 }} onClick={() => navigate('/flights')}>
@@ -104,11 +98,11 @@ const Header = (): React.ReactElement => {
                         </ListItemIcon>
                         <ListItemText primary="Airports" />
                     </ListItem>
-                    <ListItem button key="aircrafts" component="a" href="/aircrafts">
+                    <ListItem button key="aircraft" component="a" href="/aircraft">
                         <ListItemIcon>
                             <FlightIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Aircrafts" />
+                        <ListItemText primary="Aircraft" />
                     </ListItem>
                     <ListItem button key="flights" component="a" href="/flights">
                         <ListItemIcon>

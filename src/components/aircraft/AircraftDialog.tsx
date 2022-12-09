@@ -59,6 +59,7 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                 )}
                 <Typography
                     variant="h2"
+                    component="div"
                     color={theme.palette.common.white}
                     align="center"
                     sx={{

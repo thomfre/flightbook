@@ -1,4 +1,4 @@
-export interface Aircraft {
+export interface AircraftDetails {
     registration: string;
     isoCountry: string;
     type: string;

@@ -65,7 +65,7 @@ const AircraftList = ({
 
     return (
         <ImageList>
-            {Flightbook.aircrafts
+            {Flightbook.aircraft
                 .sort((a, b) => sort(a, b))
                 .map((aircraft) => (
                     <AircraftEntry key={aircraft.registration} aircraft={aircraft} aircraftClicked={onAircraftClicked} />

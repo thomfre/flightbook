@@ -11,13 +11,13 @@ import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Flightbook from '../../data/flightbook.json';
-import { Aircraft } from '../../models/flightbook/Aircraft';
+import { AircraftDetails } from '../../models/flightbook/Aircraft';
 import { setTitle } from '../../tools/SetTitle';
 import AircraftDialog from './AircraftDialog';
 import AircraftList from './AircraftList';
 import AircraftStatistics from './AircraftStatistics';
 
-const Aircrafts = (): React.ReactElement => {
+const Aircraft = (): React.ReactElement => {
     const theme = useTheme();
     const navigate = useNavigate();
     const { aircraft }: { aircraft?: string } = useParams();
@@ -26,23 +26,23 @@ const Aircrafts = (): React.ReactElement => {
     const [order, setOrder] = useState<'asc' | 'desc'>('desc');
 
     const [detailsOpen, setDetailsOpen] = useState(false);
-    const [selectedAircraft, setSelectedAircraft] = useState<Aircraft>();
+    const [selectedAircraft, setSelectedAircraft] = useState<AircraftDetails>();
 
     useEffect(() => {
-        setTitle('Aircrafts flown');
+        setTitle('Aircraft flown');
     }, []);
 
     const aircraftClicked = (registration: string): void => {
-        setSelectedAircraft(Flightbook.aircrafts.filter((a) => a.registration.toLowerCase() === registration.toLowerCase())[0]);
+        setSelectedAircraft(Flightbook.aircraft.filter((a) => a.registration.toLowerCase() === registration.toLowerCase())[0]);
 
         const newValue = !detailsOpen;
         setDetailsOpen(newValue);
-        navigate(newValue ? '/aircrafts/' + registration : '/aircrafts', { replace: true });
+        navigate(newValue ? '/aircraft/' + registration : '/aircraft', { replace: true });
     };
 
     const handleInfoClose = (): void => {
         setDetailsOpen(false);
-        navigate('/aircrafts', { replace: true });
+        navigate('/aircraft', { replace: true });
     };
 
     useEffect(() => {
@@ -64,7 +64,7 @@ const Aircrafts = (): React.ReactElement => {
     return (
         <Container maxWidth={false}>
             <Typography variant="h3" sx={{ paddingBottom: theme.spacing(1) }}>
-                <FlightIcon fontSize="large" /> Aircrafts flown
+                <FlightIcon fontSize="large" /> Aircraft flown
             </Typography>
             <Grid container direction="row" justifyContent="flex-end" alignItems="center">
                 <Grid item>
@@ -100,4 +100,4 @@ const Aircrafts = (): React.ReactElement => {
     );
 };
 
-export default Aircrafts;
+export default Aircraft;

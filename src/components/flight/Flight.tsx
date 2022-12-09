@@ -201,7 +201,7 @@ const Flight = (): React.ReactElement => {
                         label={flight.aircraft}
                         variant="outlined"
                         color="primary"
-                        onClick={() => navigate(`/aircrafts/${flight.aircraft}`)}
+                        onClick={() => navigate(`/aircraft/${flight.aircraft}`)}
                         clickable
                     />
                 )}

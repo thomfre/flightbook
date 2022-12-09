@@ -17,6 +17,6 @@ export interface Airport {
     asVia: boolean;
     distinctVisitDates: number;
     totalFlights: number;
-    aircrafts: string[];
+    aircraft: string[];
     picture?: string | null;
 }
