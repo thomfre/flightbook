@@ -1,6 +1,6 @@
 {
   "name": "flightbook",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -38,9 +38,9 @@
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
-    "eslint": "^8.31.0",
+    "eslint": "^8.32.0",
     "eslint-config-react-typescript": "^1.0.10",
-    "prettier": "^2.8.2",
+    "prettier": "^2.8.3",
     "react-scripts": "^5.0.1",
     "typescript": "^4.9.4"
   },
