@@ -21,7 +21,7 @@ const YouTubeList = ({ aircraft = undefined, airport = undefined }: { aircraft?:
         const fetchedUrls = await Promise.all(
             filteredTracks.map(async (track) => {
                 const data: Tracklog = await fetch(`/tracklogs/${track.filename}`).then((response) => response.json());
-                return data.youtube ?? null;
+                return data?.youtube?.at(0) ?? null;
             })
         );
 

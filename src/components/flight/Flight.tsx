@@ -220,17 +220,11 @@ const Flight = (): React.ReactElement => {
                 (flight.facebookPost && flight.facebookPost.length > 0) ||
                 (flight.gallery && flight.gallery.length > 0)) && (
                 <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={2}>
-                    {flight.youtube && flight.youtube.length > 0 && (
-                        <Chip
-                            icon={<YouTubeIcon />}
-                            label={'View on YouTube'}
-                            color="secondary"
-                            component="a"
-                            href={flight.youtube}
-                            target="_blank"
-                            clickable
-                        />
-                    )}
+                    {flight.youtube &&
+                        flight.youtube.length > 0 &&
+                        flight.youtube.map((y, i) => (
+                            <Chip key={i} icon={<YouTubeIcon />} label={'View on YouTube'} color="secondary" component="a" href={y} target="_blank" clickable />
+                        ))}
 
                     {flight.blogpost && flight.blogpost.length > 0 && (
                         <Chip icon={<ArticleIcon />} label={'Read blog post'} color="primary" component="a" href={flight.blogpost} clickable />
@@ -301,17 +295,17 @@ const Flight = (): React.ReactElement => {
 
             <Metar metars={flight.metars} />
 
-            {flight.youtube && flight.youtube.length > 0 && (
-                <div className="youtube-container">
+            {flight?.youtube?.map((y, i) => (
+                <div key={i} className="youtube-container">
                     <YouTube
-                        videoId={getYouTubeId(flight.youtube)}
+                        videoId={getYouTubeId(y)}
                         opts={{
                             host: 'https://www.youtube-nocookie.com',
                             playerVars: { autoplay: 0, rel: 0 }
                         }}
                     />
                 </div>
-            )}
+            ))}
         </>
     );
 };
