@@ -43,6 +43,9 @@
     "react-scripts": "^5.0.1",
     "typescript": "^5.0.2"
   },
+  "dependenciesMeta": {
+    "@thomfre/leaflet.heightgraph": {}
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
