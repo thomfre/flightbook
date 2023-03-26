@@ -1,5 +1,5 @@
-import '@thomfre/leaflet.heightgraph';
-import '@thomfre/leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
+import 'leaflet.heightgraph';
+import 'leaflet.heightgraph/dist/L.Control.Heightgraph.min.css';
 import L from 'leaflet';
 import 'leaflet.fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
