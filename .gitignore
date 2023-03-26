@@ -2,8 +2,7 @@
 
 # yarn
 .pnp.*
-.yarn/**
-!.yarn/cache
+.yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases

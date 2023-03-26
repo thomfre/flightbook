@@ -2887,9 +2887,9 @@ __metadata:
   linkType: hard
 
 "@thomfre/leaflet.heightgraph@git+https://github.com/thomfre/Leaflet.Heightgraph.git":
-  version: 0.0.0
-  resolution: "@thomfre/leaflet.heightgraph@https://github.com/thomfre/Leaflet.Heightgraph.git#commit=ebc0a4cd25d7c3f51784728336afd993aa4bf561"
-  checksum: cb21ab9ea8ca9e8d1026549f010048fdcd6149761da2e4cd20f1bb89852d0ef1032532406f3622f02d527417e44fde16c55f58d60fa544253483b2b3726f378e
+  version: 1.4.4
+  resolution: "@thomfre/leaflet.heightgraph@https://github.com/thomfre/Leaflet.Heightgraph.git#commit=c4a5643bf0d2dde7948b3a4316ff18a9878a394e"
+  checksum: 09fc0dd8593a8984997634af3da9e6086b81179d93657fd5db96685fd78a603c8c705f3db65f42edcfafcfd38121f2ed28318049c2491c15e86c97ba21ab425e
   languageName: node
   linkType: hard
 

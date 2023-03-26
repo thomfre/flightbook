@@ -1,6 +1,6 @@
 {
   "name": "flightbook",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -49,9 +49,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "npx eslint src/**",
-    "patch": "yarn version --no-git-tag-version --patch",
-    "minor": "yarn version --no-git-tag-version --minor",
-    "update-packages": "yarn upgrade --latest"
+    "patch": "yarn version patch",
+    "minor": "yarn version minor",
+    "update-packages": "yarn up && yarn version patch"
   },
   "eslintConfig": {
     "extends": [
