@@ -2886,15 +2886,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thomfre/leaflet.heightgraph@git+https://github.com/thomfre/Leaflet.Heightgraph.git":
-  version: 1.4.4
-  resolution: "@thomfre/leaflet.heightgraph@https://github.com/thomfre/Leaflet.Heightgraph.git#commit=c4a5643bf0d2dde7948b3a4316ff18a9878a394e"
-  dependencies:
-    leaflet: ^1.6.0
-  checksum: 09fc0dd8593a8984997634af3da9e6086b81179d93657fd5db96685fd78a603c8c705f3db65f42edcfafcfd38121f2ed28318049c2491c15e86c97ba21ab425e
-  languageName: node
-  linkType: hard
-
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -6829,7 +6820,6 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.4.3
-    "@thomfre/leaflet.heightgraph": "git+https://github.com/thomfre/Leaflet.Heightgraph.git"
     "@types/jest": ^29.5.0
     "@types/leaflet": ^1.9.3
     "@types/leaflet.fullscreen": ^1.6.1
@@ -6846,6 +6836,7 @@ __metadata:
     flag-icons: ^6.6.6
     leaflet: ^1.9.3
     leaflet.fullscreen: ^2.4.0
+    leaflet.heightgraph: ^1.4.0
     metar-plot: ^2.0.0
     prettier: ^2.8.7
     react: ^18.2.0
@@ -9039,6 +9030,15 @@ __metadata:
   version: 2.4.0
   resolution: "leaflet.fullscreen@npm:2.4.0"
   checksum: 2740681a0a1314350c75fa0270afa73cc2ff236a43f15a1d8dd811522a07ddfcb19415eaef9ef17dab81f345431db3c3ded43bf73403265a91c52796543c99d1
+  languageName: node
+  linkType: hard
+
+"leaflet.heightgraph@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "leaflet.heightgraph@npm:1.4.0"
+  dependencies:
+    leaflet: ^1.6.0
+  checksum: 24731c7bb98e44a057afef5739f555e189da9ec0c24132fedb5f44be395842b76337a28dd98807b69b68912d8efa8cdb25375ea43f40f88b1f283e95364f4be0
   languageName: node
   linkType: hard
 

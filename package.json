@@ -7,12 +7,12 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
-    "@thomfre/leaflet.heightgraph": "git+https://github.com/thomfre/Leaflet.Heightgraph.git",
     "chart.js": "^4.2.1",
     "dayjs": "^1.11.7",
     "flag-icons": "^6.6.6",
     "leaflet": "^1.9.3",
     "leaflet.fullscreen": "^2.4.0",
+    "leaflet.heightgraph": "^1.4.0",
     "metar-plot": "^2.0.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -67,5 +67,8 @@
     "not dead",
     "not op_mini all"
   ],
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@3.5.0",
+  "resolutions": {
+    "leaflet.heightgraph@^1.4.0": "patch:leaflet.heightgraph@npm%3A1.4.0#./.yarn/patches/leaflet.heightgraph-npm-1.4.0-7013bb1d32.patch"
+  }
 }
