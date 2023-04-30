@@ -1,13 +1,13 @@
 {
   "name": "flightbook",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
-    "chart.js": "^4.2.1",
+    "chart.js": "^4.3.0",
     "dayjs": "^1.11.7",
     "flag-icons": "^6.6.6",
     "leaflet": "^1.9.3",
@@ -17,10 +17,10 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-error-boundary": "^4.0.2",
+    "react-error-boundary": "^4.0.4",
     "react-leaflet": "^4.2.1",
-    "react-markdown": "^8.0.6",
-    "react-router-dom": "^6.9.0",
+    "react-markdown": "^8.0.7",
+    "react-router-dom": "^6.11.0",
     "react-youtube": "^10.1.0",
     "screenfull": "^6.0.2"
   },
@@ -37,11 +37,11 @@
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
-    "eslint": "^8.36.0",
+    "eslint": "^8.39.0",
     "eslint-config-react-typescript": "^1.0.10",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "react-scripts": "^5.0.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,7 +51,7 @@
     "lint": "npx eslint src/**",
     "patch": "yarn version patch",
     "minor": "yarn version minor",
-    "update-packages": "yarn up && yarn version patch"
+    "update-packages": "yarn up '*'  && yarn version patch"
   },
   "eslintConfig": {
     "extends": [
