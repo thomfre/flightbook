@@ -38,6 +38,15 @@ const ManufacturerLogo = ({ manufacturer }: { manufacturer: string }): React.Rea
                     style={{ maxHeight: '100px', maxWidth: '100px', paddingLeft: 8, float: 'left' }}
                 />
             );
+        case 'pipistrel':
+            return (
+                <img
+                    src="/manufacturers/pipistrel.svg"
+                    title="Pipistrel"
+                    loading="lazy"
+                    style={{ maxHeight: '100px', maxWidth: '100px', paddingLeft: 8, float: 'left' }}
+                />
+            );
         default:
             return <></>;
     }
