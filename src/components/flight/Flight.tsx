@@ -283,6 +283,7 @@ const Flight = (): React.ReactElement => {
                             type: 'linear',
                             display: true,
                             position: 'right',
+                            // @ts-ignore
                             gridLines: {
                                 drawOnArea: false
                             }

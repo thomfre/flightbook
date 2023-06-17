@@ -1,6 +1,6 @@
 {
   "name": "flightbook",
-  "version": "1.2.15",
+  "version": "1.4.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
