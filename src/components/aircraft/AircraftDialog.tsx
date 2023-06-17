@@ -116,6 +116,9 @@ const AircraftDialog = ({ aircraft, dialogOpen, handleClose }: { aircraft: any; 
                             {!!aircraft.asPic && (
                                 <Chip icon={<PersonIcon />} label="PIC" title="Flown as pilot in command" variant="outlined" color="primary" />
                             )}
+                            {!!aircraft.asInstructor && (
+                                <Chip icon={<PersonIcon />} label="Instructor" title="Flown as instructor" variant="outlined" color="success" />
+                            )}
                             {Flightbook.aircraftGallerySearch && (
                                 <Chip
                                     icon={<PhotoLibraryIcon />}

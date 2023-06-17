@@ -24,6 +24,7 @@ const AircraftEntry = ({ aircraft, aircraftClicked }: { aircraft: any; aircraftC
                             {aircraft.numberOfFlights} flight{aircraft.numberOfFlights !== 1 && 's'}
                         </div>
                         {aircraft.asPic && <div>PIC</div>}
+                        {aircraft.asInstructor && <div>Instructor</div>}
                         <div>First flight: {dayjs(aircraft.firstFlown).format('MMMM Do, YYYY')}</div>
                         <div>Last flight: {dayjs(aircraft.lastFlown).format('MMMM Do, YYYY')}</div>
                     </Stack>

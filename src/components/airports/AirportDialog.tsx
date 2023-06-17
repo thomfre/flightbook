@@ -125,6 +125,9 @@ const AirportDialog = ({ airport, dialogOpen, handleClose }: { airport: any; dia
                             {!!airport.asPic && (
                                 <Chip icon={<PersonIcon />} label="PIC" title="Visited as pilot in command" variant="outlined" color="primary" />
                             )}
+                            {!!airport.asInstructor && (
+                                <Chip icon={<PersonIcon />} label="Instructor" title="Visited as instructor" variant="outlined" color="success" />
+                            )}
                             {!!airport.asFrom && <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />}
                             {!!airport.asVia && <Chip icon={<AirlineStopsIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />}
                             {!!airport.asTo && <Chip icon={<FlightLandIcon />} label="To" title="Arrived at" variant="outlined" color="primary" />}

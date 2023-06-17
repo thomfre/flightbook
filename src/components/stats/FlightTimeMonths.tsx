@@ -41,6 +41,16 @@ const FlightTimeMonths = ({ data }: { data: FlightTimeMonth[] }): React.ReactEle
             },
             {
                 type: 'line',
+                label: 'Instructor time',
+                data: data.map((f) => f.instructorMinutes / 60),
+                fill: false,
+                backgroundColor: 'rgb(0, 132, 0)',
+                borderColor: 'rgba(0, 132, 0, 0.8)',
+                tension: 0.4,
+                yAxisID: 'y'
+            },
+            {
+                type: 'line',
                 label: 'Night time',
                 data: data.map((f) => f.nightMinutes / 60),
                 fill: false,

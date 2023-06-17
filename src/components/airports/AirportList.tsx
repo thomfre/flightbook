@@ -55,6 +55,9 @@ const Airport = ({ airport, airportClicked }: { airport: any; airportClicked: (i
                     <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'row' }}>
                         {!!airport.asDual && <Chip icon={<SchoolIcon />} label="Dual" title="Visited with instructor" variant="outlined" />}
                         {!!airport.asPic && <Chip icon={<PersonIcon />} label="PIC" title="Visited as pilot in command" variant="outlined" color="primary" />}
+                        {!!airport.asInstructor && (
+                            <Chip icon={<PersonIcon />} label="Instructor" title="Visited as instructor" variant="outlined" color="success" />
+                        )}
                         {!!airport.asFrom && <Chip icon={<FlightTakeoffIcon />} label="From" title="Departed from" variant="outlined" color="primary" />}
                         {!!airport.asTo && <Chip icon={<FlightLandIcon />} label="To" title="Arrived at" variant="outlined" color="primary" />}
                         {!!airport.asVia && <Chip icon={<FlightIcon />} label="Via" title="Flown via" variant="outlined" color="secondary" />}

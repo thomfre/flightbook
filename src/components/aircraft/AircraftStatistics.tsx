@@ -12,6 +12,7 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
 
     const aircraftFlown = Flightbook.aircraft.length;
     const aircraftFlownAsPic = Flightbook.aircraft.filter((aircraft) => aircraft.asPic).length;
+    const aircraftFlownAsInstructor = Flightbook.aircraft.filter((aircraft) => aircraft.asInstructor).length;
     const oldestAircraft = Flightbook.aircraft.sort((a, b) => a.manufacturedYear - b.manufacturedYear)[0];
     const newestAircraft = Flightbook.aircraft.sort((a, b) => b.manufacturedYear - a.manufacturedYear)[0];
     const uniqueManufacturers = Flightbook.aircraft
@@ -32,6 +33,9 @@ const AircraftStatistics = ({ onAircraftClicked }: { onAircraftClicked: (registr
                     </li>
                     <li>
                         <b>{aircraftFlownAsPic}</b> aircraft flown as PIC
+                    </li>
+                    <li>
+                        <b>{aircraftFlownAsInstructor}</b> aircraft flown as Instructor
                     </li>
                     <li>
                         Oldest aircraft flown is{' '}

@@ -15,6 +15,7 @@ const AirportStatisticsGeneral = ({ onAirportClicked }: { onAirportClicked: (ica
         () => Flightbook.airports.filter((airport) => airport.asPic && (airport.asFrom || airport.asTo)).length,
         [Flightbook]
     );
+    const airportsVisitedAsInstructor = useMemo(() => Flightbook.airports.filter((airport) => airport.asInstructor).length, [Flightbook]);
 
     const countriesVisited = useMemo(() => Flightbook.airports.map((airport) => airport.isoCountry).filter(uniqueValues), [Flightbook]);
 
@@ -41,6 +42,9 @@ const AirportStatisticsGeneral = ({ onAirportClicked }: { onAirportClicked: (ica
             <li>
                 <b>{airportsVisitedAsPicWithFullStopOrDeparture}</b> airport{airportsVisitedAsPicWithFullStopOrDeparture !== 1 && 's'} visited as PIC with
                 either full stop or departure
+            </li>
+            <li>
+                <b>{airportsVisitedAsInstructor}</b> airport{airportsVisitedAsInstructor !== 1 && 's'} visited as Instructor
             </li>
             <li>
                 Highest elevation{' '}
