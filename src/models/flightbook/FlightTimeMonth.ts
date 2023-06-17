@@ -4,6 +4,7 @@ export interface FlightTimeMonth {
     nightMinutes: number;
     dualMinutes: number;
     picMinutes: number;
+    instructorMinutes: number;
     numberOfFlights: number;
     landings: number;
     dualLandings: number;

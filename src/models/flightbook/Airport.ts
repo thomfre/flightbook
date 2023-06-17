@@ -12,6 +12,7 @@ export interface Airport {
     lastVisited: string;
     asDual: boolean;
     asPic: boolean;
+    asInstructor: boolean;
     asFrom: boolean;
     asTo: boolean;
     asVia: boolean;

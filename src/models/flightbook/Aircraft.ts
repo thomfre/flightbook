@@ -14,6 +14,7 @@ export interface AircraftDetails {
     numberOfAirports: number;
     asDual: boolean;
     asPic: boolean;
+    asInstructor: boolean;
     picture?: string | null;
 }
 
