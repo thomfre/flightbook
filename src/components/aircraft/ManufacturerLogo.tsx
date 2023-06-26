@@ -47,6 +47,15 @@ const ManufacturerLogo = ({ manufacturer }: { manufacturer: string }): React.Rea
                     style={{ maxHeight: '100px', maxWidth: '100px', paddingLeft: 8, float: 'left' }}
                 />
             );
+        case 'saab':
+            return (
+                <img
+                    src="/manufacturers/saab.svg"
+                    title="SAAB"
+                    loading="lazy"
+                    style={{ maxHeight: '100px', maxWidth: '100px', paddingLeft: 8, float: 'left' }}
+                />
+            );
         default:
             return <></>;
     }
