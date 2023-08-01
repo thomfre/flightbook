@@ -22,12 +22,12 @@ const AirportStatisticsGeneral = ({ onAirportClicked }: { onAirportClicked: (ica
     const airportsPerCountry = useMemo(() => countriesVisited.map((c) => Flightbook.airports.filter((a) => a.isoCountry === c).length), [countriesVisited]);
 
     const lowestElevation = useMemo(
-        () => Flightbook.airports.filter((airport) => airport.fieldElevation != null).sort((a, b) => a.fieldElevation - b.fieldElevation)[0],
+        () => Flightbook.airports.filter((airport) => airport.fieldElevation != null).sort((a, b) => (a?.fieldElevation ?? 0) - (b?.fieldElevation ?? 0))[0],
         [Flightbook]
     );
 
     const highestElevation = useMemo(
-        () => Flightbook.airports.filter((airport) => airport.fieldElevation != null).sort((a, b) => b.fieldElevation - a.fieldElevation)[0],
+        () => Flightbook.airports.filter((airport) => airport.fieldElevation != null).sort((a, b) => (b?.fieldElevation ?? 0) - (a?.fieldElevation ?? 9))[0],
         [Flightbook]
     );
 
