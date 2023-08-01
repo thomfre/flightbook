@@ -46,20 +46,20 @@ const AirportStatisticsGeneral = ({ onAirportClicked }: { onAirportClicked: (ica
             <li>
                 <b>{airportsVisitedAsInstructor}</b> airport{airportsVisitedAsInstructor !== 1 && 's'} visited as Instructor
             </li>
-            <li>
+            {highestElevation.fieldElevation && <li>
                 Highest elevation{' '}
                 <Tooltip title={<ConvertedValue value={highestElevation.fieldElevation} type={UnitType.Altitude} />}>
                     <b>{formatNumber(highestElevation.fieldElevation)} ft</b>
                 </Tooltip>{' '}
                 <Chip label={highestElevation.icao} size="small" onClick={() => onAirportClicked(highestElevation.icao)} />
-            </li>
-            <li>
+            </li>}
+            {lowestElevation.fieldElevation && <li>
                 Lowest elevation{' '}
                 <Tooltip title={<ConvertedValue value={lowestElevation.fieldElevation} type={UnitType.Altitude} />}>
                     <b>{formatNumber(lowestElevation.fieldElevation)} ft</b>
                 </Tooltip>{' '}
                 <Chip label={lowestElevation.icao} size="small" onClick={() => onAirportClicked(lowestElevation.icao)} />
-            </li>
+            </li>}
             <li>
                 <b>{countriesVisited.length}</b> {countriesVisited.length === 1 ? 'country' : 'countries'} visited
                 <ul>
