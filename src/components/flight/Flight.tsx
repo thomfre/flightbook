@@ -153,10 +153,8 @@ const Flight = (): React.ReactElement => {
                 // @ts-ignore
                 fullscreenControlOptions={{ position: 'topleft' }}>
                 <TileLayer
-                    attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>,
-                <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
-                    subdomains="abcd"
+                    attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://tile.openstreetmap.org/{z}/{x}/{y}.png	"
                     minZoom={0}
                     maxZoom={20}
                 />
@@ -209,9 +207,7 @@ const Flight = (): React.ReactElement => {
 
             <Stack justifyContent="center" spacing={1} alignItems="center" direction={{ xs: 'column', sm: 'column', md: 'row' }} padding={0}>
                 <Chip icon={<FlightTakeoffIcon />} label={flight.from} onClick={() => navigate(`/airports/${flight.from}`)} clickable />
-                {flight.via?.map((a) => (
-                    <Chip key={a} icon={<AirlineStopsIcon />} label={a} onClick={() => navigate(`/airports/${a}`)} clickable />
-                ))}
+                {flight.via?.map((a) => <Chip key={a} icon={<AirlineStopsIcon />} label={a} onClick={() => navigate(`/airports/${a}`)} clickable />)}
                 <Chip icon={<FlightLandIcon />} label={flight.to} onClick={() => navigate(`/airports/${flight.to}`)} clickable />
             </Stack>
 
