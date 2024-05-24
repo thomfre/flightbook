@@ -56,6 +56,14 @@ const ManufacturerLogo = ({ manufacturer }: { manufacturer: string }): React.Rea
                     style={{ maxHeight: '100px', maxWidth: '100px', paddingLeft: 8, float: 'left' }}
                 />
             );
+        case 'schempp-hirth':
+            return (
+                <img src="/manufacturers/schempp-hirth.svg"
+                    title="Schempp-Hirth"
+                    loading="lazy"
+                    style={{ maxHeight: '100px', maxWidth: '100px', paddingLeft: 8, float: 'left' }}
+                />
+            );
         default:
             return <></>;
     }
